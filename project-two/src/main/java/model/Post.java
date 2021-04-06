@@ -5,55 +5,61 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Post model
 @Entity
 @Table(name="User_Post")
 public class Post {
 
+    //Auto generated serial number and primary key of User_Post
     @Id
     @Column(name="post_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postId;
 
-    @Column(name = "user_id")
-    private int userId;
-
+    //Column post description
     @Column(name = "post_description")
     private String description;
 
+    //Each post can have many photos
+    //Photos are stored in the photoList List
     @OneToMany(mappedBy = "myPost", fetch = FetchType.EAGER)
     private List<Photos> photoList = new ArrayList<>();
 
+    //Many posts have a single creator (aka user)
+    //Connected to User in the @JoinColumn portion with a new column named user_id
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User myUser;
 
-    @ManyToMany(mappedBy = "post")
+    //Many to many connection that is mapped by posts
+    //posts is found in the User class and is the ArrayList that contains all posts that a user could have
+    //Connecting two Arrays??? Not to sure how this works
+    @ManyToMany(mappedBy = "posts")
     private List<User> users = new ArrayList<>();
 
+    //Constructors
     public Post() {
     }
 
-    public Post(int userId, String description, User user) {
-        this.userId = userId;
+    public Post(String description, User user) {
         this.description = description;
         this.myUser = user;
     }
 
-    public Post(int postId, int userId, String description, User user) {
+    public Post(int postId, String description, User user) {
         this.postId = postId;
-        this.userId = userId;
         this.description = description;
         this.myUser = user;
     }
 
-    public Post(int postId, int userId, String description, User user, List<User> users) {
+    public Post(int postId, String description, User user, List<User> users) {
         this.postId = postId;
-        this.userId = userId;
         this.description = description;
         this.myUser = user;
         this.users = users;
     }
 
+    //Getters and Setters
     public List<User> getUsers() {
         return users;
     }
@@ -70,13 +76,6 @@ public class Post {
         this.postId = postId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getDescription() {
         return description;
@@ -94,13 +93,14 @@ public class Post {
         this.myUser = user;
     }
 
+    //toString() method
     @Override
     public String toString() {
         return "Post{" +
                 "postId=" + postId +
-                ", userId=" + userId +
                 ", description='" + description + '\'' +
-                ", user=" + myUser +
+                ", photoList=" + photoList +
+                ", myUser=" + myUser +
                 ", users=" + users +
                 '}';
     }

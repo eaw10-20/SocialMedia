@@ -5,36 +5,50 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//User model
 @Entity
 @Table(name="Hibernate_Users")
 public class User {
 
+    //Auto generated serial number and primary key of Hibernate_Users
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private int userId;
 
+    //Column Firstname
     @Column(name="user_fname", nullable = false)
     private String fname;
 
+    //Column LastName
     @Column(name="user_lname", nullable = false)
     private String lname;
 
+    //Column Email
     @Column(name="user_email", nullable = false)
     private String email;
 
+    //Column Password
     @Column(name="user_password", nullable = false)
     private String password;
 
+    //Column username
     @Column(name="user_username")
     private String username;
 
+    //Column photo string
     @Column(name="user_avatar", nullable = false)
     private String avatar;
 
+    //Each User can have many post
+    //User posts are stored in List<Post>????
     @OneToMany(mappedBy = "myUser", fetch = FetchType.EAGER)
     private List<Post> postList = new ArrayList<>();
 
+    //Many to many relation with Post class
+    //Create a new table name Likes and have two columns named user_id and post_id
+    //In the User class able to call post that have User id and stored it in posts List
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="Likes",
@@ -43,6 +57,8 @@ public class User {
     )
     private List<Post> posts = new ArrayList<>();
 
+
+    //Constructors
     public User() {
     }
 
@@ -88,6 +104,7 @@ public class User {
         this.posts = posts;
     }
 
+    //Getters and Setters
     public User(List<Post> posts) {
         this.posts = posts;
     }
@@ -152,7 +169,7 @@ public class User {
         this.avatar = avatar;
     }
 
-
+    //toString() method
     @Override
     public String toString() {
         return "User{" +
