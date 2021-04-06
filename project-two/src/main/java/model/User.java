@@ -2,6 +2,8 @@ package model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="Hibernate_Users")
@@ -30,6 +32,17 @@ public class User {
     @Column(name="user_avatar", nullable = false)
     private String avatar;
 
+    @OneToMany(mappedBy = "myUser", fetch = FetchType.EAGER)
+    private List<Post> postList = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="Likes",
+            joinColumns = {@JoinColumn (name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "post_id")}
+    )
+    private List<Post> posts = new ArrayList<>();
+
     public User() {
     }
 
@@ -50,6 +63,37 @@ public class User {
         this.password = password;
         this.username = username;
         this.avatar = avatar;
+    }
+
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, List<Post> postList) {
+        this.userId = userId;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.postList = postList;
+    }
+
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, List<Post> postList, List<Post> posts) {
+        this.userId = userId;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.postList = postList;
+        this.posts = posts;
+    }
+
+    public User(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Post> getPostList() {
+        return postList;
     }
 
     public int getUserId() {
@@ -108,6 +152,7 @@ public class User {
         this.avatar = avatar;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -118,6 +163,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", postList=" + postList +
+                ", posts=" + posts +
                 '}';
     }
 }
