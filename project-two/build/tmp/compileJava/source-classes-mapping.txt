@@ -4,13 +4,13 @@ util/HibernateUtil.java
  util.HibernateUtil
 model/Photos.java
  model.Photos
-Main.java
- Main
+model/Post.java
+ model.Post
 model/User.java
  model.User
 dao/UserDaoImpl.java
  dao.UserDaoImpl
 dao/UserDao.java
  dao.UserDao
-model/Post.java
- model.Post
+Main.java
+ Main

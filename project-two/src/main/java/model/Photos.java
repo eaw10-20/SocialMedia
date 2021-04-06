@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 //Photo model
 @Entity
-@Table(name = "Hibernate_Photos")
+@Table(name = "Photos")
 public class Photos {
 
     //Auto generated serial number and primary key of Hibernate_Photos

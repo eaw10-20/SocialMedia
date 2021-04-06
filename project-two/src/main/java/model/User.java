@@ -8,7 +8,7 @@ import java.util.List;
 
 //User model
 @Entity
-@Table(name="Hibernate_Users")
+@Table(name="Users")
 public class User {
 
     //Auto generated serial number and primary key of Hibernate_Users

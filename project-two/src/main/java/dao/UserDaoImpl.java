@@ -8,12 +8,6 @@ import util.HibernateUtil;
 public class UserDaoImpl implements UserDao {
 
 
-    public static void main(String[] args){
-
-        UserDaoImpl n = new UserDaoImpl();
-        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-        n.createUser(dan);
-    }
 
     @Override
     public void createUser(User user) {
