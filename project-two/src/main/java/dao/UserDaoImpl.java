@@ -3,11 +3,9 @@ package dao;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import util.HibernateUtil;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -51,6 +49,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsersLoggedIn() {
+
         Session session = HibernateUtil.getSession();
 
 
@@ -70,10 +69,22 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User login(String email, String password) {
+
         Session session = HibernateUtil.getSession();
 
         User user = session.createQuery("from User WHERE email = '" + email + "' AND password = '" + password +"'", User.class).uniqueResult();
 
         return user;
+    }
+
+    @Override
+    public User getUserByFullName(String firstName, String lastName) {
+
+        Session session = HibernateUtil.getSession();
+
+        User user = session.createQuery("from User WHERE user_fname = '" + firstName + "' AND user_lname = '" + lastName +"'", User.class).uniqueResult();
+
+        return user;
+
     }
 }
