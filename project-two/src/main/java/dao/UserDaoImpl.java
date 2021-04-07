@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -47,7 +49,14 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsersLoggedIn() {
-        return null;
+        Session session = HibernateUtil.getSession();
+
+        //searches based on password for now cus we dont have logged in boolean yet
+
+        List loggedIn = session.createQuery("from User WHERE user_password = '" + 12356 + "' ").list();
+
+        //System.out.println(loggedIn);
+        return loggedIn;
     }
 
     /**

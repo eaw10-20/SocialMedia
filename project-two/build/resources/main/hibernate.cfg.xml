@@ -5,10 +5,10 @@
 <hibernate-configuration>
     <session-factory>
         <!--JDBC stuff-->
-        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.username">mike</property>
         <property name="hibernate.connection.password">p4ssw0rd</property>
         <property name="hibernate.connection.url">
-            jdbc:postgresql://bootcampone.c7pvo8uwp5jq.us-east-2.rds.amazonaws.com/postgres
+            jdbc:postgresql://firstdatabase.ctxycf2tpkhe.us-east-2.rds.amazonaws.com/mydatabase
         </property>
 
 
@@ -21,7 +21,7 @@
         <property name="hibernate.format_sql">false</property>
 
 
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
 
         <property name="hibernate.connection.pool_size">10</property>
