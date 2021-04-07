@@ -12,17 +12,19 @@ public class Main {
 
         UserDaoImpl n = new UserDaoImpl();
 
-
-        User dan = new User(1, "Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg", true );
-        User dan2 = new User(2, "Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg", true);
-
+        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
+        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
         n.createUser(dan);
         n.createUser(dan2);
-        User dan3 = new User(2, "Frank", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg", true);
+        n.createUser(dan3);
 
-        n.updateUser(dan3);
 
-        User dan4 = n.login("frank@email.com", "12356");
-        System.out.println("Got the account for "+dan4.getFname()+" "+dan4.getLname());
+        System.out.println(n.getAllUsersLoggedIn());
+        //n.updateUser(dan3);
+        //n.login("frank@email.com", "12356");
+
+       // User dan4 = n.login("frank@email.com", "12356");
+        //System.out.println("Got the account for "+dan4.getFname()+" "+dan4.getLname());
     }
 }

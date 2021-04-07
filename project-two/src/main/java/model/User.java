@@ -75,6 +75,7 @@ public class User {
         this.avatar = avatar;
     }
 
+
     public User(int userId, String fname, String lname, String email, String password, String username, String avatar) {
         this.userId = userId;
         this.fname = fname;

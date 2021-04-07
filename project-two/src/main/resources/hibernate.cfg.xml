@@ -12,6 +12,7 @@
         </property>
 
 
+
         <property name="hibernate.connection.driver_class">
             org.postgresql.Driver
         </property>

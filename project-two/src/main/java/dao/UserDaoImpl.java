@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -49,7 +51,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsersLoggedIn() {
-        return null;
+        Session session = HibernateUtil.getSession();
+
+
+        List loggedIn = session.createQuery("from User WHERE loggedIn = '" + true + "' ").list();
+
+        //System.out.println(loggedIn);
+        return loggedIn;
     }
 
     /**
