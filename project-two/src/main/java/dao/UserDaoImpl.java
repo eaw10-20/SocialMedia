@@ -35,10 +35,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean updateUser(User user) {
+
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
 
-        session.update(user);
+        String id = String.valueOf(user.getUserId());
+        session.update(id, user);
 
         tx.commit();
 
@@ -63,7 +65,7 @@ public class UserDaoImpl implements UserDao {
         Session session = HibernateUtil.getSession();
 
         User user = session.createQuery("from User WHERE email = '" + email + "' AND password = '" + password +"'", User.class).uniqueResult();
-        System.out.println(user.getAvatar());
+
         return user;
     }
 }

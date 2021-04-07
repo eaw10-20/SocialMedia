@@ -121,6 +121,17 @@ public class User {
         this.posts = posts;
     }
 
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus) {
+        this.userId = userId;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.loginStatus = loginStatus;
+    }
+
 
     //Getters and Setters
     public boolean isLoginStatus() {
