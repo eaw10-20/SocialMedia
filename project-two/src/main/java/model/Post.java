@@ -6,7 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
+//import java.sql.Date;     <---- Commenting this out to fix temporal error. Delete if no problems
+import java.util.Date;
 
 //Post model
 @Entity
