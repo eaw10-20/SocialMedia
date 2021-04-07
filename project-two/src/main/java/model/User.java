@@ -41,6 +41,10 @@ public class User {
     @Column(name="user_avatar", nullable = false)
     private String avatar;
 
+    //Column for logged in
+    @Column(name="loggedin")
+    private boolean loginStatus;
+
     //Each User can have many post
     //User posts are stored in List<Post>????
     @OneToMany(mappedBy = "myUser", fetch = FetchType.EAGER)
@@ -104,7 +108,30 @@ public class User {
         this.posts = posts;
     }
 
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus, List<Post> postList, List<Post> posts) {
+        this.userId = userId;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.loginStatus = loginStatus;
+        this.postList = postList;
+        this.posts = posts;
+    }
+
+
     //Getters and Setters
+    public boolean isLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+
     public User(List<Post> posts) {
         this.posts = posts;
     }
@@ -170,6 +197,7 @@ public class User {
     }
 
     //toString() method
+
     @Override
     public String toString() {
         return "User{" +
@@ -180,6 +208,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", loginStatus=" + loginStatus +
                 ", postList=" + postList +
                 ", posts=" + posts +
                 '}';
