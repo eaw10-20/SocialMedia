@@ -18,5 +18,8 @@ public class Main {
         System.out.println(n.getAllUsersLoggedIn());
         //n.updateUser(dan3);
         //n.login("frank@email.com", "12356");
+
+       // User dan4 = n.login("frank@email.com", "12356");
+        //System.out.println("Got the account for "+dan4.getFname()+" "+dan4.getLname());
     }
 }

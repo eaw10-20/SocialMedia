@@ -51,9 +51,8 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsersLoggedIn() {
         Session session = HibernateUtil.getSession();
 
-        //searches based on password for now cus we dont have logged in boolean yet
 
-        List loggedIn = session.createQuery("from User WHERE user_password = '" + 12356 + "' ").list();
+        List loggedIn = session.createQuery("from User WHERE loggedIn = '" + true + "' ").list();
 
         //System.out.println(loggedIn);
         return loggedIn;

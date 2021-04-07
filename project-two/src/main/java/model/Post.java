@@ -1,9 +1,13 @@
 package model;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+//import java.sql.Date;     <---- Commenting this out to fix temporal error. Delete if no problems
+import java.util.Date;
 
 //Post model
 @Entity
@@ -19,6 +23,11 @@ public class Post {
     //Column post description
     @Column(name = "post_description")
     private String description;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "post_submitted")
+    private Date submitted;
 
     //Each post can have many photos
     //Photos are stored in the photoList List
@@ -59,6 +68,15 @@ public class Post {
         this.users = users;
     }
 
+    public Post(int postId, String description, Date submitted, List<Photos> photoList, User myUser, List<User> users) {
+        this.postId = postId;
+        this.description = description;
+        this.submitted = submitted;
+        this.photoList = photoList;
+        this.myUser = myUser;
+        this.users = users;
+    }
+
     //Getters and Setters
     public List<User> getUsers() {
         return users;
@@ -93,12 +111,22 @@ public class Post {
         this.myUser = user;
     }
 
+    public Date getSubmitted() {
+        return submitted;
+    }
+
+    public void setSubmitted(Date submitted) {
+        this.submitted = submitted;
+    }
+
     //toString() method
+
     @Override
     public String toString() {
         return "Post{" +
                 "postId=" + postId +
                 ", description='" + description + '\'' +
+                ", submitted=" + submitted +
                 ", photoList=" + photoList +
                 ", myUser=" + myUser +
                 ", users=" + users +

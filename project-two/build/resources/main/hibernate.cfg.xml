@@ -5,10 +5,17 @@
 <hibernate-configuration>
     <session-factory>
         <!--JDBC stuff-->
+<<<<<<< HEAD
         <property name="hibernate.connection.username">mike</property>
         <property name="hibernate.connection.password">p4ssw0rd</property>
         <property name="hibernate.connection.url">
             jdbc:postgresql://firstdatabase.ctxycf2tpkhe.us-east-2.rds.amazonaws.com/mydatabase
+=======
+        <property name="hibernate.connection.username">frostfuzz</property>
+        <property name="hibernate.connection.password">p4ssw0rd</property>
+        <property name="hibernate.connection.url">
+            jdbc:postgresql://databaserevaturetraining.cqfkhicmdjui.us-east-2.rds.amazonaws.com/socialmedia
+>>>>>>> 9351cb628f4d4ed9164a8ed1a58173f37b24aad2
         </property>
 
 

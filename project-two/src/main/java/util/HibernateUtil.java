@@ -8,7 +8,7 @@ public class HibernateUtil {
 
 
         private static SessionFactory sf= new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-        private static Session session;
+        private static Session session = null;
 
 
         public static Session getSession(){
