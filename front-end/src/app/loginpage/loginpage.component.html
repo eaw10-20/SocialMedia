@@ -10,7 +10,7 @@
 
         <p class>Password</p>
         <div class="form-floating">
-            <input id="password" type="password" class="form-control" placeholder="Password" [(ngModel)]='passwordField'>
+            <input type="text" id="password" class="form-control" placeholder="Password" [(ngModel)]='passwordField'>
         </div>
 
         <div class="login">
@@ -19,7 +19,7 @@
 
         <div class="btn-toolbar justify-content-between">
             <div class="btn-group">
-                <button id="login" class="btn btn-success" type="button">Login</button>
+                <button (click)="loginButton()" class="btn btn-success" type="button">Login</button>
             </div>
             <div class="input-group">
                 <button id ="createAccount" class="btn btn-success" type="button">Create a new account</button>
