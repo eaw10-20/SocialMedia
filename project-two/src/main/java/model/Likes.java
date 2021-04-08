@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "Likes")
 public class Likes {
 
     @Id
@@ -9,16 +11,27 @@ public class Likes {
     @Column(name = "like_id")
     private int likeId;
 
-    @ManyToMany
-    @JoinColumn(name="user_id")
+
+    @Column(name="user_id")
     private int userId;
 
-    @ManyToMany
-    @JoinColumn(name="post_id")
+
+    @Column(name="post_id")
     private int postId;
 
     public Likes(){
 
+    }
+
+    /**
+     * Likes(userId, likeId) constructor
+     *
+     * @param userId
+     * @param postId
+     */
+    public Likes(int postId, int userId){
+        this.userId = userId;
+        this.postId = postId;
     }
 
     public int getLikeId() {

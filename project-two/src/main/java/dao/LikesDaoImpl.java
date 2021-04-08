@@ -11,20 +11,19 @@ public class LikesDaoImpl implements LikesDao {
 
 
     @Override
-    public int getAllLikesOnPost(int postId) {
+    public Long getAllLikesOnPost(int postId) {
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
 
-        Integer totalLikes = (Integer)session.createQuery("SELECT count(like_id) from likes WHERE post_id ='" + postId + "'").getSingleResult();
+        Long totalLikes = (Long)session.createQuery("SELECT count(user_id) from Likes WHERE post_id ='" + postId + "'").getSingleResult();
 
         tx.commit();
         return totalLikes;
     }
 
-    public void addLike(int userId, int postId){
+    public void addLike(Likes like){
         Session session = HibernateUtil.getSession();
 
-        Likes like =  new Likes();
         session.save(like);
     }
 }
