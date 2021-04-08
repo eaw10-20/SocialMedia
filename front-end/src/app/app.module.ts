@@ -10,6 +10,9 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LeftContainerComponent } from './left-container/left-container.component';
+import { PostsComponent } from './posts/posts.component';
+import { FriendListComponent } from './friend-list/friend-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { ProfileComponent } from './profile/profile.component';
     NewPostComponent,
     NewUserComponent,
     MainpageComponent,
-    ProfileComponent
+    ProfileComponent,
+    LeftContainerComponent,
+    PostsComponent,
+    FriendListComponent
   ],
   imports: [
     BrowserModule,
