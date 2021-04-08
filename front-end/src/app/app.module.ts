@@ -10,6 +10,7 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProfileComponent } from './profile/profile.component';
     NewPostComponent,
     NewUserComponent,
     MainpageComponent,
-    ProfileComponent
+    ProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

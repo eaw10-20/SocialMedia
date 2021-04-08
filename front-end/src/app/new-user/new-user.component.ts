@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-new-user',
@@ -8,6 +10,9 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./new-user.component.css']
 })
 export class NewUserComponent {
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+  
 
   profileForm = new FormGroup({
     email: new FormControl(''),
@@ -20,8 +25,10 @@ export class NewUserComponent {
 
 
    onSubmit() {
-console.log(this.profileForm.value)
+    console.log(this.profileForm.value)
     event.preventDefault();
+    this.router.navigate(['']);
+
   }
 
 }
