@@ -11,6 +11,9 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LeftContainerComponent } from './left-container/left-container.component';
+import { PostsComponent } from './posts/posts.component';
+import { FriendListComponent } from './friend-list/friend-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     NewUserComponent,
     MainpageComponent,
     ProfileComponent,
-    NavbarComponent
+    NavbarComponent,
+    LeftContainerComponent,
+    PostsComponent,
+    FriendListComponent
   ],
   imports: [
     BrowserModule,
