@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user } from '../models/user'
+import { User } from '../models/user'
 
 @Component({
   selector: 'app-loginpage',
@@ -8,7 +8,7 @@ import { user } from '../models/user'
 })
 export class LoginpageComponent implements OnInit {
 
-  currentUser: user = {userId: 0,
+  currentUser: User = {userId: 0,
     fname: "",
     lname: '',
     email: '',
