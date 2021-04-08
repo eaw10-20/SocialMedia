@@ -22,6 +22,21 @@ dependencies {
     //POSTGRESQL DRIVER
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
 
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk
+    //AWS SDK
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.993'
+
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3
+    //SDK FOR S3
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.993'
+
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    //convert stream to image
+    implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
+
+
+
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
