@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../models/user'
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginpageComponent implements OnInit {
     posts: []
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -43,7 +44,8 @@ export class LoginpageComponent implements OnInit {
 
   loginButton () {
     console.log("clicked the login button");
-    console.log(this.currentUser.email + " " + this.currentUser.password)
+    console.log(this.currentUser.email + " " + this.currentUser.password);
+    this.router.navigate (['/main'])
   }
 
 }

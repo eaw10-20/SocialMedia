@@ -1,0 +1,40 @@
+/* body {
+    background-color: #eeeeee;
+}
+
+.h7 {
+    font-size: 0.8rem;
+}
+
+.gedf-wrapper {
+    margin-top: 0.97rem;
+}
+
+@media (min-width: 992px) {
+    .gedf-main {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .gedf-card {
+        margin-bottom: 2.77rem;
+    }
+}
+
+.dropdown-toggle::after {
+    content: none;
+    display: none;
+}
+
+.user-pic {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    margin-bottom: -48px;
+}
+
+.user-pic > img {
+    float: none;
+    border: 2px solid green;
+    border-radius: 50%;
+    width:100%;
+} */
