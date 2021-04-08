@@ -51,12 +51,13 @@ public class Main {
 
         Likes like = new Likes(postId, danId);
         Likes like2 = new Likes(postId, dan2Id);
-        Likes like3 = new Likes(postId, dan3Id);
+        Likes like3 = new Likes(2, postId, dan3Id);
 
-        l.addLike(like);
-        l.addLike(like2);
-        l.addLike(like3);
+//        l.addLike(like);
+//        l.addLike(like2);
+//        l.addLike(like3);
 
+        l.unLike(like3);
         System.out.println("This is the total number of Likes: " + l.getAllLikesOnPost(postId));
 
 //        System.out.println(n.getAllUsersLoggedIn());

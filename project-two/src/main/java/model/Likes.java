@@ -34,6 +34,12 @@ public class Likes {
         this.postId = postId;
     }
 
+    public Likes(int likeId, int postId, int userId){
+        this.likeId = likeId;
+        this.userId = userId;
+        this.postId = postId;
+    }
+
     public int getLikeId() {
         return likeId;
     }

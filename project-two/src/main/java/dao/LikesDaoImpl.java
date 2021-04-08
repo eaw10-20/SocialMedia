@@ -26,4 +26,11 @@ public class LikesDaoImpl implements LikesDao {
 
         session.save(like);
     }
+
+    @Override
+    public void unLike(Likes like) {
+        Session session = HibernateUtil.getSession();
+
+        session.delete(like);
+    }
 }
