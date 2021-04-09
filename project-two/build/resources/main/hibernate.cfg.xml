@@ -5,25 +5,12 @@
 <hibernate-configuration>
     <session-factory>
         <!--JDBC stuff-->
-<<<<<<< HEAD
-        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.username">graypanda</property>
         <property name="hibernate.connection.password">p4ssw0rd</property>
         <property name="hibernate.connection.url">
-            jdbc:postgresql://bootcampone.c7pvo8uwp5jq.us-east-2.rds.amazonaws.com/postgres
-=======
-<<<<<<< HEAD
-        <property name="hibernate.connection.username">mike</property>
-        <property name="hibernate.connection.password">p4ssw0rd</property>
-        <property name="hibernate.connection.url">
-            jdbc:postgresql://firstdatabase.ctxycf2tpkhe.us-east-2.rds.amazonaws.com/mydatabase
-=======
-        <property name="hibernate.connection.username">frostfuzz</property>
-        <property name="hibernate.connection.password">p4ssw0rd</property>
-        <property name="hibernate.connection.url">
-            jdbc:postgresql://databaserevaturetraining.cqfkhicmdjui.us-east-2.rds.amazonaws.com/socialmedia
->>>>>>> 9351cb628f4d4ed9164a8ed1a58173f37b24aad2
->>>>>>> 7c10757f65904910fc866d887874abc5ae3a805c
+            jdbc:postgresql://graypanda.cndv56gz115j.us-east-2.rds.amazonaws.com/socialmedia
         </property>
+
 
 
         <property name="hibernate.connection.driver_class">
@@ -35,7 +22,7 @@
         <property name="hibernate.format_sql">false</property>
 
 
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
 
         <property name="hibernate.connection.pool_size">10</property>
