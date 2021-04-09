@@ -1,0 +1,30 @@
+
+<div id = "mainContainer" class="center bgblack white">
+    <div id ="divBody">
+        <h2 id="divBodyHeader" class>User Login</h2>
+
+        <p class>Email address</p>
+        <div class="form-floating mb-3">
+            <input type="email" id="email" class="form-control" placeholder="name@example.com" [(ngModel)]='emailField'>
+        </div>
+
+        <p class>Password</p>
+        <div class="form-floating">
+            <input type="password" id="password" class="form-control" placeholder="Password" [(ngModel)]='passwordField'>
+        </div>
+
+        <div class="login">
+            <input name="remember" type="checkbox" value="true"> Remember login
+        </div>
+
+        <div class="btn-toolbar justify-content-between">
+            <div class="btn-group">
+                <button (click)="loginButton()" class="btn btn-success" type="button">Login</button>
+            </div>
+            <div class="input-group">
+                <button id ="createAccount" class="btn btn-success" type="button" routerLink="/new-user" routerLinkActive="active">Create a new account</button>
+            </div>
+        </div>
+    </div>
+</div>
+

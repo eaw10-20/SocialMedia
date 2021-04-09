@@ -1,0 +1,34 @@
+<h1>Welcome new user!</h1>
+<div>
+<h2>Lets create a new account</h2>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label>
+        Email:
+        <input type="email" formControlName="email" required>
+      </label>
+<br>
+      <label>
+        Username:
+        <input type="text" formControlName="username" required>
+      </label>
+      <br>
+      <label>
+        Password:
+        <input type="password" formControlName="password" required>
+      </label>
+      <br>
+    <label>
+      First Name:
+      <input type="text" formControlName="firstName" required>
+    </label>
+    <br>
+    <label>
+      Last Name:
+      <input type="text" formControlName="lastName" required>
+    </label>
+    <br>
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+  </form>
+
+  <nav>
