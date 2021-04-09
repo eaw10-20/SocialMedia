@@ -10,17 +10,34 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation group: 'org.springframework', name: 'spring-core', version: '5.3.5'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation group: 'org.springframework', name: 'spring-beans', version: '5.3.5'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.5'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation group: 'org.springframework', name: 'spring-orm', version: '5.3.5'
+
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
-    //HIBERNATE CORE
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.30.Final'
 
-    // https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
-    //HIBERNATE VALIDATOR
-    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.0.Final'
-
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
-    //POSTGRESQL DRIVER
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.5'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
+
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    // JAVA SERVLET API
+    // This is necessary for tomcat to utilize java servlets
+    compileOnly group: 'javax.servlet', name: 'servlet-api', version: '2.5'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
