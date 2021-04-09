@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user'
+import { UserServicesService } from '../services/user-services.service';
 
 @Component({
   selector: 'app-loginpage',
@@ -19,7 +20,7 @@ export class LoginpageComponent implements OnInit {
     posts: []
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserServicesService) { }
 
   ngOnInit(): void {
   }
@@ -44,8 +45,13 @@ export class LoginpageComponent implements OnInit {
 
   loginButton () {
     console.log("clicked the login button");
-    console.log(this.currentUser.email + " " + this.currentUser.password);
-    this.router.navigate (['/main'])
+    let id: number=1;
+    this.userService.firstRequest(id).subscribe(
+      data=> {
+        console.log(data)
+      }
+    );
+    // this.router.navigate (['/main'])
   }
 
 }
