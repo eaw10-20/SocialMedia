@@ -1,5 +1,5 @@
-base/controller/LikesController.java
- base.controller.LikesController
+base/dao/PostDaoImpl.java
+ base.dao.PostDaoImpl
 base/model/Photos.java
  base.model.Photos
 base/dao/LikesDaoImpl.java
@@ -18,19 +18,19 @@ base/dao/UserDaoImpl.java
  base.dao.UserDaoImpl
 Main.java
  Main
-base/controller/PostController.java
- base.controller.PostController
+base/dao/UserDao.java
+ base.dao.UserDao
 base/model/Post.java
  base.model.Post
 base/dao/PostDao.java
  base.dao.PostDao
 service/UserService.java
  service.UserService
-base/controller/UserController.java
- base.controller.UserController
 service/PostService.java
  service.PostService
-base/dao/PostDaoImpl.java
- base.dao.PostDaoImpl
-base/dao/UserDao.java
- base.dao.UserDao
+base/controller/LikesController.java
+ base.controller.LikesController
+base/controller/PostController.java
+ base.controller.PostController
+base/controller/UserController.java
+ base.controller.UserController

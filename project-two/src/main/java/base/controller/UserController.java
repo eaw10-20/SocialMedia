@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 @Controller
 @RequestMapping("/api")
 public class UserController {
@@ -20,6 +21,7 @@ public class UserController {
     private UserDaoImpl userDao;
 
     //http://localhost:9005/social/api/getUserById
+
     @PutMapping(value="/getUserById", params={"id"}, produces="application/json")
     public @ResponseBody
     ResponseEntity<User> getUserById(int id){
@@ -27,11 +29,10 @@ public class UserController {
                 HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
     }
 
-
+    //http://localhost:9005/social/api/createUser
     @PostMapping(value="/createUser")
-    public String createNewFood(@RequestBody User newUser){
+    public void createNewUser(@RequestBody User newUser){
         userDao.createUser(newUser);
-        return "success";
     }
 
 
