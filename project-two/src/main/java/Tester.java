@@ -33,7 +33,7 @@ public class Tester {
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(Regions.US_EAST_2)
                 .build();
-        
+
         putPhoto(s3client);
         getPhoto(s3client);
     }
