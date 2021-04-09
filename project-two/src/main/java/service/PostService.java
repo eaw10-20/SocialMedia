@@ -1,7 +1,7 @@
 package service;
 
-import dao.PostDaoImpl;
-import model.Post;
+import base.dao.PostDaoImpl;
+import base.model.Post;
 
 import java.util.List;
 

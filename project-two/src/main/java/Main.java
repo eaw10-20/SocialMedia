@@ -1,11 +1,10 @@
-import dao.LikesDaoImpl;
-import dao.PostDaoImpl;
-import dao.UserDaoImpl;
-import model.Likes;
-import model.Post;
-import model.User;
+import base.dao.LikesDaoImpl;
+import base.dao.PostDaoImpl;
+import base.dao.UserDaoImpl;
+import base.model.Likes;
+import base.model.Post;
+import base.model.User;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package service;
 
-import dao.UserDaoImpl;
-import model.User;
+import base.dao.UserDaoImpl;
+import base.model.User;
 
 import java.util.List;
 

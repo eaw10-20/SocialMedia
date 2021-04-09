@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5e227648-7d8f-4dcf-b485-3981fee156b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/dao/LikesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/dao/LikesDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/dao/LikesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/dao/LikesDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/dao/PostDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/dao/PostDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/dao/PostDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/dao/PostDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/model/Likes.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/model/Likes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/model/Photos.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/model/Photos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/model/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/model/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-two/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-two/src/main/java/base/model/User.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1quDa15aFWAiwi7emM5kK2OsVG9" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\corey\Desktop\socialmedia\project-two\src\main\java\base" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e227648-7d8f-4dcf-b485-3981fee156b5" name="Default Changelist" comment="" />
+      <created>1617920640278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617920640278</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
