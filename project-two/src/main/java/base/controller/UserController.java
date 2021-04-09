@@ -19,12 +19,14 @@ public class UserController {
 
     private UserDaoImpl userDao;
 
-    //http://localhost:9005/social/api/getUserById
-    @PutMapping(value="/getUserById", params={"id"}, produces="application/json")
+    //http://localhost:9005/social/api/getUserById/
+    //changed to GET for testing purposes
+    @GetMapping(value="/getUserById", params={"id"}, produces="application/json")
     public @ResponseBody
     ResponseEntity<User> getUserById(int id){
+        System.out.println("in the get user by id method");
         return new ResponseEntity<User>(userDao.getUserById(id),
-                HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
+                HttpStatus.OK);
     }
 
 
