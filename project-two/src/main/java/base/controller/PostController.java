@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @Controller
 @RequestMapping("/api")
@@ -27,8 +28,19 @@ public class PostController {
     //http://localhost:9005/social/api/createPost
     @PostMapping(value="/createPost")
     public void createNewPost(@RequestBody Post newPost){
-        
         postDao.createPost(newPost);
+    }
+
+//    http://localhost:9005/social/api/getPostsByUserId
+    @PutMapping(value="getPostsByUserId", params={"id"}, produces="application/json")
+    public List<Post> getPostsById(int id){
+        return postDao.getPostsByUserID(id);
+    }
+
+
+    @PutMapping(value="/updatePost")
+    public void updatePost(@RequestBody Post updatedPost){
+         postDao.updatePost(updatedPost);
     }
 
     ////Constructors
