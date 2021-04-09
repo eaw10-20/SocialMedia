@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User login(String email, String password) {
 
-        User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + email + "' AND password = '" + password +"'", User.class).uniqueResult();
+        User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + email + "' AND password = '" + password +"'", User.class).getSingleResult();
 
         return user;
     }

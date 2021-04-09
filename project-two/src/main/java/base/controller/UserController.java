@@ -4,6 +4,7 @@ package base.controller;
 import base.dao.UserDao;
 import base.dao.UserDaoImpl;
 
+import base.model.Post;
 import base.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RestController
@@ -21,7 +23,6 @@ public class UserController {
     private UserDaoImpl userDao;
 
     //http://localhost:9005/social/api/getUserById
-
     @PutMapping(value="/getUserById", params={"id"}, produces="application/json")
     public @ResponseBody
     ResponseEntity<User> getUserById(int id){
@@ -35,6 +36,15 @@ public class UserController {
         userDao.createUser(newUser);
     }
 
+//    http://localhost:9005/social/api/login
+    @PostMapping(value="/login")
+    public @ResponseBody
+    User login(@RequestBody User user){
+        String email = user.getEmail();
+        String password = user.getPassword();
+        User loggedInUser = userDao.login(email, password);
+        return loggedInUser;
+    }
 
 
     ////Constructors
