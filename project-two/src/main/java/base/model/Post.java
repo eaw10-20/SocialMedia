@@ -1,6 +1,9 @@
 package base.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import net.bytebuddy.build.ToStringPlugin;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -36,13 +39,15 @@ public class Post {
 
     //Many posts have a single creator (aka user)
     //Connected to User in the @JoinColumn portion with a new column named user_id
+    @JsonBackReference
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
-    private int userId;
+    private User userId;
 
     //Many to many connection that is mapped by posts
     //posts is found in the User class and is the ArrayList that contains all posts that a user could have
     //Connecting two Arrays??? Not to sure how this works
+    @JsonIgnore
     @ManyToMany(mappedBy = "postLikes")
     private List<User> users = new ArrayList<>();
 
@@ -50,24 +55,24 @@ public class Post {
     public Post() {
     }
 
-    public Post(String description, int userId) {
+    public Post(String description, User userId) {
         this.description = description;
         this.userId = userId;
     }
 
-    public Post(String description, List<Photos> photoList, int userId) {
+    public Post(String description, List<Photos> photoList, User userId) {
         this.description = description;
         this.photoList = photoList;
         this.userId = userId;
     }
 
-    public Post(int postId, String description, int userId) {
+    public Post(int postId, String description, User userId) {
         this.postId = postId;
         this.description = description;
         this.userId = userId;
     }
 
-    public Post(int postId, String description, Date submitted, List<Photos> photoList, int userId) {
+    public Post(int postId, String description, Date submitted, List<Photos> photoList, User userId) {
         this.postId = postId;
         this.description = description;
         this.submitted = submitted;
@@ -75,7 +80,7 @@ public class Post {
         this.userId = userId;
     }
 
-    public Post(int postId, String description, Date submitted, List<Photos> photoList, int userId, List<User> users) {
+    public Post(int postId, String description, Date submitted, List<Photos> photoList, User userId, List<User> users) {
         this.postId = postId;
         this.description = description;
         this.submitted = submitted;
@@ -110,11 +115,11 @@ public class Post {
         this.description = description;
     }
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
@@ -128,15 +133,16 @@ public class Post {
 
     //toString() method
 
+
     @Override
     public String toString() {
         return "Post{" +
                 "postId=" + postId +
                 ", description='" + description + '\'' +
                 ", submitted=" + submitted +
-                ", photoList=" + photoList +
-                ", myUser=" + userId +
-//                ", users=" + users +
+//                ", photoList=" + photoList.toString() +
+//                ", userId=" + userId.toString() +
+//                ", users=" + users.toString() +
                 '}';
     }
 }

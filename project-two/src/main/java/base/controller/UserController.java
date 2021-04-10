@@ -4,27 +4,22 @@ package base.controller;
 import base.dao.UserDao;
 import base.dao.UserDaoImpl;
 
-import base.model.Post;
 import base.model.User;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
-@Controller
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class UserController {
 
     private UserDaoImpl userDao;
-    SessionController sesCont;
 
     //http://localhost:9005/social/api/getUserById/
     //changed to GET for testing purposes

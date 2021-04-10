@@ -1,31 +1,23 @@
 base/controller/LikesController.java
  base.controller.LikesController
-base/model/User.java
- base.model.User
-base/dao/UserDao.java
- base.dao.UserDao
-base/controller/UserController.java
- base.controller.UserController
-base/controller/SessionController.java
- base.controller.SessionController
-base/dao/LikesDao.java
- base.dao.LikesDao
 base/model/Likes.java
  base.model.Likes
 base/dao/LikesDaoImpl.java
  base.dao.LikesDaoImpl
-service/UserService.java
- service.UserService
 Tester.java
  Tester
-util/HibernateUtil.java
- util.HibernateUtil
-base/dao/UserDaoImpl.java
- base.dao.UserDaoImpl
 Main.java
  Main
-base/controller/PostController.java
- base.controller.PostController
+util/HibernateUtil.java
+ util.HibernateUtil
+base/dao/LikesDao.java
+ base.dao.LikesDao
+service/PhotoService.java
+ service.PhotoService
+base/model/User.java
+ base.model.User
+base/dao/UserDao.java
+ base.dao.UserDao
 base/model/Post.java
  base.model.Post
 base/dao/PostDao.java
@@ -34,5 +26,19 @@ service/PostService.java
  service.PostService
 base/dao/PostDaoImpl.java
  base.dao.PostDaoImpl
+base/dao/UserDaoImpl.java
+ base.dao.UserDaoImpl
+base/dao/PhotoDao.java
+ base.dao.PhotoDao
+service/UserService.java
+ service.UserService
 base/model/Photos.java
  base.model.Photos
+base/controller/UserController.java
+ base.controller.UserController
+base/dao/PhotoDaoImpl.java
+ base.dao.PhotoDaoImpl
+base/controller/PostController.java
+ base.controller.PostController
+base/controller/SessionController.java
+ base.controller.SessionController

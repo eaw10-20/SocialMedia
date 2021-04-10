@@ -1,24 +1,29 @@
 package base.controller;
 
 import base.dao.PostDaoImpl;
+import base.dao.UserDaoImpl;
 import base.model.Post;
 import base.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class PostController {
 
     private PostDaoImpl postDao;
+    private UserDaoImpl userDao;
 
 
     //http://localhost:9005/social/api/getAllPosts
+
     @GetMapping(value="/getAllPosts")
     public @ResponseBody
     List<Post> getAllPosts(){
@@ -33,11 +38,16 @@ public class PostController {
 
 //    http://localhost:9005/social/api/getPostsByUserId
     @GetMapping(value="getPostsByUserId", params={"id"}, produces="application/json")
-    public List<Post> getPostsById(int id){
+    public User getPostsById(int id){
+        List<Post> allUserPosts = new ArrayList<>();
         System.out.println("Get post by user id method");
-        return postDao.getPostsByUserID(id);
-    }
+        User user = userDao.getUserById(id);
+        allUserPosts = postDao.getPostsByUserID(id);
+        Collections.copy(user.getPostList(),allUserPosts);
 
+        return user;
+
+    }
 
     @PutMapping(value="/updatePost")
     public void updatePost(@RequestBody Post updatedPost){
@@ -69,16 +79,16 @@ public class PostController {
 
     public void insertInitialValues(){
 
-        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-
-        Post post1 = new Post(1, "post", 1);
-        Post post2 = new Post(1, "post here too", 2);
-        Post post3 = new Post(1,"post here too", 3);
-
-        postDao.createPost(post1);
-        postDao.createPost(post2);
-        postDao.createPost(post3);
+//        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
+//        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+//        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+//
+//        Post post1 = new Post(1, "post", dan);
+//        Post post2 = new Post(1, "post here too", dan2);
+//        Post post3 = new Post(1,"post here too", dan3);
+//
+//        postDao.createPost(post1);
+//        postDao.createPost(post2);
+//        postDao.createPost(post3);
     }
 }

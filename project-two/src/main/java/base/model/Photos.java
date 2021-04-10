@@ -1,5 +1,7 @@
 package base.model;
 
+import net.bytebuddy.build.ToStringPlugin;
+
 import javax.persistence.*;
 
 //Photo model
@@ -72,7 +74,8 @@ public class Photos {
         return "Photos{" +
                 "photoId=" + photoId +
                 ", photoString='" + photoString + '\'' +
-                ", myPost=" + myPost +
+                ", isProfile=" + isProfile +
+//                ", myPost=" + myPost +
                 '}';
     }
 }

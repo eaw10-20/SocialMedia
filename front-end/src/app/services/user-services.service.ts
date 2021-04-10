@@ -66,4 +66,8 @@ export class UserServicesService {
     {withCredentials: true})
   }
 
+  getAllPosts(): Observable<HttpResponse<Post[]>> {
+    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getAllPosts/`,
+    {withCredentials: true})
+  }
 }

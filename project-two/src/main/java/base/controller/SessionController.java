@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class SessionController {
 
     private UserDaoImpl userDao;
@@ -22,6 +21,7 @@ public class SessionController {
 
     //http://localhost:9005/social/api/getUser/
     @GetMapping(value="/api/getUser")
+    @CrossOrigin(allowCredentials = "true")
     public User getCurrentUser(HttpSession session) {
         System.out.println("In the get current user session");
 

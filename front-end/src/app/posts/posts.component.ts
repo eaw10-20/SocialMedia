@@ -17,6 +17,8 @@ export class PostsComponent implements OnInit {
     userId: 0
   }
 
+  allPosts: [];
+
   user: User = {userId: 0,
     fname: "",
     lname: '',
@@ -33,12 +35,13 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser();
-    this.userPost(this.user);
+    this.allPost();
+
   }
 
   currentUser() {
     console.log("Grabbing current user session in post component")
-    this.userService.getUserSession().subscribe(
+    const promise = this.userService.getUserSession().subscribe(
       userData=> {
         this.userConstruct(userData);
       }
@@ -58,9 +61,9 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  userPost(user: User){
-    console.log("Grab user post method")
-    this.userService.getUserPosts(user.userId).subscribe (
+  allPost(){
+    console.log("Grab All post method")
+    this.userService.getAllPosts().subscribe (
       postData => {
         console.log(postData)
       }

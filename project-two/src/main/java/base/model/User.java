@@ -1,6 +1,10 @@
 package base.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import net.bytebuddy.build.ToStringPlugin;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +50,14 @@ public class User {
 
 //    Each User can have many post
 //    User posts are stored in List<Post>????
-    @OneToMany(mappedBy = "myUser", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Post> postList = new ArrayList<>();
 
     //Many to many relation with Post class
     //Create a new table name Likes and have two columns named user_id and post_id
     //In the User class able to call post that have User id and stored it in posts List
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="Likes",
@@ -118,13 +124,13 @@ public class User {
     }
 
 
-//    public User(List<Post> posts) {
-//        this.posts = posts;
-//    }
-//
-//    public List<Post> getPostList() {
-//        return postList;
-//    }
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public List<Post> getPostLikes() {
+        return postLikes;
+    }
 
     public int getUserId() {
         return userId;
@@ -195,8 +201,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", loginStatus=" + loginStatus +
-                ", postList=" + postList +
-                ", posts=" + postLikes +
+//                ", postList=" + postList.toString() +
+//                ", posts=" + postLikes.toString() +
                 '}';
     }
 }
