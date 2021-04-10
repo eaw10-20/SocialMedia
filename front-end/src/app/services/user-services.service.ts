@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { promise } from 'selenium-webdriver';
+import { Post } from '../models/post';
 import { User } from '../models/user';
 
 @Injectable({
@@ -35,8 +36,10 @@ export class UserServicesService {
 
   constructor(private HttpCli: HttpClient, private router: Router) { }
 
-  checkLogin(userId: number) {
-    const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=${userId}`, 
+  checkLogin(user: User) {
+    // const promise = this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
+    // {withCredentials: true})
+    const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=1`,
     {withCredentials: true}).toPromise()
     promise.then((data) => {
       // this.user = this.userConstruct(data);
@@ -56,4 +59,11 @@ export class UserServicesService {
     return this.HttpCli.get<HttpResponse<User>>(`http://localhost:9005/social/api/getUser`,
     {withCredentials: true})
   }
+
+
+  getUserPosts(userId): Observable<HttpResponse<Post[]>> {
+    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getPostsByUserId/?id=${userId}`,
+    {withCredentials: true})
+  }
+
 }

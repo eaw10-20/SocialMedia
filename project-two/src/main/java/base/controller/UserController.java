@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @Controller
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class UserController {
 
     private UserDaoImpl userDao;
@@ -32,13 +32,19 @@ public class UserController {
     @GetMapping(value="/getUserById", params={"id"}, produces="application/json")
     public @ResponseBody
     ResponseEntity<User> getUserById(int id, HttpSession session){
-        User user;
+
+        //For testing logging in user
+        User loggedInUser;
         System.out.println("in the get user by id method");
         System.out.println(id);
 
-        user = userDao.getUserById(id);
-
-        return new ResponseEntity<User>(user,
+        loggedInUser = userDao.getUserById(id);
+        if(loggedInUser != null){
+            loggedInUser.setLoginStatus(true);
+            session.setAttribute("currentUser", loggedInUser);
+            userDao.updateUser(loggedInUser);
+        }
+        return new ResponseEntity<User>(loggedInUser,
                 HttpStatus.OK);
     }
 
@@ -49,7 +55,7 @@ public class UserController {
     public void createNewUser(@RequestBody User newUser){
         userDao.createUser(newUser);
     }
-    
+
 
     //http://localhost:9005/social/api/getUserByFullName
     @PutMapping(value="/getUserByFullName", params={"firstName", "lastName"}, produces="application/json")
@@ -105,7 +111,7 @@ public class UserController {
      */
 
     public void insertInitialValues(){
-//
+
 //        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
 //        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
 //        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");

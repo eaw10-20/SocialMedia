@@ -5,8 +5,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import base.model.Post;
-
 //User model
 @Entity
 @Table(name="Users")
@@ -46,25 +44,30 @@ public class User {
     @Column(name="loggedin")
     private boolean loginStatus;
 
-    //Each User can have many post
-    //User posts are stored in List<Post>????
-//    @OneToMany(mappedBy = "myUser", fetch = FetchType.EAGER)
-//    private List<Post> postList = new ArrayList<>();
+//    Each User can have many post
+//    User posts are stored in List<Post>????
+    @OneToMany(mappedBy = "myUser", fetch = FetchType.EAGER)
+    private List<Post> postList = new ArrayList<>();
 
     //Many to many relation with Post class
     //Create a new table name Likes and have two columns named user_id and post_id
     //In the User class able to call post that have User id and stored it in posts List
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name="Likes",
-//            joinColumns = {@JoinColumn (name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "post_id")}
-//    )
-//    private List<Post> posts = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="Likes",
+            joinColumns = {@JoinColumn (name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "post_id")}
+    )
+    private List<Post> postLikes = new ArrayList<>();
 
 
     //Constructors
     public User() {
+    }
+
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
     }
 
     public User(String fname, String lname, String email, String password, String username, String avatar) {
@@ -77,40 +80,7 @@ public class User {
     }
 
 
-    public User(int userId, String fname, String lname, String email, String password, String username, String avatar) {
-        this.userId = userId;
-        this.fname = fname;
-        this.lname = lname;
-        this.email = email;
-        this.password = password;
-        this.username = username;
-        this.avatar = avatar;
-    }
-
-    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, List<Post> postList) {
-        this.userId = userId;
-        this.fname = fname;
-        this.lname = lname;
-        this.email = email;
-        this.password = password;
-        this.username = username;
-        this.avatar = avatar;
-//        this.postList = postList;
-    }
-
-    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, List<Post> postList, List<Post> posts) {
-        this.userId = userId;
-        this.fname = fname;
-        this.lname = lname;
-        this.email = email;
-        this.password = password;
-        this.username = username;
-        this.avatar = avatar;
-//        this.postList = postList;
-//        this.posts = posts;
-    }
-
-    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus, List<Post> postList, List<Post> posts) {
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus, List<Post> postList) {
         this.userId = userId;
         this.fname = fname;
         this.lname = lname;
@@ -119,11 +89,10 @@ public class User {
         this.username = username;
         this.avatar = avatar;
         this.loginStatus = loginStatus;
-//        this.postList = postList;
-//        this.posts = posts;
+        this.postList = postList;
     }
 
-    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus) {
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus, List<Post> postList, List<Post> postLikes) {
         this.userId = userId;
         this.fname = fname;
         this.lname = lname;
@@ -132,12 +101,11 @@ public class User {
         this.username = username;
         this.avatar = avatar;
         this.loginStatus = loginStatus;
+        this.postList = postList;
+        this.postLikes = postLikes;
     }
 
-    public User(String email, String password){
-        this.email = email;
-        this.password = password;
-    }
+
 
 
     //Getters and Setters
@@ -153,7 +121,7 @@ public class User {
 //    public User(List<Post> posts) {
 //        this.posts = posts;
 //    }
-
+//
 //    public List<Post> getPostList() {
 //        return postList;
 //    }
@@ -227,8 +195,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", loginStatus=" + loginStatus +
-//                ", postList=" + postList +
-//                ", posts=" + posts +
+                ", postList=" + postList +
+                ", posts=" + postLikes +
                 '}';
     }
 }

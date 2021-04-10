@@ -38,54 +38,60 @@ public class Post {
     //Connected to User in the @JoinColumn portion with a new column named user_id
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
-    private User myUser;
+    private int userId;
 
     //Many to many connection that is mapped by posts
     //posts is found in the User class and is the ArrayList that contains all posts that a user could have
     //Connecting two Arrays??? Not to sure how this works
-//    @ManyToMany(mappedBy = "posts")
-//    private List<User> users = new ArrayList<>();
+    @ManyToMany(mappedBy = "postLikes")
+    private List<User> users = new ArrayList<>();
 
     //Constructors
     public Post() {
     }
 
-    public Post(String description, User user) {
+    public Post(String description, int userId) {
         this.description = description;
-        this.myUser = user;
+        this.userId = userId;
     }
 
-    public Post(int postId, String description, User user) {
+    public Post(String description, List<Photos> photoList, int userId) {
+        this.description = description;
+        this.photoList = photoList;
+        this.userId = userId;
+    }
+
+    public Post(int postId, String description, int userId) {
         this.postId = postId;
         this.description = description;
-        this.myUser = user;
+        this.userId = userId;
     }
 
-
-    public Post(int postId, String description, User user, List<User> users) {
-        this.postId = postId;
-        this.description = description;
-        this.myUser = user;
-//        this.users = users;
-    }
-
-    public Post(int postId, String description, Date submitted, List<Photos> photoList, User myUser, List<User> users) {
+    public Post(int postId, String description, Date submitted, List<Photos> photoList, int userId) {
         this.postId = postId;
         this.description = description;
         this.submitted = submitted;
         this.photoList = photoList;
-        this.myUser = myUser;
-//        this.users = users;
+        this.userId = userId;
+    }
+
+    public Post(int postId, String description, Date submitted, List<Photos> photoList, int userId, List<User> users) {
+        this.postId = postId;
+        this.description = description;
+        this.submitted = submitted;
+        this.photoList = photoList;
+        this.userId = userId;
+        this.users = users;
     }
 
     //Getters and Setters
-//    public List<User> getUsers() {
-//        return users;
-//    }
+    public List<User> getUsers() {
+        return users;
+    }
 
-//    public void setUsers(List<User> users) {
-//        this.users = users;
-//    }
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public int getPostId() {
         return postId;
@@ -104,12 +110,12 @@ public class Post {
         this.description = description;
     }
 
-    public User getUser() {
-        return myUser;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.myUser = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getSubmitted() {
@@ -129,7 +135,7 @@ public class Post {
                 ", description='" + description + '\'' +
                 ", submitted=" + submitted +
                 ", photoList=" + photoList +
-                ", myUser=" + myUser +
+                ", myUser=" + userId +
 //                ", users=" + users +
                 '}';
     }

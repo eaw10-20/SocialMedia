@@ -3,6 +3,8 @@ package base.controller;
 import base.model.User;
 import base.dao.UserDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,30 +13,35 @@ import javax.servlet.http.HttpSession;
 
 
 @RestController
-@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class SessionController {
 
     private UserDaoImpl userDao;
 
 
+
     //http://localhost:9005/social/api/getUser/
-    @GetMapping(value="/getUser")
+    @GetMapping(value="/api/getUser")
     public User getCurrentUser(HttpSession session) {
         System.out.println("In the get current user session");
 
-        User user = (User) session.getAttribute("loggedin");
+        User user = (User) session.getAttribute("currentUser");
         return user;
     }
 
 
-
-
-
+    /**
+     * Checks user email and password
+     * If user not null sets a session with key 'currentUser' and changes logged in status to true
+     * @param user
+     * @param session
+     * @return
+     */
     //    http://localhost:9005/social/login
     @PostMapping(value="/login")
     public @ResponseBody
     User login(@RequestBody User user, HttpSession session){
+        System.out.println("in the check credentials method");
         String email = user.getEmail();
         String password = user.getPassword();
         User loggedInUser = userDao.login(email, password);
