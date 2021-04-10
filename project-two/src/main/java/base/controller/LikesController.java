@@ -15,13 +15,29 @@ public class LikesController {
 
     private LikesDaoImpl likesDao;
 
-    //http://localhost:9005/social/api/likePost
+    /**
+     * Utilizes the Likes(int postId, int userId) constructor to add a
+     * new Like to the Likes junction table
+     *
+     * Temporary URL: http://localhost:9005/social/api/likePost
+     *
+     * @param like
+     */
+
     @PostMapping(value="/likePost")
     public void likePost(@RequestBody Likes like){
         likesDao.addLike(like);
     }
 
-    //http://localhost:9005/social/api/unlikePost
+    /**
+     * Utilizes the Likes(int postId, intUserId) constructor to delete
+     * a like from the Likes junction table.
+     *
+     * Temporary URL: http://localhost:9005/social/api/unlikePost
+     *
+     * @param like
+     */
+
     @PutMapping(value="/unlikePost")
     public void unlikePost(@RequestBody Likes like){
         likesDao.unLike(like);
