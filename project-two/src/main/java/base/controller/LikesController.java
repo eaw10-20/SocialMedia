@@ -6,6 +6,8 @@ import base.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @Controller
 @RequestMapping("/api")

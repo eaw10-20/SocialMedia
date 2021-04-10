@@ -1,5 +1,5 @@
-Main.java
- Main
+service/UserService.java
+ service.UserService
 base/model/Photos.java
  base.model.Photos
 base/dao/LikesDaoImpl.java
@@ -18,21 +18,23 @@ base/dao/UserDao.java
  base.dao.UserDao
 base/dao/PostDaoImpl.java
  base.dao.PostDaoImpl
-base/controller/PostController.java
- base.controller.PostController
+base/aspects/AuthAspect.java
+ base.aspects.AuthAspect
 base/model/Post.java
  base.model.Post
 base/dao/PostDao.java
  base.dao.PostDao
 service/PostService.java
  service.PostService
-service/UserService.java
- service.UserService
 base/dao/UserDaoImpl.java
  base.dao.UserDaoImpl
+Main.java
+ Main
 base/controller/LikesController.java
  base.controller.LikesController
-base/controller/UserController.java
- base.controller.UserController
+base/controller/PostController.java
+ base.controller.PostController
 base/controller/SessionController.java
  base.controller.SessionController
+base/controller/UserController.java
+ base.controller.UserController

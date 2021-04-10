@@ -3,10 +3,12 @@ package base.controller;
 import base.dao.PostDaoImpl;
 import base.model.Post;
 import base.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -21,26 +23,38 @@ public class PostController {
     //http://localhost:9005/social/api/getAllPosts
     @GetMapping(value="/getAllPosts")
     public @ResponseBody
-    List<Post> getAllPosts(){
-        return postDao.getAllPosts();
+    List<Post> getAllPosts(HttpSession session){
+
+        if(session.getAttribute("currentUser") != null){
+            return postDao.getAllPosts();
+        }
+        return null;
     }
 
     //http://localhost:9005/social/api/createPost
     @PostMapping(value="/createPost")
-    public void createNewPost(@RequestBody Post newPost){
-        postDao.createPost(newPost);
+    public void createNewPost(@RequestBody Post newPost, HttpSession session){
+        if(session.getAttribute("currentUser") != null){
+            postDao.createPost(newPost);
+        }
+
     }
 
 //    http://localhost:9005/social/api/getPostsByUserId
     @PutMapping(value="getPostsByUserId", params={"id"}, produces="application/json")
-    public List<Post> getPostsById(int id){
-        return postDao.getPostsByUserID(id);
+    public List<Post> getPostsById(int id, HttpSession session){
+        if(session.getAttribute("currentUser") != null){
+            return postDao.getPostsByUserID(id);
+        }
+        return null;
     }
 
 
     @PutMapping(value="/updatePost")
-    public void updatePost(@RequestBody Post updatedPost){
-         postDao.updatePost(updatedPost);
+    public void updatePost(@RequestBody Post updatedPost, HttpSession session){
+        if(session.getAttribute("currentUser") != null){
+            postDao.updatePost(updatedPost);
+        }
     }
 
     ////Constructors

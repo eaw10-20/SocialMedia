@@ -4,8 +4,9 @@ package base.controller;
 import base.dao.UserDao;
 import base.dao.UserDaoImpl;
 
-import base.model.Post;
 import base.model.User;
+
+import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+
 import java.util.List;
 
 
@@ -21,14 +23,19 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
+
     private UserDaoImpl userDao;
+
 
     //http://localhost:9005/social/api/getUserById
     @PutMapping(value="/getUserById", params={"id"}, produces="application/json")
     public @ResponseBody
-    ResponseEntity<User> getUserById(int id){
-        return new ResponseEntity<User>(userDao.getUserById(id),
-                HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
+    ResponseEntity<User> getUserById(int id, HttpSession session){
+        if(session.getAttribute("currentUser") != null){
+            return new ResponseEntity<User>(userDao.getUserById(id),
+                    HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
+        }
+        return null;
     }
 
     //http://localhost:9005/social/api/createUser
@@ -54,15 +61,21 @@ public class UserController {
     //http://localhost:9005/social/api/getUserByFullName
     @PutMapping(value="/getUserByFullName", params={"firstName", "lastName"}, produces="application/json")
     public @ResponseBody
-    ResponseEntity<User> getUserByFullName(String firstName, String lastName){
-        return new ResponseEntity<User>(userDao.getUserByFullName(firstName, lastName),
-                HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
+    ResponseEntity<User> getUserByFullName(String firstName, String lastName, HttpSession session){
+        if(session.getAttribute("currentUser") != null){
+            return new ResponseEntity<User>(userDao.getUserByFullName(firstName, lastName),
+                    HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
+        }
+        return null;
     }
 
     @GetMapping(value="/getAllUsersLoggedIn")
     public @ResponseBody
-    List<User> getsAllUsersLoggedIn(){
-        return userDao.getAllUsersLoggedIn();
+    List<User> getsAllUsersLoggedIn(HttpSession session){
+        if(session.getAttribute("currentUser") != null){
+            return userDao.getAllUsersLoggedIn();
+        }
+        return null;
     }
 
     //http://localhost:9005/social/api/udpateUser

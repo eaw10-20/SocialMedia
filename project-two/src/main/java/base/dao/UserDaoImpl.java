@@ -16,6 +16,8 @@ public class UserDaoImpl implements UserDao {
 
     private SessionFactory sesFact;
 
+
+
     /**
      * Inserts one user into the "user" table
      * @param user

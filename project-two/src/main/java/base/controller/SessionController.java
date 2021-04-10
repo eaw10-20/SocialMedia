@@ -2,6 +2,7 @@ package base.controller;
 
 import base.dao.UserDaoImpl;
 import base.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +40,6 @@ public class SessionController {
 
     @GetMapping(value="/logout")
     public void logout(@RequestBody User user, HttpServletRequest req){
-        //we COULD just make our method parameter "HttpSession" but we could ALSO
-        // get the HttpServletRequest object which happens to contain the HttpSession
 
         user.setLoginStatus(false);
         userDao.updateUser(user);
