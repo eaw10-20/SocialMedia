@@ -134,6 +134,11 @@ public class User {
         this.loginStatus = loginStatus;
     }
 
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
+    }
+
 
     //Getters and Setters
     public boolean isLoginStatus() {
