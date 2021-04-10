@@ -5,12 +5,16 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { LoginpageComponent} from './loginpage/loginpage.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+
 
 const routes: Routes = [
+  { path: 'update-user', component: UpdateUserComponent },
   { path: 'new-user', component: NewUserComponent },
   { path: 'main', component: MainpageComponent},
   { path: 'profile', component: ProfileComponent},
   { path: '**', component: LoginpageComponent }
+
 ];
 
 @NgModule({

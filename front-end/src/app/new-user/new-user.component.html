@@ -1,7 +1,7 @@
 <h1>Welcome new user!</h1>
-<div>
-<h2>Lets create a new account</h2>
 
+<h2>Lets create a new account</h2>
+<div class="center bgblack white">
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <label>
         Email:
@@ -30,5 +30,5 @@
     <br>
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
   </form>
-
+</div>
   <nav>
