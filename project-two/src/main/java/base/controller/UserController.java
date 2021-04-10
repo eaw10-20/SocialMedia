@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -39,11 +40,15 @@ public class UserController {
 //    http://localhost:9005/social/api/login
     @PostMapping(value="/login")
     public @ResponseBody
-    User login(@RequestBody User user){
+    User login(@RequestBody User user, HttpSession session){
         String email = user.getEmail();
         String password = user.getPassword();
         User loggedInUser = userDao.login(email, password);
-        return loggedInUser;
+        if(loggedInUser != null){
+            session.setAttribute("currentUser", loggedInUser);
+            return loggedInUser;
+        }
+        return null;
     }
 
     //http://localhost:9005/social/api/getUserByFullName
