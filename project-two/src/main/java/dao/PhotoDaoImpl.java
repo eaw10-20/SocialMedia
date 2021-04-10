@@ -1,15 +1,44 @@
 package dao;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import model.Photos;
 import model.User;
+import org.apache.commons.io.FileUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
 
+import java.io.File;
+import java.util.Map;
+
 public class PhotoDaoImpl implements PhotoDao{
 
+    //the s3 bucket that stores photos
+    public static String BUCKET_NAME = "rev-p2-socialmedia-2102";
+    //TODO: Not sure about above but static vars below should eventually be replaced/removed
+    public static String FILE_PATH = "src/main/resources";
+    public static String PHOTO_NAME = "IMG_2603.jpg";
+
     @Override
-    public void uploadPhoto(Photos photo) {
+    public void uploadPhoto(Photos photo, AmazonS3 client) {
+        //Logic for storage
+        String filename = photo.getPhotoString();
+        String filepath = "src/main/resources/ToUploadFromTemp/"+filename;
+
+        //TODO: file should be pulled from client, not filepath eventually
+        try{
+            client.putObject(new PutObjectRequest(BUCKET_NAME, filename, new File(filepath)));
+
+            System.out.println("Successfully uploaded photo!");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //Database Logic
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
 
@@ -19,22 +48,51 @@ public class PhotoDaoImpl implements PhotoDao{
     }
 
     @Override
-    public Photos getPhotobyId(int id) {
+    public Photos getPhotobyId(int id, AmazonS3 client) {
+
+        //Database Logic
         Session session = HibernateUtil.getSession();
 
         Photos photo = session
                 .createQuery("from User WHERE photo_id = '" + id + "'", Photos.class)
                 .uniqueResult();
 
+        //Logic for storage
+        String photoName = photo.getPhotoString();
+        try{
+            //get connection to aws s3
+            S3Object obj = client.getObject(BUCKET_NAME, photoName);
+            S3ObjectInputStream inputStream = obj.getObjectContent();
+
+            //store image at a given path for now
+            FileUtils.copyInputStreamToFile(inputStream, new File(FILE_PATH+"/"+PHOTO_NAME));
+
+            System.out.println("Successfully downloaded photo!");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         return photo;
     }
 
     @Override
-    public void deletePhoto(int id) {
+    public void deletePhoto(Photos photo, AmazonS3 client) {
+
+        //logic for storage
+        try{
+            client.deleteObject(new DeleteObjectRequest(BUCKET_NAME, photo.getPhotoString()));
+
+            System.out.println("Successfully deleted photo");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        //logic for database
         Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
 
-        session.delete(new Photos(id));
+
+        session.delete(photo);
 
         tx.commit();
     }
