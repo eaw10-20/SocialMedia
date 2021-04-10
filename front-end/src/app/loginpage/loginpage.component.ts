@@ -23,6 +23,7 @@ export class LoginpageComponent implements OnInit {
   constructor(private router: Router, private userService: UserServicesService) { }
 
   ngOnInit(): void {
+    
   }
 
 
@@ -43,15 +44,13 @@ export class LoginpageComponent implements OnInit {
   }
 
 
-  loginButton () {
+   loginButton () {
     console.log("clicked the login button");
     let id: number=1;
-    this.userService.firstRequest(id).subscribe(
-      data=> {
-        console.log(data)
-      }
-    );
-    // this.router.navigate (['/main'])
-  }
+    let json: string;
+    console.log("in the async login method");
+    this.userService.checkLogin(id);
+
+  };
 
 }

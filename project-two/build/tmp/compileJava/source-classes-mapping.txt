@@ -32,5 +32,7 @@ base/model/Photos.java
  base.model.Photos
 base/dao/UserDao.java
  base.dao.UserDao
+base/controller/SessionController.java
+ base.controller.SessionController
 base/controller/UserController.java
  base.controller.UserController

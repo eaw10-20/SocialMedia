@@ -5,29 +5,47 @@ import base.dao.UserDao;
 import base.dao.UserDaoImpl;
 
 import base.model.User;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     private UserDaoImpl userDao;
+    SessionController sesCont;
 
     //http://localhost:9005/social/api/getUserById/
     //changed to GET for testing purposes
+    @CrossOrigin(allowCredentials = "true")
     @GetMapping(value="/getUserById", params={"id"}, produces="application/json")
     public @ResponseBody
-    ResponseEntity<User> getUserById(int id){
+    ResponseEntity<User> getUserById(int id, HttpSession session){
+        User user;
         System.out.println("in the get user by id method");
-        return new ResponseEntity<User>(userDao.getUserById(id),
+        System.out.println(id);
+
+        user = userDao.getUserById(id);
+
+//        session.setAttribute("loggedin", user);
+////        System.out.println(session.getAttribute("loggedin"));
+        sesCont = new SessionController();
+        sesCont.setUserSession(session, user);
+
+        System.out.println(session.getAttribute("loggedin"));
+
+        return new ResponseEntity<User>(user,
                 HttpStatus.OK);
     }
+
 
 
     @PostMapping(value="/createUser")
