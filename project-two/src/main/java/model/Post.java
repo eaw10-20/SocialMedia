@@ -61,6 +61,7 @@ public class Post {
         this.myUser = user;
     }
 
+
     public Post(int postId, String description, User user, List<User> users) {
         this.postId = postId;
         this.description = description;
