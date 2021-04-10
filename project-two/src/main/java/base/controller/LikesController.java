@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Controller
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class LikesController {
 
     private LikesDaoImpl likesDao;
