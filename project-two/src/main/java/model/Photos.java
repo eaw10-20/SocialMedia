@@ -24,6 +24,48 @@ public class Photos {
     private Post myPost;
 
 
+    //Constructors
+    public Photos() {
+    }
 
+    public Photos(int photoId) {
+        this.photoId = photoId;
+    }
 
+    public Photos(int photoId, Post myPost) {
+        this.photoId = photoId;
+        this.myPost = myPost;
+    }
+
+    public Photos(int photoId, String photoString, Post myPost) {
+        this.photoId = photoId;
+        this.photoString = photoString;
+        this.myPost = myPost;
+    }
+
+    //getters and setters
+
+    public int getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
+    }
+
+    public String getPhotoString() {
+        return photoString;
+    }
+
+    public void setPhotoString(String photoString) {
+        this.photoString = photoString;
+    }
+
+    public Post getMyPost() {
+        return myPost;
+    }
+
+    public void setMyPost(Post myPost) {
+        this.myPost = myPost;
+    }
 }
