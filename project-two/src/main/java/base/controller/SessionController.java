@@ -14,7 +14,18 @@ public class SessionController {
 
     private UserDaoImpl userDao;
 
-    //    http://localhost:9005/social/login
+
+    /**Utilizes User(String email, String password) constructor to retrieve
+     * entire User object from UserDaoImpl. Updates User table to reflect
+     * new login status, sets new User object's loginStatus to true,
+     * and returns User object in JSON format in the response body.
+     *
+     * Temporary URL: http://localhost:9005/social/login
+     *
+     * @param user
+     * @param session
+     * @return
+     */
     @PostMapping(value="/login")
     public @ResponseBody
     User login(@RequestBody User user, HttpSession session){
