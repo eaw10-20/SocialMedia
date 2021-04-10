@@ -46,6 +46,26 @@ public class UserController {
         return loggedInUser;
     }
 
+    //http://localhost:9005/social/api/getUserByFullName
+    @PutMapping(value="/getUserByFullName", params={"firstName", "lastName"}, produces="application/json")
+    public @ResponseBody
+    ResponseEntity<User> getUserByFullName(String firstName, String lastName){
+        return new ResponseEntity<User>(userDao.getUserByFullName(firstName, lastName),
+                HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
+    }
+
+    @GetMapping(value="/getAllUsersLoggedIn")
+    public @ResponseBody
+    List<User> getsAllUsersLoggedIn(){
+        return userDao.getAllUsersLoggedIn();
+    }
+
+    //http://localhost:9005/social/api/udpateUser
+    @PostMapping(value="/udpateUser")
+    public void updateUser(@RequestBody User newUser){
+        userDao.updateUser(newUser);
+    }
+
 
     ////Constructors
 
@@ -80,13 +100,13 @@ public class UserController {
      */
 
     public void insertInitialValues(){
-
-        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-
-        userDao.createUser(dan);
-        userDao.createUser(dan2);
-        userDao.createUser(dan3);
+//
+//        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
+//        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+//        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+//
+//        userDao.createUser(dan);
+//        userDao.createUser(dan2);
+//        userDao.createUser(dan3);
     }
 }
