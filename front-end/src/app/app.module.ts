@@ -15,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LeftContainerComponent } from './left-container/left-container.component';
 import { PostsComponent } from './posts/posts.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FriendListComponent } from './friend-list/friend-list.component';
     NavbarComponent,
     LeftContainerComponent,
     PostsComponent,
-    FriendListComponent
+    FriendListComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
