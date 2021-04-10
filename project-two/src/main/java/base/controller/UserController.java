@@ -4,6 +4,7 @@ package base.controller;
 import base.dao.UserDao;
 import base.dao.UserDaoImpl;
 
+import base.model.Post;
 import base.model.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+
+@RestController
 @Controller
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -35,25 +38,38 @@ public class UserController {
 
         user = userDao.getUserById(id);
 
-//        session.setAttribute("loggedin", user);
-////        System.out.println(session.getAttribute("loggedin"));
-        sesCont = new SessionController();
-        sesCont.setUserSession(session, user);
-
-        System.out.println(session.getAttribute("loggedin"));
-
         return new ResponseEntity<User>(user,
                 HttpStatus.OK);
     }
 
 
 
+    //http://localhost:9005/social/api/createUser
     @PostMapping(value="/createUser")
-    public String createNewFood(@RequestBody User newUser){
+    public void createNewUser(@RequestBody User newUser){
         userDao.createUser(newUser);
-        return "success";
+    }
+    
+
+    //http://localhost:9005/social/api/getUserByFullName
+    @PutMapping(value="/getUserByFullName", params={"firstName", "lastName"}, produces="application/json")
+    public @ResponseBody
+    ResponseEntity<User> getUserByFullName(String firstName, String lastName){
+        return new ResponseEntity<User>(userDao.getUserByFullName(firstName, lastName),
+                HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
     }
 
+    @GetMapping(value="/getAllUsersLoggedIn")
+    public @ResponseBody
+    List<User> getsAllUsersLoggedIn(){
+        return userDao.getAllUsersLoggedIn();
+    }
+
+    //http://localhost:9005/social/api/udpateUser
+    @PostMapping(value="/udpateUser")
+    public void updateUser(@RequestBody User newUser){
+        userDao.updateUser(newUser);
+    }
 
 
     ////Constructors
@@ -89,13 +105,13 @@ public class UserController {
      */
 
     public void insertInitialValues(){
-
-        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-
-        userDao.createUser(dan);
-        userDao.createUser(dan2);
-        userDao.createUser(dan3);
+//
+//        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
+//        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+//        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+//
+//        userDao.createUser(dan);
+//        userDao.createUser(dan2);
+//        userDao.createUser(dan3);
     }
 }

@@ -1,13 +1,37 @@
+<<<<<<< HEAD
 base/controller/LikesController.java
  base.controller.LikesController
 base/model/User.java
  base.model.User
+=======
+Main.java
+ Main
+base/model/Photos.java
+ base.model.Photos
+base/dao/LikesDaoImpl.java
+ base.dao.LikesDaoImpl
+util/HibernateUtil.java
+ util.HibernateUtil
+Tester.java
+ Tester
+base/dao/LikesDao.java
+ base.dao.LikesDao
+base/model/Likes.java
+ base.model.Likes
+base/model/User.java
+ base.model.User
+base/dao/UserDao.java
+ base.dao.UserDao
+base/dao/PostDaoImpl.java
+ base.dao.PostDaoImpl
+>>>>>>> ca528d33252a5352b917e8845783a613df63b616
 base/controller/PostController.java
  base.controller.PostController
 base/model/Post.java
  base.model.Post
 base/dao/PostDao.java
  base.dao.PostDao
+<<<<<<< HEAD
 base/dao/LikesDao.java
  base.dao.LikesDao
 base/model/Likes.java
@@ -36,3 +60,17 @@ base/controller/SessionController.java
  base.controller.SessionController
 base/controller/UserController.java
  base.controller.UserController
+=======
+service/PostService.java
+ service.PostService
+service/UserService.java
+ service.UserService
+base/dao/UserDaoImpl.java
+ base.dao.UserDaoImpl
+base/controller/LikesController.java
+ base.controller.LikesController
+base/controller/UserController.java
+ base.controller.UserController
+base/controller/SessionController.java
+ base.controller.SessionController
+>>>>>>> ca528d33252a5352b917e8845783a613df63b616

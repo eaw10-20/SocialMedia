@@ -29,7 +29,7 @@ public class PostDaoImpl implements PostDao {
     @Override
     public List<Post> getPostsByUserID(int userId) {
 
-        String hql = "FROM post WHERE user_id =" + userId;
+        String hql = "FROM Post WHERE user_id =" + userId;
         List<Post> userPosts = sesFact.getCurrentSession().createQuery(hql).list();
 
         return userPosts;

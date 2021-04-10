@@ -5,13 +5,12 @@ import base.model.Post;
 import base.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
+@RestController
 @Controller
 @RequestMapping("/api")
 public class PostController {
@@ -20,20 +19,36 @@ public class PostController {
 
 
     //http://localhost:9005/social/api/getAllPosts
-    
     @GetMapping(value="/getAllPosts")
     public @ResponseBody
-    List<Post> getAllFoods(){
+    List<Post> getAllPosts(){
         return postDao.getAllPosts();
     }
 
+    //http://localhost:9005/social/api/createPost
+    @PostMapping(value="/createPost")
+    public void createNewPost(@RequestBody Post newPost){
+        postDao.createPost(newPost);
+    }
 
+//    http://localhost:9005/social/api/getPostsByUserId
+    @PutMapping(value="getPostsByUserId", params={"id"}, produces="application/json")
+    public List<Post> getPostsById(int id){
+        return postDao.getPostsByUserID(id);
+    }
+
+
+    @PutMapping(value="/updatePost")
+    public void updatePost(@RequestBody Post updatedPost){
+         postDao.updatePost(updatedPost);
+    }
 
     ////Constructors
 
     public PostController(){
 
     }
+
     @Autowired
     public PostController(PostDaoImpl postDao) {
         this.postDao = postDao;
