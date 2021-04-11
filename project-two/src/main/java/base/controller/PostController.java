@@ -39,7 +39,7 @@ public class PostController {
     }
 
 
-    /**If session attribute "currentUser" is not null createNewPost creates a
+    /**If session attribute "currentUser" is not null creates a
      * new Post entry in the Posts table.
      *
      * Temporary URL: http://localhost:9005/social/api/createPost
