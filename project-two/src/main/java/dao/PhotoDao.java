@@ -1,6 +1,6 @@
 package dao;
 
-import model.Photos;
+import base.model.Photos;
 
 public interface PhotoDao {
 

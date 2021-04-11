@@ -35,6 +35,10 @@ public class Photos {
     public Photos() {
     }
 
+    public Photos(int photoId) {
+        this.photoId = photoId;
+    }
+
     public Photos(int photoId, String photoString, Post myPost) {
         this.photoId = photoId;
         this.photoString = photoString;

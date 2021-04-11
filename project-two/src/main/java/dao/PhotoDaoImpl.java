@@ -1,7 +1,7 @@
 package dao;
 
-import model.Photos;
-import model.User;
+import base.model.Photos;
+import base.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
