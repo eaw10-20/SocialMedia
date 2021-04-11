@@ -47,7 +47,7 @@ public class PhotoService {
 
     ////Business Logic
     //dao calls
-    public void createPhoto(Photos photo){
+    public void uploadPhoto(Photos photo){
         photoDao.uploadPhoto(photo, getS3Client());
     }
 

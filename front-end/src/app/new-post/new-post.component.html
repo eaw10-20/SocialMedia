@@ -23,7 +23,8 @@
             <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
+                        <!-- Trying to implement file upload here. Noting spot for now -->
+                        <input type="file" class="custom-file-input" id="customFile" (change)="onFileSelected($event)">
                         <label class="custom-file-label" for="customFile">Upload image</label>
                     </div>
                 </div>

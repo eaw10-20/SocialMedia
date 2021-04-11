@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-new-post',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
+  // export interface Post{
+  //   postId: number,
+  //   description: string,
+  //   photos: [],
+  //   userId: number
+  // }
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onFileSelected(event){
+
+  }
 }
