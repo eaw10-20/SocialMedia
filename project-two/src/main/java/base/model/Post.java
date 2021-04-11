@@ -2,7 +2,9 @@ package base.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import net.bytebuddy.build.ToStringPlugin;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -15,6 +17,9 @@ import java.util.Date;
 //Post model
 @Entity
 @Table(name="User_Post")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "userId")
 public class Post {
 
     //Auto generated serial number and primary key of User_Post
@@ -39,7 +44,7 @@ public class Post {
 
     //Many posts have a single creator (aka user)
     //Connected to User in the @JoinColumn portion with a new column named user_id
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User userId;
@@ -133,7 +138,7 @@ public class Post {
 
     //toString() method
 
-
+//
     @Override
     public String toString() {
         return "Post{" +

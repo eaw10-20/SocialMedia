@@ -1,8 +1,10 @@
 package base.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import net.bytebuddy.build.ToStringPlugin;
 
 import javax.persistence.*;
@@ -12,6 +14,9 @@ import java.util.List;
 //User model
 @Entity
 @Table(name="Users")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "userId")
 public class User {
 
     //Auto generated serial number and primary key of Hibernate_Users
@@ -50,7 +55,7 @@ public class User {
 
 //    Each User can have many post
 //    User posts are stored in List<Post>????
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Post> postList = new ArrayList<>();
 

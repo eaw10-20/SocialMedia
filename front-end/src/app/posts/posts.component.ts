@@ -65,6 +65,7 @@ export class PostsComponent implements OnInit {
     console.log("Grab All post method")
     this.userService.getAllPosts().subscribe(
       postData => {
+        console.log(postData);
         this.allPosts = postData;
       }
     )
