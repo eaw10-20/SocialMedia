@@ -1,6 +1,6 @@
 export interface Post{
     postId: number,
     description: string,
-    photos: [],
+    photos: File[],
     userId: number
 }
