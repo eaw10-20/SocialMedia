@@ -15,16 +15,21 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                 <div class="form-group">
-                    <label class="sr-only" for="message">post</label>
-                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                    <label class="sr-only" for="message">Post</label>
+                    <textarea class="form-control" id="message" rows="3" [(ngModel)]='descriptionField' placeholder="What are you thinking?"></textarea>
                 </div>
 
             </div>
             <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Upload image</label>
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="images" id="inputGroupFile02" (change)="onFileSelect($event.target.files)" multiple>
+                            <label class="input-group-text" for="inputGroupFile02">Upload image</label>
+                          </div>
+ 
+                        <!-- <input type="file" class="custom-file-input"  multiple>
+                        <label class="custom-file-label" for="customFile"></label> -->
                     </div>
                 </div>
                 <div class="py-4"></div>
@@ -32,7 +37,7 @@
         </div>
         <div class="btn-toolbar justify-content-between">
             <div class="btn-group">
-                <button type="submit" class="btn btn-primary">share</button>
+                <button type="submit" class="btn btn-primary" (click)= "sendPost">Post</button>
             </div>
             <div class="btn-group">
                 <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"

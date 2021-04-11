@@ -39,6 +39,7 @@ export class UserServicesService {
   checkLogin(user: User) {
     // const promise = this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
     // {withCredentials: true})
+    console.log("in the check login method")
     const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=1`,
     {withCredentials: true}).toPromise()
     promise.then((data) => {
@@ -61,13 +62,7 @@ export class UserServicesService {
   }
 
 
-  getUserPosts(userId): Observable<HttpResponse<Post[]>> {
-    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getPostsByUserId/?id=${userId}`,
-    {withCredentials: true})
-  }
+  
 
-  getAllPosts(): Observable<HttpResponse<Post[]>> {
-    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getAllPosts/`,
-    {withCredentials: true})
-  }
+  
 }

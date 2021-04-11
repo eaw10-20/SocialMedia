@@ -34,6 +34,7 @@ public class UserController {
         System.out.println(id);
 
         loggedInUser = userDao.getUserById(id);
+        System.out.println(loggedInUser.toString());
         if(loggedInUser != null){
             loggedInUser.setLoginStatus(true);
             session.setAttribute("currentUser", loggedInUser);

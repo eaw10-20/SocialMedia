@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { PostService } from '../services/post.service';
 import { UserServicesService } from '../services/user-services.service';
 
 @Component({
@@ -31,7 +32,7 @@ export class PostsComponent implements OnInit {
 
   
 
-  constructor(private userService: UserServicesService) { }
+  constructor(private userService: UserServicesService, private postService: PostService) { }
 
   ngOnInit(): void {
     this.currentUser();
@@ -63,7 +64,7 @@ export class PostsComponent implements OnInit {
 
   allPost(){
     console.log("Grab All post method")
-    this.userService.getAllPosts().subscribe (
+    this.postService.getAllPosts().subscribe (
       postData => {
         console.log(postData)
       }
