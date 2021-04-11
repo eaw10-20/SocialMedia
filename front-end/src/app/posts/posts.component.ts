@@ -18,7 +18,7 @@ export class PostsComponent implements OnInit {
     userId: 0
   }
 
-  allPosts: [];
+  allPosts: Post[];
 
   user: User = {userId: 0,
     fname: "",
@@ -41,32 +41,24 @@ export class PostsComponent implements OnInit {
   }
 
   currentUser() {
-    console.log("Grabbing current user session in post component")
-    const promise = this.userService.getUserSession().subscribe(
-      userData=> {
-        this.userConstruct(userData);
+    console.log("Grabbing current user session")
+    this.userService.getUserSession().subscribe(
+      data=> {
+        this.user = data;
+        console.log(data);
+        console.log(this.user);
       }
     )
   }
 
-  userConstruct(data): User {
-    return this.user = {
-      userId : parseInt(data.userId),
-      fname: data.fname,
-      lname: data.lname,
-      email: data.email,
-      password: data.password,
-      username: data.username,
-      photo: data.avatar,
-      posts: data.posts
-    }
-  }
+
 
   allPost(){
     console.log("Grab All post method")
-    this.postService.getAllPosts().subscribe (
+    this.postService.getAllPosts().subscribe(
       postData => {
-        console.log(postData)
+        console.log(postData);
+        this.allPosts = postData;
       }
     )
   }

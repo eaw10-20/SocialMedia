@@ -56,8 +56,8 @@ export class UserServicesService {
 
 
 
-  getUserSession(): Observable<HttpResponse<User>>{
-    return this.HttpCli.get<HttpResponse<User>>(`http://localhost:9005/social/api/getUser`,
+  getUserSession(): Observable<User>{
+    return this.HttpCli.get<User>(`http://localhost:9005/social/api/getUser`,
     {withCredentials: true})
   }
 

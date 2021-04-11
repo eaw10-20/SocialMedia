@@ -11,15 +11,20 @@ export class PostService {
   constructor(private HttpCli: HttpClient) { }
 
 
-  getAllPosts(): Observable<HttpResponse<Post[]>> {
-    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getAllPosts/`,
+  getAllPosts(): Observable<Post[]> {
+    return this.HttpCli.get<Post[]>(`http://localhost:9005/social/api/getAllPosts/`,
     {withCredentials: true})
   }
+
+  
 
   getUserPosts(userId): Observable<HttpResponse<Post[]>> {
     return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getPostsByUserId/?id=${userId}`,
     {withCredentials: true})
   }
 
-  createNewPost(post):
+  createNewPost(post) {
+    this.HttpCli.post(`http://localhost:9005/social/api/getAllPosts/`, post
+    , {withCredentials: true})
+  }
 }
