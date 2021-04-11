@@ -55,8 +55,8 @@ export class UserServicesService {
 
 
 
-  getUserSession(): Observable<HttpResponse<User>>{
-    return this.HttpCli.get<HttpResponse<User>>(`http://localhost:9005/social/api/getUser`,
+  getUserSession(): Observable<User>{
+    return this.HttpCli.get<User>(`http://localhost:9005/social/api/getUser`,
     {withCredentials: true})
   }
 
@@ -66,8 +66,8 @@ export class UserServicesService {
     {withCredentials: true})
   }
 
-  getAllPosts(): Observable<HttpResponse<Post[]>> {
-    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getAllPosts/`,
+  getAllPosts(): Observable<Post[]> {
+    return this.HttpCli.get<Post[]>(`http://localhost:9005/social/api/getAllPosts/`,
     {withCredentials: true})
   }
 }

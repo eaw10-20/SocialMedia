@@ -17,7 +17,7 @@ export class PostsComponent implements OnInit {
     userId: 0
   }
 
-  allPosts: [];
+  allPosts: Post[];
 
   user: User = {userId: 0,
     fname: "",
@@ -63,9 +63,9 @@ export class PostsComponent implements OnInit {
 
   allPost(){
     console.log("Grab All post method")
-    this.userService.getAllPosts().subscribe (
+    this.userService.getAllPosts().subscribe(
       postData => {
-        console.log(postData)
+        this.allPosts = postData;
       }
     )
   }

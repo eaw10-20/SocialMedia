@@ -29,23 +29,26 @@ export class LeftContainerComponent implements OnInit {
     console.log("Grabbing current user session")
     this.userService.getUserSession().subscribe(
       data=> {
-        this.userConstruct(data);
+        this.user = data;
+        console.log(data);
         console.log(this.user);
       }
     )
   }
   
-  userConstruct(data): User {
-    return this.user = {
-      userId : parseInt(data.userId),
-      fname: data.fname,
-      lname: data.lname,
-      email: data.email,
-      password: data.password,
-      username: data.username,
-      photo: data.avatar,
-      posts: data.posts
-    }
-  }
+  //
+
+  // userConstruct(data): User {
+  //   return this.user = {
+  //     userId : parseInt(data.userId),
+  //     fname: data.fname,
+  //     lname: data.lname,
+  //     email: data.email,
+  //     password: data.password,
+  //     username: data.username,
+  //     photo: data.avatar,
+  //     posts: data.posts
+  //   }
+  // }
 
 }
