@@ -19,11 +19,6 @@ public class Photos {
     @Column(name = "photobyte")
     private String photoString;
 
-    //Column photo type
-    //true if profile photo false if post photo
-    @Column(name="isProfile")
-    private boolean isProfile;
-
     //Many photos can be attached to one post
     //Connected to Post in the @JoinColumn portion with a new column named post_id
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -74,7 +69,6 @@ public class Photos {
         return "Photos{" +
                 "photoId=" + photoId +
                 ", photoString='" + photoString + '\'' +
-                ", isProfile=" + isProfile +
 //                ", myPost=" + myPost +
                 '}';
     }
