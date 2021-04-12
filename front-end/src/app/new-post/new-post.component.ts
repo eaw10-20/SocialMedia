@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from '../models/post';
 import { PostServicesService } from '../services/post-services.service';
+import { UserServicesService } from '../services/user-services.service';
 
 @Component({
   selector: 'app-new-post',
@@ -20,7 +21,7 @@ export class NewPostComponent implements OnInit {
   user: User;
 
 
-  constructor(private postService: PostService, private userService: UserServicesService,private router: Router) { }
+  constructor(private postService: PostServicesService, private userService: UserServicesService,private router: Router) { }
 
   descriptionField: string;
 
@@ -36,6 +37,13 @@ export class NewPostComponent implements OnInit {
     this.descriptionField = temp;
   }
 
+  currentUser() {
+    this.userService.getUserSession().subscribe(
+      data=> {
+        this.user = data;
+      }
+    )
+  }
 
   sendPost() {
     this.post.userId = this.user;
