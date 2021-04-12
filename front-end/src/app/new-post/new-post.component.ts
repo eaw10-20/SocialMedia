@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from '../models/post';
 import { User } from '../models/user';
-import { PostService } from '../services/post.service';
+import { PostServicesService } from '../services/post-services.service';
 import { UserServicesService } from '../services/user-services.service';
 
 @Component({
@@ -22,35 +22,28 @@ export class NewPostComponent implements OnInit {
   user: User;
 
 
-  constructor(private postService: PostService, private userService: UserServicesService,private router: Router) { }
+  constructor(private postService: PostServicesService, private userService: UserServicesService,private router: Router) { }
 
+  descriptionField: string;
 
   ngOnInit(): void {
     this.currentUser();
   }
 
-  get descriptionField () {
-    return this.post.description;
+  get inputField(){
+    return this.descriptionField;
   }
 
-  set descriptionField (str: string) {
-    this.post.description = str;
+  set inputField(temp: string){
+    this.descriptionField = temp;
   }
 
   currentUser() {
-    console.log("Grabbing current user session")
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
       }
     )
-  }
-
-  onFileSelect(files:FileList) {
-    for (let i = 0; i < files.length; i++) {
-      this.post.photos.push(files.item(i))
-      
-    }
   }
 
   sendPost() {
