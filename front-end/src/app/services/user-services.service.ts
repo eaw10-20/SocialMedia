@@ -10,38 +10,17 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserServicesService {
-  // user: User = {userId: 0,
-  //   fname: "",
-  //   lname: '',
-  //   email: '',
-  //   password: '',
-  //   username: '',
-  //   photo: '',
-  //   posts: []
-  // }
 
-  
-  // userConstruct(userJson): User {
-  //   return this.user = {
-  //     userId : parseInt(userJson.userId),
-  //     fname: userJson.fname,
-  //     lname: userJson.lname,
-  //     email: userJson.email,
-  //     password: userJson.password,
-  //     username: userJson.username,
-  //     photo: userJson.avatar,
-  //     posts: userJson.posts
-  //   }
-  // }
+
 
   constructor(private HttpCli: HttpClient, private router: Router) { }
 
   checkLogin(user: User) {
-    // const promise = this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
-    // {withCredentials: true})
-    console.log("in the check login method")
-    const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=1`,
+    const promise = this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
     {withCredentials: true}).toPromise()
+    console.log("in the check login method")
+    // const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=1`,
+    // {withCredentials: true}).toPromise()
     promise.then((data) => {
       // this.user = this.userConstruct(data);
       if(data != null) {
@@ -62,7 +41,15 @@ export class UserServicesService {
   }
 
 
-  
-
+  createNewUser(user: User) {
+    console.log("in the create new user method service")
+    const promise = this.HttpCli.post(`http://localhost:9005/social/api/createUser`, user
+    ).toPromise()
+    promise.then((data) => {
+    console.log("complete??")
+  })
+  }
+    
+    
   
 }

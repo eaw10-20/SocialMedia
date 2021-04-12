@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { PostService } from '../services/post.service';
@@ -15,16 +16,17 @@ export class NewPostComponent implements OnInit {
     postId: 0,
     description: '',
     photos: [],
-    userId: 0
+    userId: null
   }
 
   user: User;
 
 
-  constructor(private postService: PostService, private userService: UserServicesService) { }
+  constructor(private postService: PostService, private userService: UserServicesService,private router: Router) { }
 
 
   ngOnInit(): void {
+    this.currentUser();
   }
 
   get descriptionField () {
@@ -52,8 +54,14 @@ export class NewPostComponent implements OnInit {
   }
 
   sendPost() {
-    this.post.userId = this.user.userId;
+    this.post.userId = this.user;
+    console.log(this.post)
     this.postService.createNewPost(this.post);
+
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['main']);
+  }); 
+
   }
 
 }

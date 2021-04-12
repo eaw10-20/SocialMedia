@@ -5,6 +5,7 @@ import base.dao.UserDaoImpl;
 import base.model.Post;
 import base.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +28,26 @@ public class PostController {
     @GetMapping(value="/getAllPosts")
     public @ResponseBody
     List<Post> getAllPosts(){
+//        List<Post> postList = postDao.getAllPosts();
         return postDao.getAllPosts();
     }
 
-    //http://localhost:9005/social/api/createPost
-    @PostMapping(value="/createPost")
+    //http://localhost:9005/social/api/post/create
+
+    /**
+     * Create a new post
+     * @param newPost
+     */
+    @PostMapping(value="/post/create")
     public void createNewPost(@RequestBody Post newPost){
+        System.out.println("In the create new post method");
         postDao.createPost(newPost);
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handle(Exception e) {
+        System.out.println("Returning HTTP 400 bad requst: " + e);
     }
 
 //    http://localhost:9005/social/api/getPostsByUserId
@@ -49,9 +63,11 @@ public class PostController {
 
     }
 
+    //    http://localhost:9005/social/api/updatePost
     @PutMapping(value="/updatePost")
     public void updatePost(@RequestBody Post updatedPost){
-         postDao.updatePost(updatedPost);
+        System.out.println("in the update post");
+//        postDao.updatePost(updatedPost);
     }
 
     ////Constructors

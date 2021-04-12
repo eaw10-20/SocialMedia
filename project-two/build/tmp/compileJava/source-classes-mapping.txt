@@ -1,32 +1,11 @@
 base/controller/LikesController.java
  base.controller.LikesController
-<<<<<<< HEAD
-base/model/User.java
- base.model.User
-base/controller/PostController.java
- base.controller.PostController
-base/model/Post.java
- base.model.Post
-base/dao/PostDao.java
- base.dao.PostDao
-base/dao/LikesDao.java
- base.dao.LikesDao
-base/model/Likes.java
- base.model.Likes
-base/service/PhotoService.java
- base.service.PhotoService
-base/dao/LikesDaoImpl.java
- base.dao.LikesDaoImpl
-base/dao/PostDaoImpl.java
- base.dao.PostDaoImpl
-=======
-Main.java
- Main
 Tester.java
  Tester
 base/dao/LikesDaoImpl.java
  base.dao.LikesDaoImpl
->>>>>>> b81040a3ce148e3affec03d5ba68a32d1f756bb3
+Main.java
+ Main
 util/HibernateUtil.java
  util.HibernateUtil
 base/dao/LikesDao.java
@@ -35,54 +14,31 @@ base/model/Likes.java
  base.model.Likes
 base/model/User.java
  base.model.User
-base/dao/UserDaoImpl.java
- base.dao.UserDaoImpl
-<<<<<<< HEAD
-Main.java
- Main
-Tester.java
- Tester
-base/dao/PhotoDao.java
- base.dao.PhotoDao
-base/service/UserService.java
- base.service.UserService
-base/controller/SessionController.java
- base.controller.SessionController
-base/service/PostService.java
- base.service.PostService
 base/model/Photos.java
  base.model.Photos
-base/dao/PhotoDaoImpl.java
- base.dao.PhotoDaoImpl
-base/dao/UserDao.java
- base.dao.UserDao
-base/controller/UserController.java
- base.controller.UserController
-=======
-base/dao/UserDao.java
- base.dao.UserDao
-base/service/UserService.java
- base.service.UserService
-base/controller/SessionController.java
- base.controller.SessionController
-base/controller/UserController.java
- base.controller.UserController
-base/controller/PostController.java
- base.controller.PostController
 base/model/Post.java
  base.model.Post
 base/dao/PostDao.java
  base.dao.PostDao
-base/dao/PhotoDao.java
- base.dao.PhotoDao
-base/service/PostService.java
- base.service.PostService
 base/service/PhotoService.java
  base.service.PhotoService
-base/dao/PhotoDaoImpl.java
- base.dao.PhotoDaoImpl
 base/dao/PostDaoImpl.java
  base.dao.PostDaoImpl
-base/model/Photos.java
- base.model.Photos
->>>>>>> b81040a3ce148e3affec03d5ba68a32d1f756bb3
+base/dao/UserDaoImpl.java
+ base.dao.UserDaoImpl
+base/dao/PhotoDao.java
+ base.dao.PhotoDao
+base/service/UserService.java
+ base.service.UserService
+base/controller/SessionController.java
+ base.controller.SessionController
+base/service/PostService.java
+ base.service.PostService
+base/controller/UserController.java
+ base.controller.UserController
+base/dao/PhotoDaoImpl.java
+ base.dao.PhotoDaoImpl
+base/dao/UserDao.java
+ base.dao.UserDao
+base/controller/PostController.java
+ base.controller.PostController

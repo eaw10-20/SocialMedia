@@ -42,11 +42,11 @@ public class User {
     private String password;
 
     //Column username
-    @Column(name="user_username")
+    @Column(name="user_username", nullable = false)
     private String username;
 
     //Column photo string
-    @Column(name="user_avatar", nullable = false)
+    @Column(name="user_avatar")
     private String avatar;
 
     //Column for logged in

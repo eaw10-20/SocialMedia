@@ -23,7 +23,7 @@ public class SessionController {
     @GetMapping(value="/api/getUser")
     @CrossOrigin(allowCredentials = "true")
     public User getCurrentUser(HttpSession session) {
-        System.out.println("In the get current user session");
+//        System.out.println("In the get current user session");
 
         User user = (User) session.getAttribute("currentUser");
         return user;

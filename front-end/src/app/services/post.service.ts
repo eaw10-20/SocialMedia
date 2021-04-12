@@ -23,8 +23,12 @@ export class PostService {
     {withCredentials: true})
   }
 
-  createNewPost(post) {
-    this.HttpCli.post(`http://localhost:9005/social/api/getAllPosts/`, post
-    , {withCredentials: true})
+  createNewPost(post: Post){
+    console.log("in the create new post method service")
+    const promise = this.HttpCli.post(`http://localhost:9005/social/api/post/create`, post
+    , {withCredentials: true}).toPromise()
+    promise.then((data) => {
+    })
+    
   }
 }

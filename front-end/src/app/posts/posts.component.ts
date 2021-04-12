@@ -45,8 +45,7 @@ export class PostsComponent implements OnInit {
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
-        console.log(data);
-        console.log(this.user);
+
       }
     )
   }
@@ -57,8 +56,8 @@ export class PostsComponent implements OnInit {
     console.log("Grab All post method")
     this.postService.getAllPosts().subscribe(
       postData => {
-        console.log(postData);
         this.allPosts = postData;
+        console.log(this.allPosts)
       }
     )
   }
