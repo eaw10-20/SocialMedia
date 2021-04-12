@@ -19,8 +19,7 @@ export class NewPostComponent implements OnInit {
     userId: null
   }
 
-  user: User;
-
+  user;
 
   constructor(private postService: PostServicesService, private userService: UserServicesService,private router: Router) { }
 
