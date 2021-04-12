@@ -16,6 +16,7 @@ import { LeftContainerComponent } from './left-container/left-container.componen
 import { PostsComponent } from './posts/posts.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     LeftContainerComponent,
     PostsComponent,
     FriendListComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
