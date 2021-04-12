@@ -29,7 +29,7 @@ public class Photos {
     private Post myPost;
 
     //Stores file data
-    private File image;
+    private File imageData;
 
 
     public Photos() {
@@ -74,11 +74,11 @@ public class Photos {
         this.myPost = myPost;
     }
 
-    public File getImage() {
-        return image;
+    public File getImageData() {
+        return imageData;
     }
 
-    public void setImage(File image) {
+    public void setImageData(File imageData) {
         //check to make sure the image type is ok
 
         //first create a set
@@ -88,13 +88,13 @@ public class Photos {
         ext.add("png");
 
         //get complete image name
-        String filename = image.getName();
+        String filename = imageData.getName();
 
         //isolate extension
         int dotIndex = filename.lastIndexOf('.');
-        String imgExt = image.getName().substring(dotIndex+1);
+        String imgExt = imageData.getName().substring(dotIndex+1);
         if(ext.contains(imgExt)){
-            this.image = image;
+            this.imageData = imageData;
         }else{
             System.out.println(imgExt+ "is not a valid picture file extension.");
         }
