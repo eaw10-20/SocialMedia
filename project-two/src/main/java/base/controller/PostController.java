@@ -98,10 +98,6 @@ public class PostController {
     public void insertInitialValues(){
 
         User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-<<<<<<< HEAD
-=======
-
->>>>>>> 91e68abf36f76d2e69025fee07a73c1088a17dc8
         User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
         User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
 

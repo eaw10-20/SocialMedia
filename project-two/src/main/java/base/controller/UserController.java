@@ -65,7 +65,8 @@ public class UserController {
 
 
     //http://localhost:9005/social/api/createUser
-    @PostMapping(value="/createUser")
+    @PostMapping(value="/createUser" , produces="application/json")
+    @CrossOrigin(allowCredentials = "true")
     public void createNewUser(@RequestBody User user){
         userDao.createUser(user);
     }
