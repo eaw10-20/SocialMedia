@@ -24,8 +24,8 @@ base/dao/PhotoDaoImpl.java
  base.dao.PhotoDaoImpl
 base/model/Post.java
  base.model.Post
-base/controller/PostController.java
- base.controller.PostController
+base/model/Photos.java
+ base.model.Photos
 base/dao/PostDao.java
  base.dao.PostDao
 base/dao/LikesDao.java
@@ -42,19 +42,9 @@ base/dao/PhotoDao.java
  base.dao.PhotoDao
 base/websockets/SocketHandler.java
  base.websockets.SocketHandler
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> b8c6b429519745007e8cea5d40a04baf1393e986
 base/controller/UserController.java
  base.controller.UserController
 base/dao/UserDao.java
  base.dao.UserDao
->>>>>>> 4a6cc674f07d7bb5053bf7147a7bd11f661f3bb7
-base/model/Photos.java
- base.model.Photos
-base/dao/UserDao.java
- base.dao.UserDao
-base/controller/UserController.java
- base.controller.UserController
+base/controller/PostController.java
+ base.controller.PostController
