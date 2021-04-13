@@ -25,5 +25,9 @@ export class FriendListComponent implements OnInit {
       }
     )
   }
+  
+  getFriendList(){
+    
+  }
 
 }
