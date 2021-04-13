@@ -81,8 +81,7 @@ export class UpdateUserComponent implements OnInit {
    onSubmit() {
     
     console.log(this.user)
-    this.userService.updateNewUser(this.user)
-    event.preventDefault();
+    this.userService.updateUser(this.user)
 
   }
 

@@ -10,7 +10,6 @@ import { User } from '../models/user';
 export class UserServicesService {
 
 
-
   constructor(private HttpCli: HttpClient, private router: Router) { }
 
   checkLogin(user: User) {
@@ -65,7 +64,7 @@ export class UserServicesService {
   })
   }
 
-  updateNewUser(user: User) {
+  updateUser(user: User) {
     const promise = this.HttpCli.post(`http://localhost:9005/social/api/updateUser`, user
     ).toPromise()
     promise.then((data) => {

@@ -49,17 +49,17 @@ public class UserController {
     @GetMapping(value = "/getAllFriends")
     @CrossOrigin(allowCredentials = "true")
     public @ResponseBody List<User> getAllFriends (HttpSession session) {
-        User user = (User) session.getAttribute("currentUser");
+//        User user = (User) session.getAttribute("currentUser");
         List<User> friendList = userDao.getAllUsers();
-        int indexCount = 0;
-        Iterator<User> iter = friendList.iterator();
-        while(iter.hasNext()) {
-            User user2 = iter.next();
-            if (user2.getEmail().equals(user.getEmail()))
-                iter.remove();
-
-            indexCount++;
-        }
+//        int indexCount = 0;
+//        Iterator<User> iter = friendList.iterator();
+//        while(iter.hasNext()) {
+//            User user2 = iter.next();
+//            if (user2.getEmail().equals(user.getEmail()))
+//                iter.remove();
+//
+//            indexCount++;
+//        }
         return friendList;
     }
 
