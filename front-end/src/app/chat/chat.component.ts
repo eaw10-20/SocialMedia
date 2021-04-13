@@ -14,7 +14,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
 
   user: string;
-  date = formatDate(new Date(), 'short', 'en');
+  date = formatDate(new Date(), 'full', 'en');
 
 
   constructor(public webSocketService: WebsocketService, public userService: UserServicesService) { 
