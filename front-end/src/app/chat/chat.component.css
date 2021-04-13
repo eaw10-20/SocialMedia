@@ -38,6 +38,14 @@ div.chat-content{
     margin-top: .25rem;
 }
 
+.date{
+    list-style: none;
+    align-self:center;
+    border-radius: .25rem;
+    margin-left: .25rem;
+    margin-top: .25rem;
+}
+
 .other ~ .self {
     margin-top: 2rem;
 }
