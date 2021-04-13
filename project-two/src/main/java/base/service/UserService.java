@@ -72,6 +72,12 @@ public class UserService {
         return userDao.getUserByFullName(firstName, lastName);
     }
 
+    /**
+     * Takes in a password and encrypts it so that the password can be safely stored  in the database
+     * Takes in a string password and returns an encrypted string.
+     * @param pass
+     * @return
+     */
     private String encryptPass(String pass){
         try {
             //Creating a Signature object

@@ -9,7 +9,7 @@ import { UserServicesService } from '../services/user-services.service';
 })
 export class FriendListComponent implements OnInit {
 
-  allUsers: User[]
+  userFriends: User[]
 
   constructor(private userService: UserServicesService) { }
 
@@ -20,7 +20,8 @@ export class FriendListComponent implements OnInit {
   loadFriendList() {
     this.userService.getFriendList().subscribe(
       data=> {
-        console.log(data)
+        this.userFriends = data;
+        console.log(this.userFriends)
       }
     )
   }

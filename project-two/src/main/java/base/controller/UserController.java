@@ -65,7 +65,8 @@ public class UserController {
 
 
     //http://localhost:9005/social/api/createUser
-    @PostMapping(value="/createUser")
+    @PostMapping(value="/createUser" , produces="application/json")
+    @CrossOrigin(allowCredentials = "true")
     public void createNewUser(@RequestBody User user){
         userDao.createUser(user);
     }
@@ -85,8 +86,8 @@ public class UserController {
         return userDao.getAllUsersLoggedIn();
     }
 
-    //http://localhost:9005/social/api/udpateUser
-    @PostMapping(value="/udpateUser")
+    //http://localhost:9005/social/api/updateUser
+    @PostMapping(value="/updateUser")
     @CrossOrigin(allowCredentials = "true")
     public void updateUser(@RequestBody User newUser){
         System.out.println(newUser.toString());

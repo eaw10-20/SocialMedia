@@ -31,8 +31,6 @@ export class LeftContainerComponent implements OnInit {
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
-        console.log(this.user)
-        console.log(this.user.avatar)
       }
     )
   }
