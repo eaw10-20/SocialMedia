@@ -1,5 +1,6 @@
 package base.dao;
 
+import base.model.Post;
 import base.model.User;
 
 import org.hibernate.SessionFactory;
@@ -22,6 +23,8 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public void createUser(User user) {
+        System.out.println("over here");
+
         sesFact.getCurrentSession().save(user);
     }
 
@@ -42,6 +45,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsersLoggedIn() {
+        System.out.println("af");
 
         List loggedIn = sesFact.getCurrentSession().createQuery("from User WHERE loggedIn = '" + true + "' ").list();
 
