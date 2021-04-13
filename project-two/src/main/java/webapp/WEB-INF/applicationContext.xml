@@ -29,16 +29,12 @@
     <!--DATASOURCE
         Datasource is an object that holds all the attributes necessary to connect to your database
     -->
+
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url"
-<<<<<<< Updated upstream
                   value="#{'jdbc:postgresql://databaserevaturetraining.cqfkhicmdjui.us-east-2.rds.amazonaws.com/socialmedia'}"/>
         <property name="username" value="frostfuzz"/>
-=======
-                  value="#{'jdbc:postgresql://graypanda.cndv56gz115j.us-east-2.rds.amazonaws.com/socialmedia'}"/>
-        <property name="username" value="graypanda"/>
->>>>>>> Stashed changes
         <property name="password" value="p4ssw0rd"/>
     </bean>
 

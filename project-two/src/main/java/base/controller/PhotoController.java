@@ -15,12 +15,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class PhotoController {
     private PhotoDaoImpl photoDao;
+    private PhotoService photoService;
 
 
-//    //http://localhost:9005/social/api/uploadPhoto
-//    @PostMapping(value="/uploadPhoto")
-//    public void createNewPost(@RequestBody Photos photo){
-//        ps.uploadPhoto(photo);
+    //http://localhost:9005/social/api/uploadPhoto
+    @PostMapping(value="/uploadPhoto")
+    public void uploadPhoto(/*@RequestBody*/ Photos photo){
+        System.out.println("Printing image data");
+        System.out.println(photo.getImageData());
+        photoService.uploadPhoto(photo);
+    }
+
+    //http://localhost:9005/social/api/downloadPhoto
+//    @PostMapping(value="/downloadPhoto", params={"id"}, produces="application/json)
+//    public void getPhotoById(){
+//
 //    }
 
 
@@ -38,10 +47,13 @@ public class PhotoController {
     ///Autowired constructor to inject the repo directly
 
     @Autowired
-    public PhotoController(PhotoDaoImpl photoDao){
+    public PhotoController(PhotoDaoImpl photoDao, PhotoService photoService){
 
         this.photoDao = photoDao;
+
+        this.photoService = photoService;
     }
+
 
     ////Getters and Setters
 
@@ -54,4 +66,12 @@ public class PhotoController {
         this.photoDao = photoDao;
     }
 
+    public PhotoService getPhotoService() {
+        return photoService;
+    }
+
+    @Autowired
+    public void setPhotoService(PhotoService photoService) {
+        this.photoService = photoService;
+    }
 }

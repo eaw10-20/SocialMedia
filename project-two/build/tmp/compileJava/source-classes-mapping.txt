@@ -2,10 +2,6 @@ base/controller/LikesController.java
  base.controller.LikesController
 base/model/User.java
  base.model.User
-<<<<<<< Updated upstream
-base/controller/PhotoController.java
- base.controller.PhotoController
-=======
 base/model/Post.java
  base.model.Post
 base/controller/PostController.java
@@ -14,21 +10,16 @@ base/dao/PostDao.java
  base.dao.PostDao
 base/dao/LikesDao.java
  base.dao.LikesDao
-base/controller/PhotoController.java
- base.controller.PhotoController
+base/model/Photos.java
+ base.model.Photos
 base/model/Likes.java
  base.model.Likes
->>>>>>> Stashed changes
-base/service/PhotoService.java
- base.service.PhotoService
+base/dao/UserDao.java
+ base.dao.UserDao
 base/dao/LikesDaoImpl.java
  base.dao.LikesDaoImpl
 base/dao/PostDaoImpl.java
  base.dao.PostDaoImpl
-<<<<<<< Updated upstream
-Main.java
- Main
-=======
 util/HibernateUtil.java
  util.HibernateUtil
 base/dao/UserDaoImpl.java
@@ -39,7 +30,6 @@ Tester.java
  Tester
 base/dao/PhotoDao.java
  base.dao.PhotoDao
->>>>>>> Stashed changes
 base/service/UserService.java
  base.service.UserService
 base/controller/SessionController.java
@@ -48,38 +38,9 @@ base/service/PostService.java
  base.service.PostService
 base/dao/PhotoDaoImpl.java
  base.dao.PhotoDaoImpl
-<<<<<<< Updated upstream
-base/model/Post.java
- base.model.Post
-base/controller/PostController.java
- base.controller.PostController
-dao/PhotoDaoImpl.java
- dao.PhotoDaoImpl
-base/dao/PostDao.java
- base.dao.PostDao
-base/dao/LikesDao.java
- base.dao.LikesDao
-base/model/Likes.java
- base.model.Likes
-util/HibernateUtil.java
- util.HibernateUtil
-base/dao/UserDaoImpl.java
- base.dao.UserDaoImpl
-Tester.java
- Tester
-base/dao/PhotoDao.java
- base.dao.PhotoDao
+base/service/PhotoService.java
+ base.service.PhotoService
 base/controller/UserController.java
  base.controller.UserController
-base/dao/UserDao.java
- base.dao.UserDao
-base/model/Photos.java
- base.model.Photos
-=======
-base/model/Photos.java
- base.model.Photos
-base/dao/UserDao.java
- base.dao.UserDao
-base/controller/UserController.java
- base.controller.UserController
->>>>>>> Stashed changes
+base/controller/PhotoController.java
+ base.controller.PhotoController
