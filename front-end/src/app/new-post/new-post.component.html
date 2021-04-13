@@ -20,10 +20,11 @@
                 </div>
 
             </div>
+            <!-- Marking this location for image uploading work.. -->
             <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
+                        <input type="file" class="custom-file-input" id="customFile" (change)="onFileSelected($event)">
                         <label class="custom-file-label" for="customFile">Upload image</label>
                     </div>
                 </div>
