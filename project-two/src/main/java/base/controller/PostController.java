@@ -98,18 +98,6 @@ public class PostController {
     public void insertInitialValues(){
 
         User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-<<<<<<< Updated upstream
-//        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-//        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-//
-        Post post1 = new Post(1, "post", dan);
-//        Post post2 = new Post(1, "post here too", dan2);
-//        Post post3 = new Post(1,"post here too", dan3);
-//
-        postDao.createPost(post1);
-//        postDao.createPost(post2);
-//        postDao.createPost(post3);
-=======
         User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
         User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
 
@@ -122,6 +110,6 @@ public class PostController {
         postDao.createPost(post1);
         postDao.createPost(post2);
         postDao.createPost(post3);
->>>>>>> Stashed changes
+
     }
 }

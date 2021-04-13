@@ -23,7 +23,7 @@ export class NewUserComponent implements OnInit{
     email: '',
     password: '',
     username: '',
-    photo: '',
+    avatar: '',
     posts: []
   }
 
