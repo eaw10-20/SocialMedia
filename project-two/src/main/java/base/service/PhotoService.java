@@ -59,6 +59,7 @@ public class PhotoService {
         photoDao.deletePhoto(photo, getS3Client());
     }
 
+
     //misc logic
     public AmazonS3 getS3Client(){
         //create a credentials object to identify server for authentification

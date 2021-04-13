@@ -10,4 +10,6 @@ public interface PhotoDao {
     public Photos getPhotobyId(int id, AmazonS3 client);
 
     public void deletePhoto(Photos photo, AmazonS3 client);
+
+    public void uploadAvatarPhoto (int id, String amazonPhotoUrl);
 }

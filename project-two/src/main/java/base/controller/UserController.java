@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Context;
 import javax.servlet.http.HttpSession;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -45,6 +46,23 @@ public class UserController {
     }
 
 
+    @GetMapping(value = "/getAllFriends")
+    @CrossOrigin(allowCredentials = "true")
+    public @ResponseBody List<User> getAllFriends (HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        List<User> friendList = userDao.getAllUsers();
+        int indexCount = 0;
+        Iterator<User> iter = friendList.iterator();
+        while(iter.hasNext()) {
+            User user2 = iter.next();
+            if (user2.getEmail().equals(user.getEmail()))
+                iter.remove();
+
+            indexCount++;
+        }
+        return friendList;
+    }
+
 
     //http://localhost:9005/social/api/createUser
     @PostMapping(value="/createUser")
@@ -69,7 +87,9 @@ public class UserController {
 
     //http://localhost:9005/social/api/udpateUser
     @PostMapping(value="/udpateUser")
+    @CrossOrigin(allowCredentials = "true")
     public void updateUser(@RequestBody User newUser){
+        System.out.println(newUser.toString());
         userDao.updateUser(newUser);
     }
 

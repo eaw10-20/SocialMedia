@@ -10,10 +10,16 @@ import org.apache.commons.io.FileUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
 
+import javax.transaction.Transactional;
 import java.io.File;
 
+@Repository("photoDao")
+@Transactional
 public class PhotoDaoImpl implements PhotoDao {
 
     //create session factory obj
@@ -25,13 +31,7 @@ public class PhotoDaoImpl implements PhotoDao {
     //TODO: Not sure about above but static vars below should eventually be replaced/removed
     public static String FILE_PATH = "src/main/resources";
 
-    //CONSTRUCTORS
-    public PhotoDaoImpl() {
-    }
 
-    public PhotoDaoImpl(SessionFactory sesFact) {
-        this.sesFact = sesFact;
-    }
 
     //DAO Methods
     @Override
@@ -107,4 +107,32 @@ public class PhotoDaoImpl implements PhotoDao {
 
         tx.commit();
     }
+
+    @Override
+    public void uploadAvatarPhoto (int id, String amazonPhotoUrl) {
+        System.out.println("in the upload avatarphoto dao method");
+        Query query = sesFact.getCurrentSession().createQuery("UPDATE User SET user_avatar = 'https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/" + amazonPhotoUrl +"' WHERE user_id ='" +id+"'");
+        query.executeUpdate();
+    }
+
+
+    ////Constructors
+
+    public PhotoDaoImpl(){
+
+    }
+
+    public PhotoDaoImpl(SessionFactory sesFact) {
+        this.sesFact = sesFact;
+    }
+
+    public SessionFactory getSesFact() {
+        return sesFact;
+    }
+
+    @Autowired
+    public void setSesFact(SessionFactory sesFact) {
+        this.sesFact = sesFact;
+    }
+
 }

@@ -17,39 +17,71 @@ export class UpdateUserComponent implements OnInit {
     email: '',
     password: '',
     username: '',
-    photo: '',
+    avatar: '',
     posts: []
   }
 
   constructor(private userService: UserServicesService) { }
 
   ngOnInit(): void {
+    this.currentUser();
   }
 
-  updateForm = new FormGroup({
-    email: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-  });
+  get emailField () {
+    return this.user.email;
+  }
+
+  set emailField (str: string) {
+    this.user.email = str;
+  }
+
+  get passwordField () {
+    return this.user.password;
+  }
+
+  set passwordField(str: string) {
+    this.user.password = str;
+  }
+  get usernameField () {
+    return this.user.username;
+  }
+
+  set usernameField (str: string) {
+    this.user.username = str;
+  }
+
+  get fnameField () {
+    return this.user.fname;
+  }
+
+  set fnameField(str: string) {
+    this.user.fname = str;
+  }
+  
+  get lnameField () {
+    return this.user.lname;
+  }
+
+  set lnameField(str: string) {
+    this.user.lname = str;
+  }
+
+
+  currentUser() {
+    this.userService.getUserSession().subscribe(
+      data=> {
+        this.user = data;
+        console.log(this.user)
+      }
+    )
+  }
 
 
 
    onSubmit() {
     
-    this.user = {
-      userId: 0,
-    fname: this.updateForm.value.firstName,
-    lname: this.updateForm.value.firstName,
-    email: this.updateForm.value.email,
-    password: this.updateForm.value.password,
-    username: this.updateForm.value.username,
-    photo: '',
-    posts: []
-    }
     console.log(this.user)
-    this.userService.createNewUser(this.user)
+    this.userService.updateNewUser(this.user)
     event.preventDefault();
 
   }

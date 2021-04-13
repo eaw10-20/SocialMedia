@@ -15,13 +15,14 @@ export class LeftContainerComponent implements OnInit {
     email: '',
     password: '',
     username: '',
-    photo: '',
+    avatar: '',
     posts: []
   }
 
   constructor(private userService: UserServicesService) { }
 
   ngOnInit(): void {
+    console.log("in the left container componenet")
     this.currentUser();
   }
 
@@ -30,23 +31,10 @@ export class LeftContainerComponent implements OnInit {
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
+        console.log(this.user)
+        console.log(this.user.avatar)
       }
     )
   }
-  
-  //
-
-  // userConstruct(data): User {
-  //   return this.user = {
-  //     userId : parseInt(data.userId),
-  //     fname: data.fname,
-  //     lname: data.lname,
-  //     email: data.email,
-  //     password: data.password,
-  //     username: data.username,
-  //     photo: data.avatar,
-  //     posts: data.posts
-  //   }
-  // }
 
 }

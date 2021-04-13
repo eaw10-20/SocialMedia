@@ -2,33 +2,38 @@
 <div>
 <h2>Lets update your account information.</h2>
 
-<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" >
+
     <label>
         New email:
-        <input type="email" formControlName="email">
+        <input type="email" placeholder="Email"
+        [(ngModel)]="emailField">
       </label>
 <br>
       <label>
         New username:
-        <input type="text" formControlName="username">
+        <input type="text" placeholder="Username"
+        [(ngModel)]="usernameField">
       </label>
       <br>
       <label>
         New password:
-        <input type="password" formControlName="password">
+        <input type="password" placeholder="Password"
+        [(ngModel)]="passwordField">
       </label>
       <br>
     <label>
       New first name:
-      <input type="text" formControlName="firstName">
+      <input type="text" placeholder="First name"
+      [(ngModel)]="fnameField">
     </label>
     <br>
     <label>
       New last name:
-      <input type="text" formControlName="lastName">
+      <input type="text" placeholder="Last name"
+      [(ngModel)]="lnameField">
     </label>
     <br>
-    <button type="submit">Submit</button>
-  </form>
+    <button type="submit" (click)="onSubmit()">Submit</button>
+
 
   <nav>

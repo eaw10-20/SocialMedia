@@ -52,6 +52,11 @@ public class UserDaoImpl implements UserDao {
         return loggedIn;
     }
 
+    public List<User> getAllUsers() {
+        List friendList = sesFact.getCurrentSession().createQuery("from User", User.class).list();
+        return friendList;
+    }
+
     /**
      * Utilizes an HQL query to return a single unique result from the user table.
      * Returns user with corresponding email and password authorization.

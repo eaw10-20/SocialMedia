@@ -22,7 +22,6 @@ export class UserServicesService {
     // const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=1`,
     // {withCredentials: true}).toPromise()
     promise.then((data) => {
-      // this.user = this.userConstruct(data);
       if(data != null) {
         this.router.navigate (['/main'])
       } else {
@@ -67,6 +66,22 @@ export class UserServicesService {
     console.log("complete??")
   })
   }
+
+  updateNewUser(user: User) {
+    const promise = this.HttpCli.post(`http://localhost:9005/social/api/udpateUser`, user
+    ).toPromise()
+    promise.then((data) => {
+
+        this.router.navigate (['/profile'])
+      
+    })
+  }
+
+  getFriendList(): Observable<User[]>{
+    return this.HttpCli.get<User[]>(`http://localhost:9005/social/api/getAllFriends`,
+    {withCredentials: true})
+  }
+
     
     
   

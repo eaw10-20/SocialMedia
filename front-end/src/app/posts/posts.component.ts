@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
     email: '',
     password: '',
     username: '',
-    photo: '',
+    avatar: '',
     posts: []
   }
 
