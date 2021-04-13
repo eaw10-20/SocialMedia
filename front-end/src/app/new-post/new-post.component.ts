@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Photo } from '../models/photo';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { PostService } from '../services/post.service';
@@ -65,7 +66,7 @@ export class NewPostComponent implements OnInit {
     this.postService.createNewPost(this.post);
     //for now making a separate call for photos. Should probably streamline this later
     for(let pic of this.photos){
-      this.photoService.uploadPhoto(pic);
+      // this.photoService.uploadPhoto(pic);
     }
 
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
