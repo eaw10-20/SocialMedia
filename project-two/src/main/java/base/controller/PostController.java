@@ -115,5 +115,7 @@ public class PostController {
         postDao.createPost(post1);
         postDao.createPost(post2);
         postDao.createPost(post3);
+
+
     }
 }

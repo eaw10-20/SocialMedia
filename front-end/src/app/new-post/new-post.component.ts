@@ -66,8 +66,10 @@ export class NewPostComponent implements OnInit {
     this.post.userId = this.user;
     console.log(this.post)
     this.postService.createNewPost(this.post);
+
     //for now uploading a single photo. Change if implementing batch upload later
     this.photoService.uploadPhoto(this.photo);
+
 
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['main']);
