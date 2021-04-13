@@ -18,8 +18,9 @@ export class PostService {
 
   
 
-  getUserPosts(userId): Observable<HttpResponse<Post[]>> {
-    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getPostsByUserId/?id=${userId}`,
+  getUserPosts(userId): Observable<Post[]> {
+   
+    return this.HttpCli.get<Post[]>(`http://localhost:9005/social/api/getPostsByUserId/?id=${userId}`,
     {withCredentials: true})
   }
 

@@ -15,7 +15,7 @@ export class PostsComponent implements OnInit {
     postId: 0,
     description: '',
     photos: [],
-    userId: 0
+    userId: null
   }
 
   allPosts: Post[];

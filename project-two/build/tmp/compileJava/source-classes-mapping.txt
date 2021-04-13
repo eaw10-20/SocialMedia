@@ -24,8 +24,13 @@ base/dao/PhotoDaoImpl.java
  base.dao.PhotoDaoImpl
 base/model/Post.java
  base.model.Post
+<<<<<<< HEAD
 base/dao/UserDao.java
  base.dao.UserDao
+=======
+base/model/Photos.java
+ base.model.Photos
+>>>>>>> 4235cdd75152d6751ccb31df36c1dd9003d536c0
 base/dao/PostDao.java
  base.dao.PostDao
 base/dao/LikesDao.java
@@ -34,6 +39,7 @@ base/model/Likes.java
  base.model.Likes
 util/HibernateUtil.java
  util.HibernateUtil
+<<<<<<< HEAD
 base/model/Photos.java
  base.model.Photos
 Tester.java
@@ -48,3 +54,19 @@ base/controller/SessionController.java
  base.controller.SessionController
 base/controller/UserController.java
  base.controller.UserController
+=======
+base/dao/UserDaoImpl.java
+ base.dao.UserDaoImpl
+Tester.java
+ Tester
+base/dao/PhotoDao.java
+ base.dao.PhotoDao
+base/websockets/SocketHandler.java
+ base.websockets.SocketHandler
+base/controller/UserController.java
+ base.controller.UserController
+base/dao/UserDao.java
+ base.dao.UserDao
+base/controller/PostController.java
+ base.controller.PostController
+>>>>>>> 4235cdd75152d6751ccb31df36c1dd9003d536c0

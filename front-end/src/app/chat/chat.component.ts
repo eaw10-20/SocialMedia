@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatMessage } from '../models/chatMessage';
 import { WebsocketService } from '../services/websocket.service';
+import { UserServicesService } from '../services/user-services.service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-chat',
@@ -10,22 +12,37 @@ import { WebsocketService } from '../services/websocket.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
-  constructor(public webSocketService: WebsocketService) { }
+
+  user: string;
+  date = formatDate(new Date(), 'full', 'en');
+
+
+  constructor(public webSocketService: WebsocketService, public userService: UserServicesService) { 
+    
+  }
 
   ngOnInit(): void {
     this.webSocketService.openWebSocket();
+    this.getUser();
   }
 
   ngOnDestroy(): void {
     this.webSocketService.closeWebSocket();
   }
 
+  getUser(){
+
+    this.userService.getUserSession().subscribe(data => {
+      this.user = data.username;
+    })
+  }
+
 
   sendMessage(sendForm: NgForm){
-    console.log(sendForm.value);
-    const chatMessageObject = new ChatMessage(sendForm.value.user, sendForm.value.message)
-    this.webSocketService.sendMessage(chatMessageObject);
 
+    const chatMessageObject = new ChatMessage(this.user, sendForm.value.message)
+    this.webSocketService.sendMessage(chatMessageObject);
+    sendForm.resetForm();
   }
 
 }

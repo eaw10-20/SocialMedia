@@ -6,6 +6,7 @@ import{Photo} from '../models/photo';
 import { PostService } from '../services/post.service';
 import { UserServicesService } from '../services/user-services.service';
 import { PhotoServicesService } from '../services/photo-services.service';
+import { Photo } from '../models/photo';
 
 @Component({
   selector: 'app-new-post',
