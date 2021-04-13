@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChatMessage } from '../models/chatMessage';
 import { WebsocketService } from '../services/websocket.service';
@@ -8,7 +8,7 @@ import { WebsocketService } from '../services/websocket.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
 
   constructor(public webSocketService: WebsocketService) { }
 
@@ -22,9 +22,11 @@ export class ChatComponent implements OnInit {
 
 
   sendMessage(sendForm: NgForm){
+    console.log(sendForm.value);
     const chatMessageObject = new ChatMessage(sendForm.value.user, sendForm.value.message)
     this.webSocketService.sendMessage(chatMessageObject);
-    sendForm.controls.message.reset();
+
   }
 
 }
+
