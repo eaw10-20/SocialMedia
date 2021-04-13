@@ -68,7 +68,7 @@ export class NewPostComponent implements OnInit {
     this.postService.createNewPost(this.post);
 
     //for now uploading a single photo. Change if implementing batch upload later
-    this.photoService.uploadPhoto(this.photo);
+    if(this.photo) this.photoService.uploadPhoto(this.photo);
 
 
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
