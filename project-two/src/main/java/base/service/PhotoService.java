@@ -1,4 +1,4 @@
-package service;
+package base.service;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -47,7 +47,7 @@ public class PhotoService {
 
     ////Business Logic
     //dao calls
-    public void createPhoto(Photos photo){
+    public void uploadPhoto(Photos photo){
         photoDao.uploadPhoto(photo, getS3Client());
     }
 

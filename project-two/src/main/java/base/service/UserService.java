@@ -1,8 +1,13 @@
-package service;
+package base.service;
 
 import base.dao.UserDaoImpl;
 import base.model.User;
 
+import javax.crypto.Cipher;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PublicKey;
+import java.security.Signature;
 import java.util.List;
 
 public class UserService {
@@ -65,5 +70,42 @@ public class UserService {
 
     public User getUserByFullName(String firstName, String lastName){
         return userDao.getUserByFullName(firstName, lastName);
+    }
+
+    private String encryptPass(String pass){
+        try {
+            //Creating a Signature object
+            Signature sign = Signature.getInstance("SHA256withRSA");
+
+            //Creating KeyPair generator object
+            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
+
+            //Initializing the KeyPairGenerator
+            keyPairGen.initialize(2048);
+
+            //Generate the pair of keys
+            KeyPair pair = keyPairGen.generateKeyPair();
+
+            //Getting the public key from the key pair
+            PublicKey publicKey = pair.getPublic();
+
+            //Creating a Cipher object
+
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            System.out.println("step");
+            //Initializing a Cipher object
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
+            //Adding data to the cipher
+            byte[] input = pass.getBytes();
+            cipher.update(input);
+
+            //encrypting the data
+            byte[] cipherText = cipher.doFinal();
+            return new String(cipherText, "UTF8");
+        }catch (Exception e){
+            System.out.println("FAILED TO ENCRYPT");
+            return null;
+        }
     }
 }

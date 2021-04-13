@@ -1,9 +1,20 @@
 base/controller/LikesController.java
  base.controller.LikesController
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+Tester.java
+ Tester
+base/dao/LikesDaoImpl.java
+ base.dao.LikesDaoImpl
+>>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
 Main.java
  Main
 util/HibernateUtil.java
  util.HibernateUtil
+<<<<<<< HEAD
 base/dao/LikesDaoImpl.java
  base.dao.LikesDaoImpl
 base/model/Likes.java
@@ -18,18 +29,93 @@ base/model/User.java
  base.model.User
 base/controller/PostController.java
  base.controller.PostController
-base/model/Post.java
- base.model.Post
-base/dao/PostDao.java
- base.dao.PostDao
-service/PostService.java
- service.PostService
+=======
+base/dao/LikesDao.java
+ base.dao.LikesDao
+base/model/Likes.java
+ base.model.Likes
+>>>>>>> e10ebcfb6c1bac435ecc0ed7a675c3f35c249443
+base/model/User.java
+ base.model.User
+base/controller/PhotoController.java
+ base.controller.PhotoController
+base/service/PhotoService.java
+ base.service.PhotoService
+base/dao/LikesDaoImpl.java
+ base.dao.LikesDaoImpl
 base/dao/PostDaoImpl.java
  base.dao.PostDaoImpl
+<<<<<<< HEAD
+Main.java
+ Main
+=======
 base/dao/UserDaoImpl.java
  base.dao.UserDaoImpl
 base/dao/PhotoDao.java
  base.dao.PhotoDao
+=======
+base/model/User.java
+ base.model.User
+base/controller/PhotoController.java
+ base.controller.PhotoController
+base/service/PhotoService.java
+ base.service.PhotoService
+base/dao/LikesDaoImpl.java
+ base.dao.LikesDaoImpl
+base/dao/PostDaoImpl.java
+ base.dao.PostDaoImpl
+Main.java
+ Main
+>>>>>>> 3484e3a02b0cfec42850d0705df1b1d5a5b49ad9
+>>>>>>> e10ebcfb6c1bac435ecc0ed7a675c3f35c249443
+base/service/UserService.java
+ base.service.UserService
+dao/PhotoDao.java
+ dao.PhotoDao
+base/controller/SessionController.java
+ base.controller.SessionController
+base/service/PostService.java
+ base.service.PostService
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+base/controller/UserController.java
+ base.controller.UserController
+>>>>>>> e10ebcfb6c1bac435ecc0ed7a675c3f35c249443
+base/dao/PhotoDaoImpl.java
+ base.dao.PhotoDaoImpl
+base/model/Post.java
+ base.model.Post
+base/controller/PostController.java
+ base.controller.PostController
+<<<<<<< HEAD
+=======
+=======
+base/dao/PhotoDaoImpl.java
+ base.dao.PhotoDaoImpl
+>>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
+base/model/Post.java
+ base.model.Post
+base/controller/PostController.java
+ base.controller.PostController
+>>>>>>> e10ebcfb6c1bac435ecc0ed7a675c3f35c249443
+dao/PhotoDaoImpl.java
+ dao.PhotoDaoImpl
+base/dao/PostDao.java
+ base.dao.PostDao
+base/dao/LikesDao.java
+ base.dao.LikesDao
+base/model/Likes.java
+ base.model.Likes
+util/HibernateUtil.java
+ util.HibernateUtil
+base/dao/UserDaoImpl.java
+ base.dao.UserDaoImpl
+Tester.java
+ Tester
+base/dao/PhotoDao.java
+ base.dao.PhotoDao
+<<<<<<< HEAD
 service/UserService.java
  service.UserService
 base/controller/SessionController.java
@@ -38,7 +124,18 @@ base/controller/UserController.java
  base.controller.UserController
 base/dao/PhotoDaoImpl.java
  base.dao.PhotoDaoImpl
+=======
+base/controller/UserController.java
+ base.controller.UserController
+>>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
 base/dao/UserDao.java
  base.dao.UserDao
 base/model/Photos.java
  base.model.Photos
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 3484e3a02b0cfec42850d0705df1b1d5a5b49ad9
+>>>>>>> e10ebcfb6c1bac435ecc0ed7a675c3f35c249443
+>>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1

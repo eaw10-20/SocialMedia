@@ -10,37 +10,17 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserServicesService {
-  // user: User = {userId: 0,
-  //   fname: "",
-  //   lname: '',
-  //   email: '',
-  //   password: '',
-  //   username: '',
-  //   photo: '',
-  //   posts: []
-  // }
 
-  
-  // userConstruct(userJson): User {
-  //   return this.user = {
-  //     userId : parseInt(userJson.userId),
-  //     fname: userJson.fname,
-  //     lname: userJson.lname,
-  //     email: userJson.email,
-  //     password: userJson.password,
-  //     username: userJson.username,
-  //     photo: userJson.avatar,
-  //     posts: userJson.posts
-  //   }
-  // }
+
 
   constructor(private HttpCli: HttpClient, private router: Router) { }
 
   checkLogin(user: User) {
-    // const promise = this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
-    // {withCredentials: true})
-    const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=1`,
+    const promise = this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
     {withCredentials: true}).toPromise()
+    console.log("in the check login method")
+    // const promise = this.HttpCli.get<User>(`http://localhost:9005/social/api/getUserById/?id=1`,
+    // {withCredentials: true}).toPromise()
     promise.then((data) => {
       // this.user = this.userConstruct(data);
       if(data != null) {
@@ -73,19 +53,21 @@ export class UserServicesService {
 
 
 
-  getUserSession(): Observable<HttpResponse<User>>{
-    return this.HttpCli.get<HttpResponse<User>>(`http://localhost:9005/social/api/getUser`,
+  getUserSession(): Observable<User>{
+    return this.HttpCli.get<User>(`http://localhost:9005/social/api/getUser`,
     {withCredentials: true})
   }
 
 
-  getUserPosts(userId): Observable<HttpResponse<Post[]>> {
-    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getPostsByUserId/?id=${userId}`,
-    {withCredentials: true})
+  createNewUser(user: User) {
+    console.log("in the create new user method service")
+    const promise = this.HttpCli.post(`http://localhost:9005/social/api/createUser`, user
+    ).toPromise()
+    promise.then((data) => {
+    console.log("complete??")
+  })
   }
-
-  getAllPosts(): Observable<HttpResponse<Post[]>> {
-    return this.HttpCli.get<HttpResponse<Post[]>>(`http://localhost:9005/social/api/getAllPosts/`,
-    {withCredentials: true})
-  }
+    
+    
+  
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { PostService } from '../services/post.service';
 import { UserServicesService } from '../services/user-services.service';
 
 @Component({
@@ -17,9 +18,13 @@ export class PostsComponent implements OnInit {
     userId: 0
   }
 
+<<<<<<< HEAD
   allPosts= [];
 
 
+=======
+  allPosts: Post[];
+>>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
 
   user: User = {userId: 0,
     fname: "",
@@ -33,7 +38,11 @@ export class PostsComponent implements OnInit {
 
   constructor(private userService: UserServicesService) {
 
+<<<<<<< HEAD
    }
+=======
+  constructor(private userService: UserServicesService, private postService: PostService) { }
+>>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
 
   ngOnInit(): void {
     //this.add();
@@ -52,33 +61,30 @@ export class PostsComponent implements OnInit {
   }
 
   currentUser() {
-    console.log("Grabbing current user session in post component")
-    const promise = this.userService.getUserSession().subscribe(
-      userData=> {
-        this.userConstruct(userData);
+    console.log("Grabbing current user session")
+    this.userService.getUserSession().subscribe(
+      data=> {
+        this.user = data;
+
       }
     )
   }
 
-  userConstruct(data): User {
-    return this.user = {
-      userId : parseInt(data.userId),
-      fname: data.fname,
-      lname: data.lname,
-      email: data.email,
-      password: data.password,
-      username: data.username,
-      photo: data.avatar,
-      posts: data.posts
-    }
-  }
+
 
   allPost(){
     console.log("Grab All post method")
+<<<<<<< HEAD
 
     this.userService.getAllPosts().subscribe (
       postData => {
         this.setValues(postData);
+=======
+    this.postService.getAllPosts().subscribe(
+      postData => {
+        this.allPosts = postData;
+        console.log(this.allPosts)
+>>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
       }
     )
   }

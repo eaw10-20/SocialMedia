@@ -1,4 +1,4 @@
-package service;
+package base.service;
 
 import base.dao.PostDaoImpl;
 import base.model.Post;
