@@ -9,13 +9,13 @@ import { ChatMessage } from '../models/chatMessage';
 export class WebsocketService {
 
 webSocket: WebSocket;
-chatMessages: ChatMessage[];
+chatMessages: ChatMessage[] = [];
 
   constructor() { }
 
 
   public openWebSocket(){
-    this.webSocket = new WebSocket('ws://localhost:9005');
+    this.webSocket = new WebSocket('ws://localhost:9005/chat');
 
     this.webSocket.onopen = (event) => {
       console.log('Open: ', event)

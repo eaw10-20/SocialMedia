@@ -18,13 +18,7 @@ export class PostsComponent implements OnInit {
     userId: 0
   }
 
-<<<<<<< HEAD
-  allPosts= [];
-
-
-=======
   allPosts: Post[];
->>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
 
   user: User = {userId: 0,
     fname: "",
@@ -38,11 +32,7 @@ export class PostsComponent implements OnInit {
 
   constructor(private userService: UserServicesService) {
 
-<<<<<<< HEAD
    }
-=======
-  constructor(private userService: UserServicesService, private postService: PostService) { }
->>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
 
   ngOnInit(): void {
     //this.add();
@@ -50,7 +40,7 @@ export class PostsComponent implements OnInit {
     //let allPosts = [{postId:1, description:"hey", photos:[], userId:1},{postId:2, description:"hey", photos:[], userId:2}];
 
     //this.currentUser();
-    this.allPost();
+    // this.allPost();
 
 
 
@@ -72,22 +62,15 @@ export class PostsComponent implements OnInit {
 
 
 
-  allPost(){
-    console.log("Grab All post method")
-<<<<<<< HEAD
+  // allPost(){
+  //   console.log("Grab All post method")
 
-    this.userService.getAllPosts().subscribe (
-      postData => {
-        this.setValues(postData);
-=======
-    this.postService.getAllPosts().subscribe(
-      postData => {
-        this.allPosts = postData;
-        console.log(this.allPosts)
->>>>>>> f5c2e445b966745fbcd8c3af717fb9352d4056c1
-      }
-    )
-  }
+  //   this.userService.getAllPosts().subscribe (
+  //     postData => {
+  //       this.setValues(postData);
+  //     }
+  //   )
+  // }
 
   setValues(posts){
     console.log(posts)
