@@ -43,9 +43,6 @@ export class UserServicesService {
     {withCredentials: true}).toPromise()
     promise.then((data) => {
       // this.user = this.userConstruct(data);
-
-
-      
     })
   }
 
