@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Photo } from '../models/photo';
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { Photo } from '../models/photo';
 import { PostService } from '../services/post.service';
 import { UserServicesService } from '../services/user-services.service';
+import { PhotoServicesService } from '../services/photo-services.service';
 
 @Component({
   selector: 'app-new-post',
@@ -21,11 +22,13 @@ export class NewPostComponent implements OnInit {
   }
 
   user: User;
-  photos: Photo[];
+  //photos: Photo[];
+  photo: Photo; 
   selectedFile: File;
 
 
-  constructor(private postService: PostService, private userService: UserServicesService,private router: Router) { }
+  constructor(private postService: PostService, private userService: UserServicesService, 
+    private photoService: PhotoServicesService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -49,25 +52,24 @@ export class NewPostComponent implements OnInit {
   }
 
   //Should store the uploaded image
-  // onFileSelected(event){
-  //   let photo: Photo;
-  //   photo.imageData = event.target.files[0];
+  onFileSelected(event){
+    this.photo.imageData = event.target.files[0];
 
-  //   //add photo to post
-  //   this.post.photos.push(photo.imageData);
+    //add photo to post
+    this.post.photos.push(this.photo.imageData);
 
 
-  // }
+  }
 
 
   sendPost() {
     this.post.userId = this.user;
     console.log(this.post)
     this.postService.createNewPost(this.post);
-    //for now making a separate call for photos. Should probably streamline this later
-    for(let pic of this.photos){
-      // this.photoService.uploadPhoto(pic);
-    }
+
+    //for now uploading a single photo. Change if implementing batch upload later
+    if(this.photo) this.photoService.uploadPhoto(this.photo);
+
 
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['main']);

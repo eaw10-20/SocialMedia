@@ -42,6 +42,13 @@ base/dao/PhotoDao.java
  base.dao.PhotoDao
 base/websockets/SocketHandler.java
  base.websockets.SocketHandler
+<<<<<<< HEAD
+=======
+base/controller/UserController.java
+ base.controller.UserController
+base/dao/UserDao.java
+ base.dao.UserDao
+>>>>>>> 4a6cc674f07d7bb5053bf7147a7bd11f661f3bb7
 base/model/Photos.java
  base.model.Photos
 base/dao/UserDao.java

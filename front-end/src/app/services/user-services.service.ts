@@ -66,7 +66,7 @@ export class UserServicesService {
   }
 
   updateNewUser(user: User) {
-    const promise = this.HttpCli.post(`http://localhost:9005/social/api/udpateUser`, user
+    const promise = this.HttpCli.post(`http://localhost:9005/social/api/updateUser`, user
     ).toPromise()
     promise.then((data) => {
 

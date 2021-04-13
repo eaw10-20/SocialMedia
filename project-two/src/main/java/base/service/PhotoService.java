@@ -8,11 +8,13 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import base.dao.PhotoDaoImpl;
 import base.model.Photos;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 
 import java.util.Map;
 
-
+@Service("photoService")
 public class PhotoService {
 
     PhotoDaoImpl photoDao;
