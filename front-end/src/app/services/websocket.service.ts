@@ -1,5 +1,6 @@
 import { JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ChatMessage } from '../models/chatMessage';
 
 
 @Injectable({
@@ -8,13 +9,13 @@ import { Injectable } from '@angular/core';
 export class WebsocketService {
 
 webSocket: WebSocket;
-allM
+chatMessages: ChatMessage[] = [];
 
   constructor() { }
 
 
   public openWebSocket(){
-    this.webSocket = new WebSocket('ws://localhost:9005');
+    this.webSocket = new WebSocket('ws://localhost:9005/chat');
 
     this.webSocket.onopen = (event) => {
       console.log('Open: ', event)
@@ -28,6 +29,14 @@ allM
     this.webSocket.onclose = (event) => {
       console.log('Close: ', event)
     }
+  }
+
+  public sendMessage(chatMessage: ChatMessage){
+    this.webSocket.send(JSON.stringify(chatMessage))
+  }
+
+  public closeWebSocket(){
+    this.webSocket.close();
   }
 
 }

@@ -33,6 +33,24 @@ export class UserServicesService {
     })
   } 
 
+  /*createUser(newUser){
+    this.HttpCli.post(`http://localhost:9005/social/api/createUser/?user=${newUser}`,
+    {withCredentials: true})
+    console.log("over here?")
+  }*/
+
+  createUser(user: User) {
+    const promise = this.HttpCli.post<User>(`http://localhost:9005/social/api/createUser/`, user,
+    {withCredentials: true}).toPromise()
+    promise.then((data) => {
+      // this.user = this.userConstruct(data);
+
+
+      
+    })
+  }
+
+
 
 
   getUserSession(): Observable<User>{

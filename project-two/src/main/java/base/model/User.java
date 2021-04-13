@@ -46,7 +46,7 @@ public class User {
     private String username;
 
     //Column photo string
-    @Column(name="user_avatar")
+    @Column(name="user_avatar", nullable = false)
     private String avatar;
 
     //Column for logged in
@@ -88,6 +88,14 @@ public class User {
         this.password = password;
         this.username = username;
         this.avatar = avatar;
+    }
+
+    public User(String fname, String lname, String email, String password, String username) {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
     }
 
 

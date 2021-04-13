@@ -30,14 +30,24 @@ export class PostsComponent implements OnInit {
     posts: []
   }
 
-  
+  constructor(private userService: UserServicesService) {
 
-  constructor(private userService: UserServicesService, private postService: PostService) { }
+   }
 
   ngOnInit(): void {
-    this.currentUser();
-    this.allPost();
+    //this.add();
 
+    //let allPosts = [{postId:1, description:"hey", photos:[], userId:1},{postId:2, description:"hey", photos:[], userId:2}];
+
+    //this.currentUser();
+    // this.allPost();
+
+
+
+  }
+
+  add(){
+    let pops = [{postId:1, description:"hey", photos:[], userId:1},{postId:2, description:"2", photos:[], userId:2}]
   }
 
   currentUser() {
@@ -52,14 +62,22 @@ export class PostsComponent implements OnInit {
 
 
 
-  allPost(){
-    console.log("Grab All post method")
-    this.postService.getAllPosts().subscribe(
-      postData => {
-        this.allPosts = postData;
-        console.log(this.allPosts)
-      }
-    )
+  // allPost(){
+  //   console.log("Grab All post method")
+
+  //   this.userService.getAllPosts().subscribe (
+  //     postData => {
+  //       this.setValues(postData);
+  //     }
+  //   )
+  // }
+
+  setValues(posts){
+    console.log(posts)
+    for(let i=0; i<posts.length;i++){
+      this.allPosts.push(posts[i])
+    }
+console.log(this.allPosts)
   }
 
 }

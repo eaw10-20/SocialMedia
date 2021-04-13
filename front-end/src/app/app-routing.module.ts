@@ -6,10 +6,12 @@ import { LoginpageComponent} from './loginpage/loginpage.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
   { path: 'update-user', component: UpdateUserComponent },
+  { path: 'chat', component: ChatComponent },
   { path: 'new-user', component: NewUserComponent },
   { path: 'main', component: MainpageComponent},
   { path: 'profile', component: ProfileComponent},

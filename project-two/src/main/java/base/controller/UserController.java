@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.Context;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -47,8 +48,8 @@ public class UserController {
 
     //http://localhost:9005/social/api/createUser
     @PostMapping(value="/createUser")
-    public void createNewUser(@RequestBody User newUser){
-        userDao.createUser(newUser);
+    public void createNewUser(@RequestBody User user){
+        userDao.createUser(user);
     }
 
 
