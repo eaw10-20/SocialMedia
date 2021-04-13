@@ -1,6 +1,4 @@
-import base.dao.LikesDaoImpl;
-import base.dao.PostDaoImpl;
-import base.dao.UserDaoImpl;
+import base.dao.*;
 import base.model.Likes;
 import base.model.Post;
 import base.model.User;
@@ -65,5 +63,7 @@ public class Main {
 
        // User dan4 = n.login("frank@email.com", "12356");
         //System.out.println("Got the account for "+dan4.getFname()+" "+dan4.getLname());
+
+
     }
 }

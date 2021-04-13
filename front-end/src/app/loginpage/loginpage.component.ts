@@ -16,7 +16,7 @@ export class LoginpageComponent implements OnInit {
     email: '',
     password: '',
     username: '',
-    photo: '',
+    avatar: '',
     posts: []
   }
 
