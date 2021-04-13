@@ -97,13 +97,9 @@ public class PostController {
 
     public void insertInitialValues(){
 
-        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-<<<<<<< HEAD
-=======
-
->>>>>>> 91e68abf36f76d2e69025fee07a73c1088a17dc8
-        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
+        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://merriam-webster.com/assets/mw/images/article/art-global-footer-recirc/character-dragon-with-sunglasses-image-6332-f5704f661135d682466ec9f8b327e014@1x.jpg");
+        User dan2 = new User("Lia", "Summer", "summer@email.com", "12356", "Ms.Summer", "http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg");
+        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "https://rudyvrodriguez.files.wordpress.com/2010/10/cute-destroyer.jpg?w=327");
 
         Post post1 = new Post(1, "post", dan);
         Post post2 = new Post(1, "post here too", dan2);

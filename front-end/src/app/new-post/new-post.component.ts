@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Photo } from '../models/photo';
 import { Post } from '../models/post';
 import { User } from '../models/user';
-import { Photo } from '../models/photo';
 import { PostService } from '../services/post.service';
 import { UserServicesService } from '../services/user-services.service';
 
