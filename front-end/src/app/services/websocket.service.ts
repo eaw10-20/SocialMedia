@@ -15,7 +15,7 @@ chatMessages: ChatMessage[] = [];
 
 
   public openWebSocket(){
-    this.webSocket = new WebSocket('ws://localhost:9005/chat');
+    this.webSocket = new WebSocket('ws://localhost:9005/social/chat');
 
     this.webSocket.onopen = (event) => {
       console.log('Open: ', event)
