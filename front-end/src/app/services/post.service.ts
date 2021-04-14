@@ -19,6 +19,7 @@ export class PostService {
   
 
   getUserPosts(userId): Observable<Post[]> {
+   
     return this.HttpCli.get<Post[]>(`http://localhost:9005/social/api/getPostsByUserId/?id=${userId}`,
     {withCredentials: true})
   }

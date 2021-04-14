@@ -52,23 +52,7 @@ public class PostController {
         System.out.println("Returning HTTP 400 bad requst: " + e);
     }
 
-    /**
-     * Takes in a user id and returns a user object that contains a list of posts
-     * @param id
-     * @return
-     */
-//    http://localhost:9005/social/api/getPostsByUserId
-    @GetMapping(value="getPostsByUserId", params={"id"}, produces="application/json")
-    public User getPostsById(int id){
-        List<Post> allUserPosts = new ArrayList<>();
-        System.out.println("Get post by user id method");
-        User user = userDao.getUserById(id);
-        allUserPosts = postDao.getPostsByUserID(id);
-        Collections.copy(user.getPostList(),allUserPosts);
 
-        return user;
-
-    }
 
     //    http://localhost:9005/social/api/updatePost
     @PutMapping(value="/updatePost")

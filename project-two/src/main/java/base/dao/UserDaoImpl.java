@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public void createUser(User user) {
-        System.out.println("over here");
+        System.out.println("in the create user method in user dao impl");
 
         sesFact.getCurrentSession().save(user);
     }
@@ -36,12 +36,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean updateUser(User user) {
-
+        System.out.println("in the update user method in user dao impl");
         String id = String.valueOf(user.getUserId());
         sesFact.getCurrentSession().update(id, user);
 
         return true;
     }
+
 
     @Override
     public List<User> getAllUsersLoggedIn() {

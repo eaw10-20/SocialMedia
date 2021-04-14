@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'new-user', component: NewUserComponent },
   { path: 'main', component: MainpageComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile/:username', component: ProfileComponent},
   { path: '**', component: LoginpageComponent }
 
 ];

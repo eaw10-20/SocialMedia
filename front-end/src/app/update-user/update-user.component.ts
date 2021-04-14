@@ -110,8 +110,7 @@ export class UpdateUserComponent implements OnInit {
       console.log("Photo ref link = "+ this.user.avatar);
     }
     console.log(this.user)
-    this.userService.updateNewUser(this.user)
-    event.preventDefault();
+    this.userService.updateUser(this.user)
 
   }
 

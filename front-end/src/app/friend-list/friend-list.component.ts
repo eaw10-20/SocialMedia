@@ -14,7 +14,7 @@ export class FriendListComponent implements OnInit {
   constructor(private userService: UserServicesService) { }
 
   ngOnInit(): void {
-    this.loadFriendList();
+    this.getFriendList();
   }
 
   loadFriendList() {
@@ -24,6 +24,10 @@ export class FriendListComponent implements OnInit {
         console.log(this.userFriends)
       }
     )
+  }
+  
+  getFriendList(){
+    
   }
 
 }
