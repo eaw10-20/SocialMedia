@@ -28,10 +28,7 @@
         </div>
     </div>
     <div  class="card-body">
-        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-        <a class="card-link" href="#">
-            <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
-        </a>
+        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{post.submitted | date :  "MM.dd.y" }}</div>
             
         <p class="card-text">
             {{post.description}}
