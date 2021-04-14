@@ -80,7 +80,7 @@ public class Photos {
 
     public void setImageData(File imageData) {
         //check to make sure the image type is ok
-
+        System.out.println("In setter for file");
         //first create a set
         Set<String> ext = new HashSet<>();
         ext.add("jpg");
@@ -100,8 +100,13 @@ public class Photos {
         }
     }
 
+    public void clearData(){
+        this.imageData = null;
+    }
+
     @Override
     public String toString() {
+        System.out.println("In tostring");
         return "Photos{" +
                 "photoId=" + photoId +
                 ", photoString='" + photoString + '\'' +

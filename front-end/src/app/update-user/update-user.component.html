@@ -32,6 +32,13 @@
       <input type="text" placeholder="Last name"
       [(ngModel)]="lnameField">
     </label>
+    <!-- Photo input -->
+    <div>
+      <input type="file" class="form-control" id="inputFile" (change)="onFileSelected($event.target.files)" multiple>
+      <label class="input-group-text" for="inputGroupFile02">Upload</label>
+    </div>
+    
+              
     <br>
     <button type="submit" (click)="onSubmit()">Submit</button>
 

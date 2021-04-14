@@ -19,6 +19,8 @@ export class LeftContainerComponent implements OnInit {
     posts: []
   }
 
+  awsS3Path = "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/"; 
+
   constructor(private userService: UserServicesService) { }
 
   ngOnInit(): void {

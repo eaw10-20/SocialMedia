@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Photo } from '../models/photo';
 
@@ -9,12 +10,12 @@ export class PhotoServicesService {
 
   constructor(private httpCli: HttpClient) { }
 
-  uploadPhoto(photo: Photo){
+  uploadPhoto(photo: Photo): Observable<Photo>{
     console.log("in the upload new photo method service");
-    const promise = this.httpCli.post(`http://localhost:9005/social/api/uploadPhoto`, photo
-    ).toPromise()
-    promise.then((data) => {
-    console.log("Uploaded photo (hopefully)");
-    })
+    const fd = new FormData();
+    console.log(fd);
+    fd.append('image', photo.imageData, photo.photoString);
+    return this.httpCli.post<Photo>(`http://localhost:9005/social/api/uploadPhoto`, fd,
+    {withCredentials: true})
   }
 }
