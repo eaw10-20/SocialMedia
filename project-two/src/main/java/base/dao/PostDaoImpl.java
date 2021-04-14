@@ -43,6 +43,7 @@ public class PostDaoImpl implements PostDao {
 
     public List<Post> getAllPosts(){
         List<Post> userPosts = sesFact.getCurrentSession().createQuery("FROM Post ORDER BY post_submitted DESC", Post.class).list();
+
         return userPosts;
     }
 

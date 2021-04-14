@@ -21,18 +21,16 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserServicesService, private postService: PostService) { }
   ngOnInit(): void {
     this.username = this.route.snapshot.paramMap.get('username');
-    console.log(this.username)
     this.getUsersPosts();
   }
 
 
-  async getUsersPosts(){
-    
+  getUsersPosts(){
     this.postService.getAllPosts().subscribe(posts =>{
       this.allPosts = posts.filter(x => x.userId.username == this.username);
     }
-      
     )
   }
+  
 
 }
