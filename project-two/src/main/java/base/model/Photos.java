@@ -1,11 +1,10 @@
 package base.model;
 
 import net.bytebuddy.build.ToStringPlugin;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
 //Photo model
 @Entity
@@ -78,30 +77,39 @@ public class Photos {
         return imageData;
     }
 
-    public void setImageData(File imageData) {
-        //check to make sure the image type is ok
+    public void setImageData(File imageData){
+        this.imageData = imageData;
+    }
 
-        //first create a set
-        Set<String> ext = new HashSet<>();
-        ext.add("jpg");
-        ext.add("jpeg");
-        ext.add("png");
+//    public void setImageData(File imageData) {
+//        //check to make sure the image type is ok
+//        System.out.println("In setter for file");
+//        //first create a set
+//        Set<String> ext = new HashSet<>();
+//        ext.add("jpg");
+//        ext.add("jpeg");
+//        ext.add("png");
+//
+//        //get complete image name
+//        String filename = imageData.getName();
+//
+//        //isolate extension
+//        int dotIndex = filename.lastIndexOf('.');
+//        String imgExt = imageData.getName().substring(dotIndex+1);
+//        if(ext.contains(imgExt)){
+//            this.imageData = imageData;
+//        }else{
+//            System.out.println(imgExt+ "is not a valid picture file extension.");
+//        }
+//    }
 
-        //get complete image name
-        String filename = imageData.getName();
-
-        //isolate extension
-        int dotIndex = filename.lastIndexOf('.');
-        String imgExt = imageData.getName().substring(dotIndex+1);
-        if(ext.contains(imgExt)){
-            this.imageData = imageData;
-        }else{
-            System.out.println(imgExt+ "is not a valid picture file extension.");
-        }
+    public void clearData(){
+        this.imageData = null;
     }
 
     @Override
     public String toString() {
+        System.out.println("In to string");
         return "Photos{" +
                 "photoId=" + photoId +
                 ", photoString='" + photoString + '\'' +

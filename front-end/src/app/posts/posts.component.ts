@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { PostService } from '../services/post.service';
@@ -12,8 +11,6 @@ import { UserServicesService } from '../services/user-services.service';
 })
 export class PostsComponent implements OnInit {
 
-  postSubscription: Subscription;
-
   post: Post = {
     postId: 0,
     description: '',
@@ -22,7 +19,7 @@ export class PostsComponent implements OnInit {
     users: []
   }
 
-  allPosts: Post[] = [];
+  allPosts: Post[];
 
   user: User = {userId: 0,
     fname: "",
@@ -43,10 +40,8 @@ export class PostsComponent implements OnInit {
     this.currentUser();
     this.allPost();
 
-  }
 
-  ngOnDestroy(): void {
-    this.postSubscription.unsubscribe();
+
   }
 
 
@@ -55,6 +50,7 @@ export class PostsComponent implements OnInit {
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
+
       }
     )
   }
@@ -65,16 +61,14 @@ export class PostsComponent implements OnInit {
 
 
 
-  async allPost(){
+  allPost(){
     console.log("Grab All post method")
-    this.postSubscription = await this.postService.getAllPosts().subscribe(
+    this.postService.getAllPosts().subscribe(
       postData => {
-        console.log(postData)
-        this.allPosts = [...postData]
+        console.log(postData);
+        this.allPosts = postData;
       }
     )
-
-  
   }
 
 

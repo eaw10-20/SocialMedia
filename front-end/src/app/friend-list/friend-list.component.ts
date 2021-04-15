@@ -17,17 +17,12 @@ export class FriendListComponent implements OnInit {
     this.getFriendList();
   }
 
-  loadFriendList() {
-    this.userService.getFriendList().subscribe(
-      data=> {
-        this.userFriends = data;
-        console.log(this.userFriends)
+  getFriendList() {
+    this.userService.getFriendsList().subscribe(
+      data => {
+        this.userFriends = data
       }
     )
-  }
-  
-  getFriendList(){
-    
   }
 
 }

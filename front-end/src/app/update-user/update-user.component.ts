@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Photo } from '../models/photo';
 import { User } from '../models/user';
+import { PhotoServicesService } from '../services/photo-services.service';
 import { UserServicesService } from '../services/user-services.service';
 
 
@@ -21,7 +23,15 @@ export class UpdateUserComponent implements OnInit {
     posts: []
   }
 
-  constructor(private userService: UserServicesService) { }
+  photo: Photo = {
+    photoId: 0,
+    photoString: '',
+    // post: null,
+    imageData: null
+  };
+
+
+  constructor(private userService: UserServicesService, private photoService: PhotoServicesService) { }
 
   ngOnInit(): void {
     this.currentUser();
@@ -76,10 +86,32 @@ export class UpdateUserComponent implements OnInit {
     )
   }
 
+  //getting uploaded photo
+  onFileSelected(file){
+    this.photo.imageData = <File>file[0];
+    console.log(this.photo);
+  }
+
+  uploadPhoto(){
+    console.log("In uploadPhoto");
+  }
 
 
    onSubmit() {
-    
+    //If a photo was uploaded
+    if(this.photo.imageData){
+      //create a name based on the user id
+      this.photo.photoString = "avatar_"+this.user.userId;
+      //upload photo
+      this.photoService.uploadPhoto(this.photo).subscribe(
+        data=> {
+          this.photo = data;
+        }
+      )
+      //add photo to user here
+      this.user.avatar = "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/"+this.photo.photoString;
+      console.log("Photo ref link = "+ this.user.avatar);
+    }
     console.log(this.user)
     this.userService.updateUser(this.user)
 

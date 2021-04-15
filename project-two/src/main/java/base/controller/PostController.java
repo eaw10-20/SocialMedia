@@ -92,9 +92,12 @@ public class PostController {
     public void insertInitialValues(){
 
 
-        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://merriam-webster.com/assets/mw/images/article/art-global-footer-recirc/character-dragon-with-sunglasses-image-6332-f5704f661135d682466ec9f8b327e014@1x.jpg");
-        User dan2 = new User("Lia", "Summer", "summer@email.com", "12356", "Ms.Summer", "http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg");
-        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "https://rudyvrodriguez.files.wordpress.com/2010/10/cute-destroyer.jpg?w=327");
+//        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://merriam-webster.com/assets/mw/images/article/art-global-footer-recirc/character-dragon-with-sunglasses-image-6332-f5704f661135d682466ec9f8b327e014@1x.jpg");
+        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_1.jpg");
+//        User dan2 = new User("Lia", "Summer", "summer@email.com", "12356", "Ms.Summer", "http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg");
+        User dan2 = new User("Lia", "Summer", "summer@email.com", "12356", "Ms.Summer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_2");
+//        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "https://rudyvrodriguez.files.wordpress.com/2010/10/cute-destroyer.jpg?w=327");
+        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_3");
 
 
         Post post1 = new Post(1, "post", dan);
