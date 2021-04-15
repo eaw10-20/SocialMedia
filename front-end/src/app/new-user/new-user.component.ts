@@ -24,6 +24,7 @@ export class NewUserComponent implements OnInit{
     password: '',
     username: '',
     avatar: '',
+    userDescription:'',
     posts: []
   }
 

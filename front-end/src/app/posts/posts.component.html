@@ -7,7 +7,7 @@
                     <img class="rounded-circle" width="45" src="{{post.userId.avatar}}" alt="">
                 </div>
                 <div class="ml-2">
-                    <div class="h5 m-0"><a routerLink='/profile/{{post.userId.username}}'>@{{post.userId.username}}</a></div>
+                    <div class="h5 m-0"><a routerLink='/profile/{{post.userId.username}}/{{post.userId.userId}}'>@{{post.userId.username}}</a></div>
                     <div class="h7 text-muted">{{post.userId.fname}} {{post.userId.lname}}</div>
                 </div>
             </div>
@@ -35,9 +35,10 @@
         </p>
     </div>
     <div class="card-footer">
-        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+        <span class="badge badge-primary badge-pill">{{post.users.length}}</span>
+        <a href="#" class="card-link  ml-1"><i class="fa fa-gittip"></i> Like</a>
+        <!-- <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
     </div>
 </div>
 

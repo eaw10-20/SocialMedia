@@ -1,4 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { ThisReceiver, ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, isObservable, Observable, of } from 'rxjs';
@@ -15,6 +16,7 @@ export class UserServicesService {
     password: '',
     username: '',
     avatar: '',
+    userDescription: '',
     posts: []
   }
   private userFriends : User[];
@@ -48,8 +50,7 @@ export class UserServicesService {
   }
 
 /**
- * Grabs a list of all users and then removes current user in session
- * to return a list of friends only
+ * Grabs a list of all users
  * @returns Friend list
  */
   getFriendsList(): Observable<User[]> {
@@ -70,7 +71,7 @@ export class UserServicesService {
    * @param id 
    * @returns 
    */
-  setCurrentProfileView(id:number){
+   setCurrentProfileView(id:number){
     console.log("in the set currentprofile cire method in user service")
     if(id == this.currentUser.userId) {
       console.log(this.currentUser)
@@ -86,6 +87,7 @@ export class UserServicesService {
     // console.log(this.currentUserProfileView)
     // return this.CurrentProfileView;
   }
+
 
 
   setCurrentUserSession(user: User) {
@@ -107,9 +109,6 @@ export class UserServicesService {
     console.log("in the create new user method service")
     const promise = this.HttpCli.post(`http://localhost:9005/social/api/createUser`, user
     ).toPromise()
-    promise.then((data) => {
-    console.log("complete??")
-  })
   }
 
   updateUser(user: User) {
@@ -127,7 +126,6 @@ export class UserServicesService {
     {withCredentials: true})
   }
 
-    
     
   
 }

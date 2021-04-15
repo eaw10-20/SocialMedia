@@ -4,5 +4,6 @@ export interface Post{
     postId: number,
     description: string,
     photos: File[],
-    userId: User
+    userId: User,
+    users: [];
 }

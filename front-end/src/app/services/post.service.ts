@@ -15,6 +15,7 @@ export class PostService {
     description: '',
     photos: [],
     userId: null,
+    users: []
   };
   
   getAllPosts(): Observable<Post[]> {
@@ -25,7 +26,7 @@ export class PostService {
   }
 
   
-  updateData(post: Post){
+  addLike(){
 
   }
 
