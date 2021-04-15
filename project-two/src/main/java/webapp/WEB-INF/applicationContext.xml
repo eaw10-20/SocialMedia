@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
+
     <!--turn on context annotations-->
     <context:annotation-config/>
 
@@ -34,8 +35,13 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url"
+<<<<<<< HEAD
                   value="#{'jdbc:postgresql://firstdatabase.ctxycf2tpkhe.us-east-2.rds.amazonaws.com/mydatabase'}"/>
         <property name="username" value="mike"/>
+=======
+                  value="#{'jdbc:postgresql://graypanda.cndv56gz115j.us-east-2.rds.amazonaws.com/socialmedia'}"/>
+        <property name="username" value="graypanda"/>
+>>>>>>> 0f4bf19c8aab8bb88893cd2995094c97f4fb08a5
         <property name="password" value="p4ssw0rd"/>
     </bean>
 
@@ -80,4 +86,11 @@
 
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <!--  Multipart resolver is for bringing in photos from the client side  -->
+    <bean id="multipartResolver" name="filterMultipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10000000"/>
+    </bean>
+
 </beans>

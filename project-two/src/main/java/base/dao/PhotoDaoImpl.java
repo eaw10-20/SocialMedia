@@ -28,10 +28,6 @@ public class PhotoDaoImpl implements PhotoDao {
     //the s3 bucket that stores photos
     public static String BUCKET_NAME = "rev-p2-socialmedia-2102";
 
-    //TODO: Not sure about above but static vars below should eventually be replaced/removed
-    public static String FILE_PATH = "src/main/resources";
-
-
 
     //DAO Methods
     @Override
@@ -40,11 +36,13 @@ public class PhotoDaoImpl implements PhotoDao {
         //Logic for storage
         //-----------------
         String filename = photo.getPhotoString();
-        String filepath = "src/main/resources/ToUploadFromTemp/"+filename;
 
-        //TODO: file should be pulled from client, not filepath eventually
         try{
-            client.putObject(new PutObjectRequest(BUCKET_NAME, filename, new File(filepath)));
+            //delete previous photo if it exists
+            client.deleteObject(new DeleteObjectRequest(BUCKET_NAME, filename));
+
+            //add new photo
+            client.putObject(new PutObjectRequest(BUCKET_NAME, filename, photo.getImageData()));
 
             System.out.println("Successfully uploaded photo!");
         }catch (Exception e){
@@ -53,7 +51,7 @@ public class PhotoDaoImpl implements PhotoDao {
 
         //Database Logic
         //--------------
-        sesFact.getCurrentSession().save(photo);
+//        sesFact.getCurrentSession().save(photo);
     }
 
     @Override
@@ -74,7 +72,7 @@ public class PhotoDaoImpl implements PhotoDao {
             S3ObjectInputStream inputStream = obj.getObjectContent();
 
             //store image at a given path for now
-            FileUtils.copyInputStreamToFile(inputStream, new File(FILE_PATH+"/"+photoName));
+            //FileUtils.copyInputStreamToFile(inputStream, new File(FILE_PATH+"/"+photoName));
 
             System.out.println("Successfully downloaded photo!");
         }catch(Exception e){

@@ -8,7 +8,11 @@ import base.model.Photos;
 import base.model.Post;
 import base.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
@@ -20,10 +24,41 @@ public class PhotoController {
 
     //http://localhost:9005/social/api/uploadPhoto
     @PostMapping(value="/uploadPhoto")
-    public void uploadPhoto(/*@RequestBody*/ Photos photo){
-        System.out.println("Printing image data");
-        System.out.println(photo.getImageData());
+    @CrossOrigin(allowCredentials = "true")
+    public Photos uploadPhoto(@RequestParam("imageData") MultipartFile file,
+                              @RequestParam("photoString") String name, ModelMap modelMap){
+        System.out.println("In upload photo method");
+
+        modelMap.addAttribute("imageData", file);
+
+        //get extension
+        System.out.println("The original file name is "+file.getOriginalFilename());
+        int dotIndex = file.getOriginalFilename().lastIndexOf('.');
+        String imgExt = file.getOriginalFilename().substring(dotIndex);
+        //check for file type here?
+        //name += imgExt;
+
+        Photos photo = new Photos();
+        File store = new File("src/main/resources/"+name+".tmp");
+
+        try {
+            file.transferTo(store);
+        }catch (Exception e){
+            System.out.println("Failed to transfer file");
+        }
+        photo.setImageData(store);
+
+        photo.setPhotoString(name);
+
+        //print out new photoname to check if valid
         photoService.uploadPhoto(photo);
+
+        //clear out photo data and delete store prior to return
+        photo.clearData();
+        store.delete();
+
+        //return so front end can handle
+        return photo;
     }
 
     //http://localhost:9005/social/api/downloadPhoto

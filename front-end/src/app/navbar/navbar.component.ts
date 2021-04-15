@@ -42,21 +42,15 @@ export class NavbarComponent implements OnInit  {
       }
     )
   }
-  
-  assignCopy(){
-    this.filteredItems = Object.assign([], this.items);
- }
+
+
  filterItem(value){
    console.log(value)
     if(value == ''){
-      console.log('gere')
         this.filteredItems = null;
     }else{ // when nothing has typed
     this.filteredItems = this.usernames.filter(word => word.indexOf(value) > -1);
-    console.log(this.userFriends)
-    console.log(this. usernames)
 
-    console.log(this.filteredItems)
     }
  }
  
