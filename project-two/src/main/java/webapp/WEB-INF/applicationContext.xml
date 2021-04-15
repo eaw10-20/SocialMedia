@@ -34,14 +34,8 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url"
-<<<<<<< HEAD
-                  value="#{'jdbc:postgresql://firstdatabase.ctxycf2tpkhe.us-east-2.rds.amazonaws.com/mydatabase'}"/>
+        <property name="url" value="#{'jdbc:postgresql://firstdatabase.ctxycf2tpkhe.us-east-2.rds.amazonaws.com/mydatabase'}"/>
         <property name="username" value="mike"/>
-=======
-                  value="#{'jdbc:postgresql://graypanda.cndv56gz115j.us-east-2.rds.amazonaws.com/socialmedia'}"/>
-        <property name="username" value="graypanda"/>
->>>>>>> 0f4bf19c8aab8bb88893cd2995094c97f4fb08a5
         <property name="password" value="p4ssw0rd"/>
     </bean>
 

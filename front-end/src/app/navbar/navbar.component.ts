@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserServicesService } from '../services/user-services.service';
 import { Pipe, PipeTransform } from '@angular/core';
+import { templateJitUrl } from '@angular/compiler';
 
 //@Pipe({ name: 'appFilter' })
 
@@ -13,32 +14,37 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NavbarComponent implements OnInit  {
 
   constructor(private userService: UserServicesService) { }
+  user: User;   
+
 
   searchText = '';
   userFriends = []  
-  usernames = [];
   filteredItems = [];
-  items;
+
 
   ngOnInit(): void {
     this.loadFriendList();
-  }
+    this.currentUser();
 
-  getUsernames(){
-    console.log(this.userFriends )
-
- for(let i=0;i<this.userFriends.length;i++){
-   this.usernames.push(this.userFriends[i].username)
- }
 
   }
+
+  currentUser() {
+    console.log("Grabbing current user session form nav bar")
+    this.userService.getUserSession().subscribe(
+      data=> {
+        this.user = data;
+      }
+    )
+  }
+
+
 
   loadFriendList() {
     this.userService.getFriendList().subscribe(
       data=> {
         this.userFriends = data;
         console.log(this.userFriends)
-        this.getUsernames();
       }
     )
   }
@@ -49,8 +55,9 @@ export class NavbarComponent implements OnInit  {
     if(value == ''){
         this.filteredItems = null;
     }else{ // when nothing has typed
-    this.filteredItems = this.usernames.filter(word => word.indexOf(value) > -1);
+    this.filteredItems = this.userFriends.filter(word => word.username.indexOf(value) > -1);
 
+    console.log(this.filteredItems)
     }
  }
  
