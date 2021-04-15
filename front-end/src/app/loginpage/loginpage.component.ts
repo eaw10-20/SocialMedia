@@ -46,6 +46,9 @@ export class LoginpageComponent implements OnInit {
 
    loginButton () {
     console.log("clicked the login button");
+    let id: number=1;
+    let json: string;
+    console.log("in the async login method");
     this.userService.checkLogin(this.currentUser);
 
   };

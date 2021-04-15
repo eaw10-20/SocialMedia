@@ -1,0 +1,17 @@
+.input-group {
+  position: relative;
+}
+
+#dropdown {
+  background-color: white;
+  border: 0.2px solid #cbd6ce;
+  border-radius: 3px;
+  width: 100%;
+  position: absolute;
+  top: 38px;
+  z-index: 100;
+}
+
+a {
+  color: black;
+}
