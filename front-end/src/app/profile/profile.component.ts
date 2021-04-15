@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, Event as NavigationEvent, NavigationStart, NavigationEnd } from '@angular/router'
+import { Subscription } from 'rxjs';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { PostService } from '../services/post.service';
@@ -11,26 +11,41 @@ import { UserServicesService } from '../services/user-services.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
-
-  private username: string;
+  private id: number;
   user: User;
   allPosts: Post[];
+  private _routerSub = Subscription.EMPTY;
 
-  constructor(private route: ActivatedRoute, private userService: UserServicesService, private postService: PostService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserServicesService, private postService: PostService) { 
+    this._routerSub= this.router.events.subscribe(
+    (event: NavigationEvent) => {
+      if(event instanceof NavigationEnd) {
+          this.id = Number(this.route.snapshot.paramMap.get('id'))
+          this.userService.setCurrentProfileView(this.id);
+      }
+      
+    });
+  }
+
   ngOnInit(): void {
-    this.username = this.route.snapshot.paramMap.get('username');
     this.getUsersPosts();
   }
 
-
-  getUsersPosts(){
+  async getUsersPosts(){
+    
     this.postService.getAllPosts().subscribe(posts =>{
-      this.allPosts = posts.filter(x => x.userId.username == this.username);
+      
+      
+      this.allPosts = posts.filter(x => x.userId.userId == this.id);
     }
+      
     )
   }
-  
+
+  ngOnDestroy(){
+    this._routerSub.unsubscribe();
+  }
 
 }

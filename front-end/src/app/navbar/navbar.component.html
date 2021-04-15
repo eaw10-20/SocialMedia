@@ -3,7 +3,8 @@
 
     <a routerLink = '/main' class="navbar-brand">Home</a>
     <a routerLink = '/chat' class="navbar-brand">Chat</a>
-    <a class="navbar-brand" routerLink = '/profile'>My Profile</a>
+    <a class="navbar-brand" routerLink="/profile/{{user?.username}}/{{user?.userId}}" routerLinkActive="active">My Profile</a>
+
 
     <form class="form-inline">
         <div class="input-group">

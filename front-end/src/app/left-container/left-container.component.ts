@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { User } from '../models/user';
 import { UserServicesService } from '../services/user-services.service';
 
@@ -7,32 +8,32 @@ import { UserServicesService } from '../services/user-services.service';
   templateUrl: './left-container.component.html',
   styleUrls: ['./left-container.component.css']
 })
-export class LeftContainerComponent implements OnInit {
+export class LeftContainerComponent implements OnInit, OnDestroy {
 
-  user: User = {userId: 0,
-    fname: "",
-    lname: '',
-    email: '',
-    password: '',
-    username: '',
-    avatar: '',
-    posts: []
-  }
+  user: User;
+  private trashSub = Subscription.EMPTY;
 
   constructor(private userService: UserServicesService) { }
 
   ngOnInit(): void {
-    console.log("in the left container componenet")
-    this.currentUser();
+    this.profileUserView()
   }
 
-  currentUser() {
-    console.log("Grabbing current user session")
-    this.userService.getUserSession().subscribe(
-      data=> {
-        this.user = data;
-      }
-    )
-  }
+
+  profileUserView() {
+    
+      this.trashSub = this.userService.currentUserProfileView.subscribe(
+        data => {
+          this.user = data;
+          console.log("in the profileUserView method in left conatiner componenet")
+          // console.log(this.user)
+        });
+
+
+    }
+    
+    ngOnDestroy(){
+      this.trashSub.unsubscribe();
+    }
 
 }
