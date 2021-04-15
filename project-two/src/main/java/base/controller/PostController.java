@@ -6,6 +6,7 @@ import base.dao.PostDaoImpl;
 import base.dao.UserDaoImpl;
 import base.model.Post;
 import base.model.User;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,8 @@ public class PostController {
     public @ResponseBody
     List<Post> getAllPosts(){
         List<Post> postList = postDao.getAllPosts();
+
+
 
         return postList;
     }

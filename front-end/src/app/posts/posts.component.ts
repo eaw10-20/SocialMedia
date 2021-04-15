@@ -18,7 +18,8 @@ export class PostsComponent implements OnInit {
     postId: 0,
     description: '',
     photos: [],
-    userId: null
+    userId: null,
+    users: []
   }
 
   allPosts: Post[] = [];
@@ -56,6 +57,10 @@ export class PostsComponent implements OnInit {
         this.user = data;
       }
     )
+  }
+
+  likePost(){
+    this.postService
   }
 
 
