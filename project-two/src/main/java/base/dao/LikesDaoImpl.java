@@ -39,6 +39,7 @@ public class LikesDaoImpl implements LikesDao {
 
     }
 
+    @Autowired
     public LikesDaoImpl(SessionFactory sesFact) {
         this.sesFact = sesFact;
     }

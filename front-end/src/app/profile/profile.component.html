@@ -48,24 +48,20 @@
                     </div>
 
 
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{post.submitted | date :
-                            "MM.dd.y" }}</div>
-
-                        <h5 class="card-title">
-                            {{post.description}}
-                        </h5>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                    </div>
-                    
-                </div>
-
-            </div>
-
+    <div  class="card-body">
+        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{post.submitted | date :  "MM.dd.y" }}</div>
+            
+        <p class="card-text">
+            {{post.description}}
+        </p>
+    </div>
+    <div class="card-footer">
+        <span class="badge badge-primary badge-pill">{{post.users.length}}</span>
+        <a href="#" class="card-link  ml-1"><i class="fa fa-gittip"></i> Like</a>
+        <!-- <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
+    </div>
+</div>
 
 
         </div>

@@ -52,9 +52,10 @@ public class Post {
     //Many to many connection that is mapped by posts
     //posts is found in the User class and is the ArrayList that contains all posts that a user could have
     //Connecting two Arrays??? Not to sure how this works
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToMany(mappedBy = "postLikes")
     private List<User> users = new ArrayList<>();
+
 
     //Constructors
     public Post() {

@@ -23,7 +23,8 @@ export class NewPostComponent implements OnInit {
     postId: 0,
     description: '',
     photos: [],
-    userId: null
+    userId: null,
+    users: []
   }
 
   user: User;
@@ -76,7 +77,7 @@ export class NewPostComponent implements OnInit {
     this.post.userId = this.user;
 
     this.postService.createNewPost(this.post);
-    
+
     //for now uploading a single photo. Change if implementing batch upload later
     if(this.photo) this.photoService.uploadPhoto(this.photo);
 
