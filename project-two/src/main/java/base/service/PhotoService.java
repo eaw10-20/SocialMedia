@@ -12,9 +12,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 
+import javax.transaction.Transactional;
 import java.util.Map;
 
 @Service("photoService")
+@Transactional
 public class PhotoService {
 
     PhotoDaoImpl photoDao;
@@ -50,6 +52,8 @@ public class PhotoService {
     ////Business Logic
     //dao calls
     public void uploadPhoto(Photos photo){
+        //for some reason this isn't injected.. have to look into it later
+        photoDao = new PhotoDaoImpl();
         photoDao.uploadPhoto(photo, getS3Client());
     }
 

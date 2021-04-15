@@ -5,8 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
 //Photo model
 @Entity
@@ -30,7 +28,7 @@ public class Photos {
     private Post myPost;
 
     //Stores file data
-    private MultipartFile imageData;
+    private File imageData;
 
 
     public Photos() {
@@ -75,11 +73,11 @@ public class Photos {
         this.myPost = myPost;
     }
 
-    public MultipartFile getImageData() {
+    public File getImageData() {
         return imageData;
     }
 
-    public void setImageData(MultipartFile imageData){
+    public void setImageData(File imageData){
         this.imageData = imageData;
     }
 

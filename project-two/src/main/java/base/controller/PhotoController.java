@@ -25,29 +25,38 @@ public class PhotoController {
     //http://localhost:9005/social/api/uploadPhoto
     @PostMapping(value="/uploadPhoto")
     @CrossOrigin(allowCredentials = "true")
-    public Photos uploadPhoto(@RequestParam("imageData") MultipartFile file, ModelMap modelMap){
+    public Photos uploadPhoto(@RequestParam("imageData") MultipartFile file,
+                              @RequestParam("photoString") String name, ModelMap modelMap){
         System.out.println("In upload photo method");
 
         modelMap.addAttribute("imageData", file);
-        //the next 3 lines are for checking progress
-        System.out.println(file.getOriginalFilename());
+
+        //get extension
+        System.out.println("The original file name is "+file.getOriginalFilename());
+        int dotIndex = file.getOriginalFilename().lastIndexOf('.');
+        String imgExt = file.getOriginalFilename().substring(dotIndex);
+        //check for file type here?
+        //name += imgExt;
 
         Photos photo = new Photos();
-        photo.setImageData(file);
+        File store = new File("src/main/resources/"+name+".tmp");
 
-        photo.setPhotoString("Avatar_1.jpg");
-        //isolate extension
-//        int dotIndex = photo.getPhotoString().lastIndexOf('.');
-//        String imgExt = photo.getPhotoString().substring(dotIndex);
-        //rename photo so that it includes extension
+        try {
+            file.transferTo(store);
+        }catch (Exception e){
+            System.out.println("Failed to transfer file");
+        }
+        photo.setImageData(store);
 
+        photo.setPhotoString(name);
 
-        //pring out new photoname to check if valid
-        System.out.println(photo.getPhotoString());
-//        photoService.uploadPhoto(photo);
+        //print out new photoname to check if valid
+        photoService.uploadPhoto(photo);
 
-        //clear out photo data prior to return
+        //clear out photo data and delete store prior to return
         photo.clearData();
+        store.delete();
+
         //return so front end can handle
         return photo;
     }

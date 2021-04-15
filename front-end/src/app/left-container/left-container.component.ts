@@ -13,7 +13,7 @@ export class LeftContainerComponent implements OnInit, OnDestroy {
   user: User;
   private trashSub = Subscription.EMPTY;
 
-  awsS3Path = "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/"; 
+  AWS_S3_PATH = "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/"; 
 
   constructor(private userService: UserServicesService) { }
 

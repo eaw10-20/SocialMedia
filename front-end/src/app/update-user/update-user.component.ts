@@ -99,9 +99,9 @@ export class UpdateUserComponent implements OnInit {
 
    onSubmit() {
     //If a photo was uploaded
-    if(this.photo){
+    if(this.photo.imageData){
       //create a name based on the user id
-      this.photo.photoString = "avatar_"+this.user.userId/* +".jpg" */;
+      this.photo.photoString = "avatar_"+this.user.userId;
       //upload photo
       this.photoService.uploadPhoto(this.photo).subscribe(
         data=> {
@@ -109,7 +109,7 @@ export class UpdateUserComponent implements OnInit {
         }
       )
       //add photo to user here
-      this.user.avatar = this.photo.photoString;
+      this.user.avatar = "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/"+this.photo.photoString;
       console.log("Photo ref link = "+ this.user.avatar);
     }
     console.log(this.user)

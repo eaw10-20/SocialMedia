@@ -16,16 +16,16 @@ Main.java
  Main
 base/service/UserService.java
  base.service.UserService
-base/model/Photos.java
- base.model.Photos
+base/controller/SessionController.java
+ base.controller.SessionController
 base/service/PostService.java
  base.service.PostService
 base/websockets/SocketHandler.java
  base.websockets.SocketHandler
 base/model/Post.java
  base.model.Post
-base/controller/PostController.java
- base.controller.PostController
+base/dao/PhotoDaoImpl.java
+ base.dao.PhotoDaoImpl
 base/dao/PostDao.java
  base.dao.PostDao
 base/dao/LikesDao.java
@@ -38,15 +38,15 @@ base/dao/UserDaoImpl.java
  base.dao.UserDaoImpl
 Tester.java
  Tester
-base/AppConfig.java
- base.AppConfig
+base/model/Photos.java
+ base.model.Photos
 base/dao/PhotoDao.java
  base.dao.PhotoDao
-base/controller/PhotoController.java
- base.controller.PhotoController
+base/AppConfig.java
+ base.AppConfig
 base/service/PhotoService.java
  base.service.PhotoService
-base/dao/PhotoDaoImpl.java
- base.dao.PhotoDaoImpl
-base/controller/SessionController.java
- base.controller.SessionController
+base/controller/PhotoController.java
+ base.controller.PhotoController
+base/controller/PostController.java
+ base.controller.PostController
