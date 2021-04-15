@@ -89,6 +89,7 @@ public class PostController {
     public void insertInitialValues(){
 
 
+
 //        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://merriam-webster.com/assets/mw/images/article/art-global-footer-recirc/character-dragon-with-sunglasses-image-6332-f5704f661135d682466ec9f8b327e014@1x.jpg");
         User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_1.jpg");
 //        User dan2 = new User("Lia", "Summer", "summer@email.com", "12356", "Ms.Summer", "http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg");
@@ -100,8 +101,6 @@ public class PostController {
         Post post1 = new Post(1, "post", dan);
         Post post2 = new Post(1, "post here too", dan2);
         Post post3 = new Post(1,"post here too", dan3);
-
-
 
         postDao.createPost(post1);
         postDao.createPost(post2);

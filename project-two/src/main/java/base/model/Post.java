@@ -77,6 +77,13 @@ public class Post {
         this.userId = userId;
     }
 
+    public Post(int postId, String description, User userId, List<User> users) {
+        this.postId = postId;
+        this.description = description;
+        this.userId = userId;
+        this.users = users;
+    }
+
     public Post(int postId, String description, Date submitted, List<Photos> photoList, User userId) {
         this.postId = postId;
         this.description = description;

@@ -1,13 +1,13 @@
-base/controller/LikesController.java
- base.controller.LikesController
-base/model/User.java
- base.model.User
 base/dao/UserDao.java
  base.dao.UserDao
-base/controller/UserController.java
- base.controller.UserController
-base/dao/LikesDaoImpl.java
- base.dao.LikesDaoImpl
+base/model/User.java
+ base.model.User
+base/controller/PhotoController.java
+ base.controller.PhotoController
+base/service/PhotoService.java
+ base.service.PhotoService
+base/controller/PostController.java
+ base.controller.PostController
 base/websockets/WebSocketConfig.java
  base.websockets.WebSocketConfig
 base/dao/PostDaoImpl.java
@@ -20,12 +20,12 @@ base/controller/SessionController.java
  base.controller.SessionController
 base/service/PostService.java
  base.service.PostService
-base/websockets/SocketHandler.java
- base.websockets.SocketHandler
-base/model/Post.java
- base.model.Post
 base/dao/PhotoDaoImpl.java
  base.dao.PhotoDaoImpl
+base/model/Post.java
+ base.model.Post
+base/model/Photos.java
+ base.model.Photos
 base/dao/PostDao.java
  base.dao.PostDao
 base/dao/LikesDao.java
@@ -38,15 +38,15 @@ base/dao/UserDaoImpl.java
  base.dao.UserDaoImpl
 Tester.java
  Tester
-base/model/Photos.java
- base.model.Photos
 base/dao/PhotoDao.java
  base.dao.PhotoDao
 base/AppConfig.java
  base.AppConfig
-base/service/PhotoService.java
- base.service.PhotoService
-base/controller/PhotoController.java
- base.controller.PhotoController
-base/controller/PostController.java
- base.controller.PostController
+base/websockets/SocketHandler.java
+ base.websockets.SocketHandler
+base/controller/UserController.java
+ base.controller.UserController
+base/dao/LikesDaoImpl.java
+ base.dao.LikesDaoImpl
+base/controller/LikesController.java
+ base.controller.LikesController

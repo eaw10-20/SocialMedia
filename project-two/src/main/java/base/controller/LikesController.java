@@ -3,6 +3,7 @@ package base.controller;
 import base.dao.LikesDaoImpl;
 import base.model.Likes;
 import base.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,7 @@ public class LikesController {
 
     }
 
+    @Autowired
     public LikesController(LikesDaoImpl likesDao) {
         this.likesDao = likesDao;
     }
@@ -53,4 +55,5 @@ public class LikesController {
     public void setLikesDao(LikesDaoImpl likesDao) {
         this.likesDao = likesDao;
     }
-}
+
+};
