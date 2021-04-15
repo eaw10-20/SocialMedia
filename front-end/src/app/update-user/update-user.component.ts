@@ -92,13 +92,16 @@ export class UpdateUserComponent implements OnInit {
     console.log(this.photo);
   }
 
+  uploadPhoto(){
+    console.log("In uploadPhoto");
+  }
 
 
    onSubmit() {
     //If a photo was uploaded
     if(this.photo){
       //create a name based on the user id
-      this.photo.photoString = "avatar_"+this.user.userId
+      this.photo.photoString = "avatar_"+this.user.userId/* +".jpg" */;
       //upload photo
       this.photoService.uploadPhoto(this.photo).subscribe(
         data=> {

@@ -59,6 +59,12 @@ VALUES (1, 'WHOAHOAHOA');
 INSERT INTO likes(user_id, post_id) 
 VALUES (1,1);
 
+--UPDATE STATEMENTS
+UPDATE users 
+SET user_avatar = 'WOW.jpeg'
+WHERE user_id = 1;
+
+
 
 
 

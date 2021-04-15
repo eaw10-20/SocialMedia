@@ -39,6 +39,7 @@ public class SessionController {
      */
     //    http://localhost:9005/social/login
     @PostMapping(value="/login")
+    @CrossOrigin(allowCredentials = "true")
     public @ResponseBody
     User login(@RequestBody User user, HttpSession session){
         System.out.println("in the check credentials method");

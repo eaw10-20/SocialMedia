@@ -8,7 +8,11 @@ import base.model.Photos;
 import base.model.Post;
 import base.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
@@ -21,19 +25,26 @@ public class PhotoController {
     //http://localhost:9005/social/api/uploadPhoto
     @PostMapping(value="/uploadPhoto")
     @CrossOrigin(allowCredentials = "true")
-    public Photos uploadPhoto(@RequestBody Photos photo){
-        String photoname = photo.getImageData().getName();
-        String a = photo.getImageData().toString();
-        System.out.println("The photo name is "+photoname);
-        System.out.println("The photo tostring is "+a);
+    public Photos uploadPhoto(@RequestParam("imageData") MultipartFile file, ModelMap modelMap){
+        System.out.println("In upload photo method");
+
+        modelMap.addAttribute("imageData", file);
+        //the next 3 lines are for checking progress
+        System.out.println(file.getOriginalFilename());
+
+        Photos photo = new Photos();
+        photo.setImageData(file);
+
+        photo.setPhotoString("Avatar_1.jpg");
         //isolate extension
-        int dotIndex = photo.getPhotoString().lastIndexOf('.');
-        String imgExt = photoname.substring(dotIndex);
+//        int dotIndex = photo.getPhotoString().lastIndexOf('.');
+//        String imgExt = photo.getPhotoString().substring(dotIndex);
         //rename photo so that it includes extension
-        photo.setPhotoString(photoname+imgExt);
+
+
         //pring out new photoname to check if valid
         System.out.println(photo.getPhotoString());
-        photoService.uploadPhoto(photo);
+//        photoService.uploadPhoto(photo);
 
         //clear out photo data prior to return
         photo.clearData();

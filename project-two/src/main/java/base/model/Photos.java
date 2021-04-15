@@ -1,6 +1,7 @@
 package base.model;
 
 import net.bytebuddy.build.ToStringPlugin;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.File;
@@ -29,7 +30,7 @@ public class Photos {
     private Post myPost;
 
     //Stores file data
-    private File imageData;
+    private MultipartFile imageData;
 
 
     public Photos() {
@@ -74,31 +75,35 @@ public class Photos {
         this.myPost = myPost;
     }
 
-    public File getImageData() {
+    public MultipartFile getImageData() {
         return imageData;
     }
 
-    public void setImageData(File imageData) {
-        //check to make sure the image type is ok
-        System.out.println("In setter for file");
-        //first create a set
-        Set<String> ext = new HashSet<>();
-        ext.add("jpg");
-        ext.add("jpeg");
-        ext.add("png");
-
-        //get complete image name
-        String filename = imageData.getName();
-
-        //isolate extension
-        int dotIndex = filename.lastIndexOf('.');
-        String imgExt = imageData.getName().substring(dotIndex+1);
-        if(ext.contains(imgExt)){
-            this.imageData = imageData;
-        }else{
-            System.out.println(imgExt+ "is not a valid picture file extension.");
-        }
+    public void setImageData(MultipartFile imageData){
+        this.imageData = imageData;
     }
+
+//    public void setImageData(File imageData) {
+//        //check to make sure the image type is ok
+//        System.out.println("In setter for file");
+//        //first create a set
+//        Set<String> ext = new HashSet<>();
+//        ext.add("jpg");
+//        ext.add("jpeg");
+//        ext.add("png");
+//
+//        //get complete image name
+//        String filename = imageData.getName();
+//
+//        //isolate extension
+//        int dotIndex = filename.lastIndexOf('.');
+//        String imgExt = imageData.getName().substring(dotIndex+1);
+//        if(ext.contains(imgExt)){
+//            this.imageData = imageData;
+//        }else{
+//            System.out.println(imgExt+ "is not a valid picture file extension.");
+//        }
+//    }
 
     public void clearData(){
         this.imageData = null;
@@ -106,7 +111,7 @@ public class Photos {
 
     @Override
     public String toString() {
-        System.out.println("In tostring");
+        System.out.println("In to string");
         return "Photos{" +
                 "photoId=" + photoId +
                 ", photoString='" + photoString + '\'' +
