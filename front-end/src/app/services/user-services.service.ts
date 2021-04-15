@@ -58,8 +58,8 @@ export class UserServicesService {
           this.userFriends= data;
         }
       )
-        let index = this.userFriends.indexOf(this.currentUser)
-        this.userFriends.splice(index,1)
+        // let index = this.userFriends.indexOf(this.currentUser)
+        // this.userFriends.splice(index,1)
 
       return of(this.userFriends);
   }

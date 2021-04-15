@@ -13,9 +13,11 @@ import { UserServicesService } from '../services/user-services.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
+  userFriends: User[]
   private id: number;
   user: User;
   allPosts: Post[];
+  show: boolean = false;
   private _routerSub = Subscription.EMPTY;
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserServicesService, private postService: PostService) { 
@@ -30,6 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getFriendList();
     this.getUsersPosts();
   }
 
@@ -38,9 +41,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.postService.getAllPosts().subscribe(posts =>{
       
       
-      this.allPosts = posts.filter(x => x.userId.userId == this.id);
+      this.allPosts = posts
+      // .filter(x => x.userId.userId == this.id);
     }
       
+    )
+  }
+
+  getFriendList() {
+    this.userService.getFriendsList().subscribe(
+      data => {
+        this.userFriends = data
+      }
     )
   }
 
