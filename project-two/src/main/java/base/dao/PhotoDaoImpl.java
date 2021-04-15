@@ -121,7 +121,7 @@ public class PhotoDaoImpl implements PhotoDao {
     public PhotoDaoImpl(){
 
     }
-
+    @Autowired
     public PhotoDaoImpl(SessionFactory sesFact) {
         this.sesFact = sesFact;
     }

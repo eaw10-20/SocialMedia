@@ -30,8 +30,9 @@ public class PostController {
     @GetMapping(value="/getAllPosts")
     public @ResponseBody
     List<Post> getAllPosts(){
-//        List<Post> postList = postDao.getAllPosts();
-        return postDao.getAllPosts();
+        List<Post> postList = postDao.getAllPosts();
+
+        return postList;
     }
 
     //http://localhost:9005/social/api/post/create
@@ -43,6 +44,7 @@ public class PostController {
     @PostMapping(value="/post/create")
     public void createNewPost(@RequestBody Post newPost){
         System.out.println("In the create new post method");
+        System.out.println(newPost);
         postDao.createPost(newPost);
     }
 

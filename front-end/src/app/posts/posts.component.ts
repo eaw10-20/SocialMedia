@@ -39,6 +39,8 @@ export class PostsComponent implements OnInit {
     this.currentUser();
     this.allPost();
 
+
+
   }
 
 

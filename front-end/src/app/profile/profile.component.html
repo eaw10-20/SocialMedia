@@ -1,5 +1,3 @@
-
-
 <app-navbar></app-navbar>
 
 
@@ -13,61 +11,96 @@
 
         <div class="col-md-6 gedf-main">
 
-            <app-new-post></app-new-post>
-         
+            <!-- <app-new-post></app-new-post> -->
 
-          <!--- \\\\\\\Post-->
-<div *ngFor="let post of allPosts" class="card gedf-card mt-2">
-    <div  class="card-header">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="mr-2">
-                    <img class="rounded-circle" width="45" src="{{post.userId.avatar}}" alt="">
-                </div>
-                <div class="ml-2">
-                    <div class="h5 m-0"><a routerLink='/profile/{{post.userId.username}}'>@{{post.userId.username}}</a></div>
-                    <div class="h7 text-muted">{{post.userId.fname}} {{post.userId.lname}}</div>
-                </div>
-            </div>
-            <div>
-                <div class="dropdown">
-                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                        <div class="h6 dropdown-header">Configuration</div>
-                        <a class="dropdown-item" href="#">Save</a>
-                        <a class="dropdown-item" href="#">Hide</a>
-                        <a class="dropdown-item" href="#">Report</a>
+
+            <!--- \\\\\\\Post-->
+            <div *ngFor="let post of allPosts">
+                <div *ngIf="id == post.userId.userId" class="card gedf-card mt-2">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="{{post.userId.avatar}}" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0"><a
+                                            routerLink='/profile/{{post.userId.username}}'>@{{post.userId.username}}</a>
+                                    </div>
+                                    <div class="h7 text-muted">{{post.userId.fname}} {{post.userId.lname}}</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" href="#">Save</a>
+                                        <a class="dropdown-item" href="#">Hide</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{post.submitted | date :
+                            "MM.dd.y" }}</div>
+
+                        <h5 class="card-title">
+                            {{post.description}}
+                        </h5>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    </div>
+                    
                 </div>
+
             </div>
-        </div>
-    </div>
-
-
-    <div  class="card-body">
-        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-            
-        <h5 class="card-title">
-            {{post.description}}
-        </h5>
-    </div>
-    <div class="card-footer">
-        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-    </div>
-</div>
 
 
 
         </div>
 
         <div class="col-md-3">
-            <app-friend-list></app-friend-list>
+            <div *ngFor="let friend of userFriends">
+                <div *ngIf="!(id == friend.userId)" class="card gedf-card">
+                <div class="card-body">
+                    <div class="cardbox-heading">
+                        <!-- START dropdown-->
+                        <div class="dropdown float-right media-body">
+                            <p><a routerLink="/profile/{{friend.username}}/{{friend.userId}}" routerLinkActive="active">View Profile</a></p>
+                        </div>
+                        <!--/ dropdown -->
+                        <div class="media m-0">
+                            <div class="media-body">
+                                <p class="m-0">{{friend.username}}</p>
+                                <small><span><i class="icon ion-md-pin"></i> {{friend.fname}} {{friend.lname}}</span></small>
+                                <!-- <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small> -->
+                            </div>
+                        </div>
+                        <!--/ media -->
+                    </div>
+                    <!--/ cardbox-heading -->
+          
+                    <div class="cardbox-item">
+                        <img class="img-fluid" src="{{friend.avatar}}" 
+                            alt="{{friend.username}}">
+                    </div>
+                    <!--/ cardbox-item -->
+                </div>
+            </div>
+            </div>
+            
         </div>
-        
+
     </div>
 </div>

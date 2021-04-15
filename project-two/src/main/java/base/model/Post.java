@@ -17,9 +17,9 @@ import java.util.Date;
 //Post model
 @Entity
 @Table(name="User_Post")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "userId")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "postId")
 public class Post {
 
     //Auto generated serial number and primary key of User_Post
@@ -145,9 +145,9 @@ public class Post {
                 "postId=" + postId +
                 ", description='" + description + '\'' +
                 ", submitted=" + submitted +
-//                ", photoList=" + photoList.toString() +
-//                ", userId=" + userId.toString() +
-//                ", users=" + users.toString() +
+                ", photoList=" + photoList.toString() +
+                ", userId=" + userId.toString() +
+                ", users=" + users.toString() +
                 '}';
     }
 }

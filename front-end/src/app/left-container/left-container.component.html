@@ -1,9 +1,9 @@
 
 
             <div class="card-body">
-                <div class="user-pic"><img src='{{awsS3Path + user.avatar}}' alt="Charicard"></div>
-                <div class="h5">@{{user.username}}</div>
-                <div class="h7 text-muted">Fullname : {{user.fname}} {{user.lname}}</div>
+                <div class="user-pic"><img src='{{user?.avatar}}' alt="{{user?.username}}"></div>
+                <div class="h5">@{{user?.username}}</div>
+                <div class="h7 text-muted">Fullname : {{user?.fname}} {{user?.lname}}</div>
                 <div class="h7">Life is like an apple. You never know when one might drop on you.
                 </div>
             </div>
@@ -14,7 +14,7 @@
                 </li>
                 <div>
                     <div>
-                        <li class="list-group-item leftContainer"><a routerLink='/profile/{{user.username}}'>View Profile</a></li>
+                        <!-- <li class="list-group-item leftContainer"><a routerLink='/profile/{{user?.username}}/{{user.userId}}'>View Profile</a></li> -->
                     </div>
                     <div>
                         <li class="list-group-item rightContainer"><a routerLink='/update-user'>Edit Profile</a></li>

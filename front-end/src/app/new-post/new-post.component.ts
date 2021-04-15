@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from '../models/post';
 import { User } from '../models/user';
@@ -6,6 +6,8 @@ import{Photo} from '../models/photo';
 import { PostService } from '../services/post.service';
 import { UserServicesService } from '../services/user-services.service';
 import { PhotoServicesService } from '../services/photo-services.service';
+import { Subscription } from 'rxjs';
+import { PostsComponent } from '../posts/posts.component';
 
 
 @Component({
@@ -15,6 +17,8 @@ import { PhotoServicesService } from '../services/photo-services.service';
 })
 export class NewPostComponent implements OnInit {
 
+  userSubscription: Subscription;
+  postSubscription: Subscription;
   post: Post = {
     postId: 0,
     description: '',
@@ -36,6 +40,10 @@ export class NewPostComponent implements OnInit {
     this.currentUser();
   }
 
+  ngOnDestroy(){
+    this.userSubscription.unsubscribe();
+  }
+
   get descriptionField(){
     return this.post.description;
   }
@@ -45,7 +53,7 @@ export class NewPostComponent implements OnInit {
   }
 
   currentUser() {
-    this.userService.getUserSession().subscribe(
+   this.userSubscription = this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
       }
@@ -59,15 +67,16 @@ export class NewPostComponent implements OnInit {
     //add photo to post
     this.post.photos.push(this.photo.imageData);
 
-
   }
+
+  
 
 
   sendPost() {
     this.post.userId = this.user;
-    console.log(this.post)
-    this.postService.createNewPost(this.post);
 
+    this.postService.createNewPost(this.post);
+    
     //for now uploading a single photo. Change if implementing batch upload later
     if(this.photo) this.photoService.uploadPhoto(this.photo);
 

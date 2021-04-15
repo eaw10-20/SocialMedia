@@ -14,9 +14,9 @@ import java.util.List;
 //User model
 @Entity
 @Table(name="Users")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "userId")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "email")
 public class User {
 
     //Auto generated serial number and primary key of Hibernate_Users
@@ -55,7 +55,7 @@ public class User {
 
 //    Each User can have many post
 //    User posts are stored in List<Post>????
-//    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Post> postList = new ArrayList<>();
 

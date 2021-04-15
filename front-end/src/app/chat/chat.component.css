@@ -46,10 +46,4 @@ div.chat-content{
     margin-top: .25rem;
 }
 
-.other ~ .self {
-    margin-top: 2rem;
-}
 
-.self ~ .other {
-    margin-top: 2rem;
-}
