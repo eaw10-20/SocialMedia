@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Photo } from '../models/photo';
 import { User } from '../models/user';
 import { PhotoServicesService } from '../services/photo-services.service';
@@ -20,6 +21,7 @@ export class UpdateUserComponent implements OnInit {
     password: '',
     username: '',
     avatar: '',
+    userDescription: '',
     posts: []
   }
 
@@ -31,7 +33,7 @@ export class UpdateUserComponent implements OnInit {
   };
 
 
-  constructor(private userService: UserServicesService, private photoService: PhotoServicesService) { }
+  constructor(private userService: UserServicesService, private photoService: PhotoServicesService, private router: Router) { }
 
   ngOnInit(): void {
     this.currentUser();
@@ -76,6 +78,14 @@ export class UpdateUserComponent implements OnInit {
     this.user.lname = str;
   }
 
+  get descriptionField () {
+    return this.user.userDescription;
+  }
+
+  set descriptionField(str: string) {
+    this.user.userDescription = str;
+  }
+
 
   currentUser() {
     this.userService.getUserSession().subscribe(
@@ -115,6 +125,10 @@ export class UpdateUserComponent implements OnInit {
     console.log(this.user)
     this.userService.updateUser(this.user)
 
+  }
+
+  onBackButton() {
+    this.router.navigate (['/main']);
   }
 
 }
