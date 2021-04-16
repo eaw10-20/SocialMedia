@@ -27,6 +27,7 @@
     <div class="login">
       <input name="remember" type="checkbox" value="true" /> Remember login
     </div>
+    <p *ngIf="display" id="display">Login failed, please try again.</p>
 
     <div class="btn-toolbar justify-content-between">
       <div class="btn-group">

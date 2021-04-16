@@ -21,6 +21,8 @@ export class LoginpageComponent implements OnInit {
     posts: []
   }
 
+  display = false;
+
   constructor(private router: Router, private userService: UserServicesService) { }
 
   ngOnInit(): void {
@@ -45,12 +47,15 @@ export class LoginpageComponent implements OnInit {
   }
 
 
-   loginButton () {
+    async loginButton () {
     console.log("clicked the login button");
     let id: number=1;
     let json: string;
     console.log("in the async login method");
-    this.userService.checkLogin(this.currentUser);
+    //this.userService.checkLogin(this.currentUser);
+    if(await this.userService.checkLogin(this.currentUser) == false){
+      this.display = true;
+    }
 
   };
 
