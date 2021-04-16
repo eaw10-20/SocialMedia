@@ -26,7 +26,8 @@ public class LikesDaoImpl implements LikesDao {
     }
 
     public void addLike(Likes like){
-        sesFact.getCurrentSession().save(like);
+        System.out.println("adding like");
+        sesFact.getCurrentSession().persist(like);
     }
 
     @Override
