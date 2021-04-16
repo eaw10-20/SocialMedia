@@ -2,6 +2,7 @@ package base.controller;
 
 import base.model.User;
 import base.dao.UserDaoImpl;
+import base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class SessionController {
 
     private UserDaoImpl userDao;
+    private UserService uServ;
 
 
 
@@ -44,7 +46,7 @@ public class SessionController {
     User login(@RequestBody User user, HttpSession session){
         System.out.println("in the check credentials method");
         String email = user.getEmail();
-        String password = user.getPassword();
+        String password = uServ.encryptPass(user.getPassword());
         User loggedInUser = userDao.login(email, password);
         if(loggedInUser != null){
             loggedInUser.setLoginStatus(true);
@@ -80,17 +82,22 @@ public class SessionController {
     }
 
     @Autowired
-    public SessionController(UserDaoImpl userDao) {
+    public SessionController(UserDaoImpl userDao, UserService uServ) {
         this.userDao = userDao;
+        this.uServ = uServ;
     }
 
     public UserDaoImpl getUserDao() {
         return userDao;
     }
 
+    public UserService getuServ() {return uServ;}
+
     @Autowired
     public void setUserDao(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
+
+    public void setuServ(UserService uServ) {this.uServ=uServ;}
 
 }

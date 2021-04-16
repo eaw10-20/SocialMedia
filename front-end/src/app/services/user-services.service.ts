@@ -133,6 +133,14 @@ export class UserServicesService {
     {withCredentials: true})
   }
 
+  sendPasswordEmail(email:string) {
+    console.log(email)
+    const promise = this.HttpCli.get(`http://localhost:9005/social/api/emailPassword/?email=${email}`).toPromise()
+    promise.then((data) => {
+
+      this.router.navigate (['/'])
     
+  })
+  }
   
 }

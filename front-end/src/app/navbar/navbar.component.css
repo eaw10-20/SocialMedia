@@ -1,5 +1,6 @@
 .input-group {
   position: relative;
+  z-index: 0;
 }
 
 #dropdown {
@@ -9,7 +10,7 @@
   width: 100%;
   position: absolute;
   top: 38px;
-  z-index: 100;
+  z-index: 50;
 }
 
 a {
