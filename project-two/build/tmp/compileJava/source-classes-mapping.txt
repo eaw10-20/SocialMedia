@@ -1,13 +1,13 @@
-base/model/Photos.java
- base.model.Photos
+base/controller/LikesController.java
+ base.controller.LikesController
 base/model/User.java
  base.model.User
 base/controller/PhotoController.java
  base.controller.PhotoController
 base/service/PhotoService.java
  base.service.PhotoService
-base/dao/UserDao.java
- base.dao.UserDao
+base/dao/LikesDaoImpl.java
+ base.dao.LikesDaoImpl
 base/websockets/WebSocketConfig.java
  base.websockets.WebSocketConfig
 base/dao/PostDaoImpl.java
@@ -46,7 +46,7 @@ base/websockets/SocketHandler.java
  base.websockets.SocketHandler
 base/controller/UserController.java
  base.controller.UserController
-base/controller/LikesController.java
- base.controller.LikesController
-base/dao/LikesDaoImpl.java
- base.dao.LikesDaoImpl
+base/dao/UserDao.java
+ base.dao.UserDao
+base/model/Photos.java
+ base.model.Photos

@@ -25,15 +25,7 @@ export class PostsComponent implements OnInit {
   like: Likes;
   liked: boolean;
 
-  user: User = {userId: 0,
-    fname: "",
-    lname: '',
-    email: '',
-    password: '',
-    username: '',
-    avatar: '',
-    posts: []
-  }
+  user: User;
 
   constructor(private userService: UserServicesService, private postService: PostService) {
 
@@ -48,11 +40,9 @@ export class PostsComponent implements OnInit {
 
 
   currentUser() {
-    console.log("Grabbing current user session")
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
-
       }
     )
   }

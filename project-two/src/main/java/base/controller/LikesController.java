@@ -60,6 +60,7 @@ public class LikesController {
         this.likesDao = likesDao;
     }
 
+
     @PostMapping(value="/addValues")
     public void addInitialValues(){
         Likes like1 = new Likes(1,1);
@@ -71,3 +72,4 @@ public class LikesController {
         likesDao.addLike(like3);
     }
 }
+

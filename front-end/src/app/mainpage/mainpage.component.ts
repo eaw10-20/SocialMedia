@@ -14,6 +14,7 @@ export class MainpageComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser();
+    this.getAllUsers();
   }
 
   currentUser() {
@@ -24,6 +25,10 @@ export class MainpageComponent implements OnInit {
         this.userService.setCurrentUserSession(this.user)
       }
     )
+  }
+
+  getAllUsers() {
+    this.userService.getFriendsList();
   }
 
   
