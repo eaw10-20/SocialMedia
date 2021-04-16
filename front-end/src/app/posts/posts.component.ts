@@ -15,6 +15,7 @@ export class PostsComponent implements OnInit {
     postId: 0,
     description: '',
     photos: [],
+    media: '',
     userId: null
   }
 

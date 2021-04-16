@@ -22,9 +22,10 @@ public class PostDaoImpl implements PostDao {
     ////Business Logic
 
     @Override
-    public void createPost(Post post) {
-        sesFact.getCurrentSession().save(post);
-
+    public Post createPost(Post post) {
+        int id = (int) sesFact.getCurrentSession().save(post);
+        post.setPostId(id);
+        return post;
     }
 
     @Override

@@ -23,12 +23,19 @@ export class NewPostComponent implements OnInit {
     postId: 0,
     description: '',
     photos: [],
+    media: '',
     userId: null
   }
 
+  photo: Photo = {
+    photoId: 0,
+    photoString: '',
+    // post: null,
+    imageData: null
+  };
+
   user: User;
-  //photos: Photo[];
-  photo: Photo; 
+
   selectedFile: File;
 
 
@@ -61,10 +68,11 @@ export class NewPostComponent implements OnInit {
   }
 
   //Should store the uploaded image
-  onFileSelected(event){
-    this.photo.imageData = event.target.files[0];
+  onFileSelected(files: FileList){
+    this.photo.imageData = files[0];
 
     //add photo to post
+    this.post.media = "photo";
     this.post.photos.push(this.photo.imageData);
 
   }
@@ -75,16 +83,36 @@ export class NewPostComponent implements OnInit {
   sendPost() {
     this.post.userId = this.user;
 
-    this.postService.createNewPost(this.post);
+    this.postService.createNewPost(this.post).subscribe(
+      data=> {
+        this.post = data;
+
+          //for now uploading a single photo. Change if implementing batch upload later
+          //create a name based on the post id
+          if(this.photo.imageData){
+            console.log("Found image data");
+            this.photo.photoString = "post_"+this.post.postId;
+            this.photoService.uploadPhoto(this.photo).subscribe(
+              data=>{
+                this.photo = data
+                this.refresh();
+              }
+              
+            );
+          }else{
+            this.refresh();
+          } 
+
+      }
+    );
     
-    //for now uploading a single photo. Change if implementing batch upload later
-    if(this.photo) this.photoService.uploadPhoto(this.photo);
 
+  }
 
+  refresh(){
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['main']);
-  }); 
-
+    });
   }
 
   handleFileInput(files: FileList) {
