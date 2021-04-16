@@ -53,12 +53,12 @@
             
         <div class="container">
             <div class = "row">
-                <div class = "col" *ngIf="post.media">
-                    <p class="card-text">
-                        <img *ngIf="post.media == 'photo'" width="200" [src]="'https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/post_'+post.postId" alt="">
-                    </p>
+                <div class = "col-sm" *ngIf="post.media">
+                    <img *ngIf="post.media == 'photo'" width=100% height="auto" [id]="'image_'+post.postId" 
+                    class="postImage" (click)="openModal(post.postId)"
+                    [src]="'https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/post_'+post.postId" alt="post image">
                 </div>
-                <div class = "col">
+                <div class = "col-sm">
                     <p class="card-text">
                         {{post.description}}
                     </p>
@@ -113,4 +113,11 @@
         </div>
 
     </div>
+</div>
+<!-- modal content -->
+<div id="postModal" class="modal">
+    <!-- The Close Button -->
+    <span class="close" (click) = "closeModal()">&times;</span>
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="floatingImg">
 </div>
