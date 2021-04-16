@@ -1,6 +1,7 @@
 package base.dao;
 
 import base.model.Post;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -44,7 +45,9 @@ public class PostDaoImpl implements PostDao {
 
     public List<Post> getAllPosts(){
         List<Post> userPosts = sesFact.getCurrentSession().createQuery("FROM Post ORDER BY post_submitted DESC", Post.class).list();
-
+        for(Post p : userPosts){
+            Hibernate.initialize(p.getUsers());
+        }
         return userPosts;
     }
 

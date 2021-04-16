@@ -19,7 +19,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
-public class UserController {
+public class    UserController {
 
     private UserDaoImpl userDao;
 

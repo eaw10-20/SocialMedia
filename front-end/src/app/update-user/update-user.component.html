@@ -1,7 +1,8 @@
-<h1>Welcome!</h1>
 <div>
-  <h2>Lets update your account information.</h2>
 
+  <div>
+  <h2>Lets update your account information.</h2>
+</div>
 
   <label>
     New email:
@@ -28,12 +29,21 @@
     <input type="text" placeholder="Last name" [(ngModel)]="lnameField">
   </label>
   <br>
+  <label>Description:</label>
+  <textarea type="text" placeholder="Tell us about yourself..." rows="4" cols="50" [(ngModel)]="descriptionField"></textarea>
+  <br>    
   <!-- Photo input -->
   <label>
     <input type="file" class="form-control" id="inputFile" (change)="onFileSelected($event.target.files)" accept="image/*">
   </label>	
   <br>
-  <button type="submit" (click)="onSubmit()">Submit</button>
+  <div>
+    <button class="rightContainer" type="submit" (click)="onSubmit()">Submit</button>
+  </div>
+  <div>
+    <button class="leftContainer" type="submit" (click)="onBackButton()">Back</button>
+  </div>
+</div>
 
+  
 
-  <nav>

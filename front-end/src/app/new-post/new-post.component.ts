@@ -24,7 +24,8 @@ export class NewPostComponent implements OnInit {
     description: '',
     photos: [],
     media: '',
-    userId: null
+    userId: null,
+    users: []
   }
 
   photo: Photo = {
@@ -105,7 +106,7 @@ export class NewPostComponent implements OnInit {
 
       }
     );
-    
+  
 
   }
 

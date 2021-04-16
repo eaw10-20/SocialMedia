@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Likes } from '../models/likes';
 import { Post } from '../models/post';
 
 @Injectable({
@@ -16,6 +17,7 @@ export class PostService {
     photos: [],
     media: '',
     userId: null,
+    users: []
   };
   
   getAllPosts(): Observable<Post[]> {
@@ -26,8 +28,15 @@ export class PostService {
   }
 
   
-  updateData(post: Post){
+  addLike(like: Likes){
+    this.HttpCli.post(`http://localhost:9005/social/api/likePost`, like
+    , {withCredentials: true}).toPromise()
+  } 
 
+  unLike(like: Likes){
+
+    this.HttpCli.put(`http://localhost:9005/social/api/unlikePost`, like
+    , {withCredentials: true}).toPromise()
   }
 
   getUserPosts(userId): Observable<Post[]> {

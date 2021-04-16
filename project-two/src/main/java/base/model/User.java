@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import net.bytebuddy.build.ToStringPlugin;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -53,6 +54,10 @@ public class User {
     @Column(name="loggedin")
     private boolean loginStatus;
 
+    @Column(name="description")
+//    @ColumnDefault("Basic Description")
+    private String userDescription;
+
 //    Each User can have many post
 //    User posts are stored in List<Post>????
     @JsonIgnore
@@ -98,6 +103,15 @@ public class User {
         this.username = username;
     }
 
+    public User(String fname, String lname, String email, String password, String username, String avatar, String userDescription) {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.userDescription = userDescription;
+    }
 
     public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus, List<Post> postList) {
         this.userId = userId;
@@ -124,10 +138,33 @@ public class User {
         this.postLikes = postLikes;
     }
 
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus, String userDescription, List<Post> postList, List<Post> postLikes) {
+        this.userId = userId;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.loginStatus = loginStatus;
+        this.userDescription = userDescription;
+        this.postList = postList;
+        this.postLikes = postLikes;
+    }
 
-
+    
 
     //Getters and Setters
+
+
+    public String getUserDescription() {
+        return userDescription;
+    }
+
+    public void setUserDescription(String userDescription) {
+        this.userDescription = userDescription;
+    }
+
     public boolean isLoginStatus() {
         return loginStatus;
     }

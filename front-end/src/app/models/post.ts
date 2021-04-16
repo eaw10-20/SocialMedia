@@ -6,4 +6,5 @@ export interface Post{
     photos: File[],
     media: string,
     userId: User
+    users:  User[];
 }
