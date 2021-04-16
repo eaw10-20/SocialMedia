@@ -75,6 +75,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User getUserByEmail(String user_email) {
+        System.out.println(user_email);
+        User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + user_email + "'", User.class).getSingleResult();
+
+        return user;
+    }
+
+    @Override
     public User getUserByFullName(String firstName, String lastName) {
 
         User user = sesFact.getCurrentSession().createQuery("from User WHERE user_fname = '" + firstName + "' AND user_lname = '" + lastName +"'", User.class).uniqueResult();

@@ -10,6 +10,8 @@ public interface UserDao {
 
         public User login(String email, String password);
 
+        public User getUserByEmail(String email);
+
         public boolean updateUser(User user);
 
         public List<User> getAllUsersLoggedIn();
