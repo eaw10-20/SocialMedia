@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
+import org.hibernate.query.Query;
 
 import javax.transaction.Transactional;
 
@@ -30,7 +31,14 @@ public class LikesDaoImpl implements LikesDao {
 
     @Override
     public void unLike(Likes like) {
-        sesFact.getCurrentSession().delete(like);
+
+        int postId = like.getPostId();
+        System.out.println("postid " + postId);
+        int userId = like.getUserId();
+        System.out.println(("userId " + userId));
+        Query query = sesFact.getCurrentSession().createQuery("DELETE from Likes WHERE post_id ='" + postId + "' AND user_id = '" + userId +"'");
+
+        query.executeUpdate();
     }
 
     ////Constructors

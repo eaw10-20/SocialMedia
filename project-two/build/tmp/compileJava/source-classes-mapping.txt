@@ -46,7 +46,7 @@ base/websockets/SocketHandler.java
  base.websockets.SocketHandler
 base/controller/UserController.java
  base.controller.UserController
-base/dao/LikesDaoImpl.java
- base.dao.LikesDaoImpl
 base/controller/LikesController.java
  base.controller.LikesController
+base/dao/LikesDaoImpl.java
+ base.dao.LikesDaoImpl

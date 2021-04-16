@@ -5,5 +5,5 @@ export interface Post{
     description: string,
     photos: File[],
     userId: User,
-    users: [];
+    users:  User[];
 }

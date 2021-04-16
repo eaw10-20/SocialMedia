@@ -1,13 +1,15 @@
-<!--- \\\\\\\Post-->
+
+
 <div *ngFor="let post of allPosts" class="card gedf-card mt-2">
     <div  class="card-header">
+        
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="mr-2">
                     <img class="rounded-circle" width="45" src="{{post.userId.avatar}}" alt="">
                 </div>
                 <div class="ml-2">
-                    <div class="h5 m-0"><a routerLink='/profile/{{post.userId.username}}'>@{{post.userId.username}}</a></div>
+                    <div class="h5 m-0"><a routerLink='/profile/{{post.userId.username}}/{{post.userId.userId}}'>@{{post.userId.username}}</a></div>
                     <div class="h7 text-muted">{{post.userId.fname}} {{post.userId.lname}}</div>
                 </div>
             </div>
@@ -35,8 +37,12 @@
         </p>
     </div>
     <div class="card-footer">
-        <span class="badge badge-primary badge-pill">{{post.users.length}}</span>
-        <a href="#" class="card-link  ml-1"><i class="fa fa-gittip"></i> Like</a>
+        <button (click) = "likePost(post)" type="button" class="btn btn-primary">
+            Like <span class="badge badge-pill badge-primary">{{post.users.length}}</span>
+            <span class="sr-only">Likes</span>
+          </button>
+        <!-- <span class="badge badge-primary badge-pill">{{post.users.length}}</span>
+        <a  class="card-link  ml-1"><i class="fa fa-gittip"></i> Like</a> -->
         <!-- <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
     </div>
