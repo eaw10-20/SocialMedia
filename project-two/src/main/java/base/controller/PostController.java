@@ -20,7 +20,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
-public class PostController {
+public class    PostController {
 
     private PostDaoImpl postDao;
     private UserDaoImpl userDao;
