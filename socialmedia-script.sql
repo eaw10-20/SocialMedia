@@ -45,7 +45,7 @@ DROP TABLE users;
 
 --SELECT STATEMENTS
 SELECT * FROM users;
-SELECT * FROM post;
+SELECT * FROM user_post;
 SELECT * FROM likes;
 
 

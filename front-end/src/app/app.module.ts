@@ -19,6 +19,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { ChatComponent } from './chat/chat.component';
 import { EmailPasswordComponent } from './loginpage/email-password/email-password.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,8 @@ import { EmailPasswordComponent } from './loginpage/email-password/email-passwor
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

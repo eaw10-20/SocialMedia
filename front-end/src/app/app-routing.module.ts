@@ -10,13 +10,13 @@ import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
-  { path: 'update-user', component: UpdateUserComponent },
-  {path: 'forgotPassword', component: EmailPasswordComponent},
-  { path: 'chat', component: ChatComponent },
-  { path: 'new-user', component: NewUserComponent },
-  { path: 'main', component: MainpageComponent},
-  { path: 'profile/:username/:id', component: ProfileComponent},
-  { path: '**', component: LoginpageComponent }
+  { path: 'update-user', component: UpdateUserComponent, data: { animation: 'evenRighter' } },
+  {path: 'forgotPassword', component: EmailPasswordComponent, data: { animation: 'evenRighter' }},
+  { path: 'chat', component: ChatComponent, data: { animation: 'evenRighter' } },
+  { path: 'new-user', component: NewUserComponent, data: { animation: 'isRight' } },
+  { path: 'main', component: MainpageComponent, data: { animation: 'isRight' }},
+  { path: 'profile/:username/:id', component: ProfileComponent, data: { animation: 'righter' }},
+  { path: '**', component: LoginpageComponent, data: { animation: 'isLeft' } }
 ];
 
 @NgModule({

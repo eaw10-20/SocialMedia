@@ -31,12 +31,11 @@
   <br>
   <label>Description:</label>
   <textarea type="text" placeholder="Tell us about yourself..." rows="4" cols="50" [(ngModel)]="descriptionField"></textarea>
-    
+  <br>    
   <!-- Photo input -->
-  <div>
-    <input type="file" class="form-control" id="inputFile" (change)="onFileSelected($event.target.files)" multiple>
-    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-  </div>	
+  <label>
+    <input type="file" class="form-control" id="inputFile" (change)="onFileSelected($event.target.files)" accept="image/*">
+  </label>	
   <br>
   <div>
     <button class="rightContainer" type="submit" (click)="onSubmit()">Submit</button>

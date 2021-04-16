@@ -24,7 +24,7 @@
             <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                 <div class="form-group">
                     <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="inputFile" (change)="handleFileInput($event.target.files)" multiple>
+                        <input type="file" class="form-control" id="inputFile" (change)="onFileSelected($event.target.files)" accept="image/*" multiple>
                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
                       </div>
                 </div>

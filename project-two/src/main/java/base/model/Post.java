@@ -32,6 +32,10 @@ public class Post {
     @Column(name = "post_description")
     private String description;
 
+    //Link to media that can be displayed in post
+    @Column(name = "media")
+    private String media;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "post_submitted")
@@ -144,18 +148,26 @@ public class Post {
         this.submitted = submitted;
     }
 
+    public String getMedia() {
+        return media;
+    }
+
+    public void setMedia(String media) {
+        this.media = media;
+    }
+
     //toString() method
 
-//
     @Override
     public String toString() {
         return "Post{" +
                 "postId=" + postId +
                 ", description='" + description + '\'' +
+                ", media='" + media + '\'' +
                 ", submitted=" + submitted +
-                ", photoList=" + photoList.toString() +
-                ", userId=" + userId.toString() +
-                ", users=" + users.toString() +
+                ", photoList=" + photoList +
+                ", userId=" + userId +
+                ", users=" + users +
                 '}';
     }
 }
