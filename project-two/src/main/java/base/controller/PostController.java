@@ -45,10 +45,14 @@ public class    PostController {
      * @param newPost
      */
     @PostMapping(value="/post/create")
-    public void createNewPost(@RequestBody Post newPost){
+    @CrossOrigin(allowCredentials = "true")
+    public @ResponseBody
+    Post createNewPost(@RequestBody Post newPost){
         System.out.println("In the create new post method");
         System.out.println(newPost);
-        postDao.createPost(newPost);
+        newPost = postDao.createPost(newPost);
+        System.out.println("The post id is "+newPost.getPostId());
+        return newPost;
     }
 
     @ExceptionHandler

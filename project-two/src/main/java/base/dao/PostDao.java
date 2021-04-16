@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PostDao {
 
-    public void createPost(Post post);
+    public Post createPost(Post post);
 
     public List<Post> getPostsByUserID(int userId);
 

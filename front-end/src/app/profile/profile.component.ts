@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Event as NavigationEvent, NavigationStart, NavigationEnd } from '@angular/router'
 import { Subscription } from 'rxjs';
+import { Likes } from '../models/likes';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { PostService } from '../services/post.service';
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   allPosts: Post[];
   show: boolean = false;
   private _routerSub = Subscription.EMPTY;
+  like: Likes;
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserServicesService, private postService: PostService) { 
     this._routerSub= this.router.events.subscribe(
@@ -34,6 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getFriendList();
     this.getUsersPosts();
+    this.getUserSession();
   }
 
   async getUsersPosts(){
@@ -48,6 +51,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     )
   }
 
+  getUserSession(){
+    this.userService.getUserSession().subscribe(session => {
+      this.user = session;
+    })
+  }
+
   getFriendList() {
     this.userService.getFriendsList().subscribe(
       data => {
@@ -58,6 +67,44 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this._routerSub.unsubscribe();
+  }
+
+  likePost(post: Post){
+    this.like = {
+      postId: post.postId,
+      userId: this.user.userId
+    }
+    
+    ///Find the userId that matches current user's id:
+
+   let position = post.users.map(x => {
+      return x.userId;
+    }).indexOf(this.user.userId)
+    console.log(position)
+    console.log(post)
+
+   if(position > 0){
+     this.show = true;
+   } else {
+     this.show  = false;
+   }
+    ///If the userId doesn't exist in the post's users array then add
+
+    if(position === -1 && !this.show ){
+      console.log("adding the like")
+      post.users.push(this.user);
+      this.postService.addLike(this.like)
+      this.show  = true;
+    }
+
+    ///If the userId does exist then remove it from the array
+
+    if(position > -1){
+      post.users.splice(position);
+      this.postService.unLike(this.like);
+      this.show  = false;
+    }
+    
   }
 
 }

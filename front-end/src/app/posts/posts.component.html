@@ -1,6 +1,8 @@
-<!--- \\\\\\\Post-->
+
+
 <div *ngFor="let post of allPosts" class="card gedf-card mt-2">
     <div  class="card-header">
+        
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="mr-2">
@@ -29,14 +31,28 @@
     </div>
     <div  class="card-body">
         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{post.submitted | date :  "MM.dd.y" }}</div>
-            
-        <p class="card-text">
-            {{post.description}}
-        </p>
-    </div>
+            <div class="container">
+                <div class = "row">
+                    <div class = "col" *ngIf="post.media">
+                        <p class="card-text">
+                            <img *ngIf="post.media == 'photo'" width="200" [src]="'https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/post_'+post.postId" alt="">
+                        </p>
+                    </div>
+                    <div class = "col">
+                        <p class="card-text">
+                            {{post.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="card-footer">
-        <span class="badge badge-primary badge-pill">{{post.users.length}}</span>
-        <a href="#" class="card-link  ml-1"><i class="fa fa-gittip"></i> Like</a>
+        <button (click) = "likePost(post)" type="button" class="btn btn-primary">
+            Like <span class="badge badge-pill badge-primary">{{post.users.length}}</span>
+            <span class="sr-only">Likes</span>
+          </button>
+        <!-- <span class="badge badge-primary badge-pill">{{post.users.length}}</span>
+        <a  class="card-link  ml-1"><i class="fa fa-gittip"></i> Like</a> -->
         <!-- <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
     </div>
