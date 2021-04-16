@@ -11,6 +11,14 @@ repositories {
 
 dependencies {
 
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.1'
+
+
+    // https://mvnrepository.com/artifact/javax.activation/activation
+    implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
+
+
     // https://mvnrepository.com/artifact/org.springframework/spring-websocket
     implementation group: 'org.springframework', name: 'spring-websocket', version: '5.3.5'
 

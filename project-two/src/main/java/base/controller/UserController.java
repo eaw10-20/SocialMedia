@@ -5,6 +5,7 @@ import base.dao.UserDao;
 import base.dao.UserDaoImpl;
 
 import base.model.User;
+import base.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import java.util.List;
 public class    UserController {
 
     private UserDaoImpl userDao;
+    private UserService uServ;
 
     //http://localhost:9005/social/api/getUserById/
     //changed to GET for testing purposes
@@ -51,15 +53,7 @@ public class    UserController {
     public @ResponseBody List<User> getAllFriends (HttpSession session) {
 //        User user = (User) session.getAttribute("currentUser");
         List<User> friendList = userDao.getAllUsers();
-//        int indexCount = 0;
-//        Iterator<User> iter = friendList.iterator();
-//        while(iter.hasNext()) {
-//            User user2 = iter.next();
-//            if (user2.getEmail().equals(user.getEmail()))
-//                iter.remove();
-//
-//            indexCount++;
-//        }
+
         return friendList;
     }
 
@@ -68,6 +62,8 @@ public class    UserController {
     @PostMapping(value="/createUser" , produces="application/json")
     @CrossOrigin(allowCredentials = "true")
     public void createNewUser(@RequestBody User user){
+        String encryptPass = uServ.encryptPass(user.getPassword());
+        user.setPassword(encryptPass);
         userDao.createUser(user);
     }
 
@@ -90,51 +86,52 @@ public class    UserController {
     @PostMapping(value="/updateUser")
     @CrossOrigin(allowCredentials = "true")
     public void updateUser(@RequestBody User newUser){
+        String encrpytPass = uServ.encryptPass(newUser.getPassword());
+        newUser.setPassword(encrpytPass);
         System.out.println(newUser.toString());
         userDao.updateUser(newUser);
+    }
+
+    //http://localhost:9005/social/api/emailPassword
+    @GetMapping(value="/emailPassword", params = {"email"})
+    public void emailPassword (String email) {
+        System.out.println("in the email password method in user controller");
+        User user = userDao.getUserByEmail(email);
+        String decrpytPass = uServ.decryptPass(user.getPassword());
+        user.setPassword(decrpytPass);
+        uServ.passwordReset(user);
     }
 
 
     ////Constructors
 
     public UserController(){
-        insertInitialValues();
     }
 
     ///Autowired constructor to inject the repo directly
 
     @Autowired
-    public UserController(UserDaoImpl userDao){
+    public UserController(UserDaoImpl userDao, UserService uServ){
 
         this.userDao = userDao;
-        insertInitialValues();
+        this.uServ = uServ;
     }
 
     ////Getters and Setters
 
     public UserDao getUserDao() {
-        insertInitialValues();
         return userDao;
     }
 
+    public UserService getuServ() {return uServ;}
+
+
     @Autowired
     public void setUserDao(UserDaoImpl userDao) {
-        insertInitialValues();
         this.userDao = userDao;
     }
 
-    /**
-     * Insert initial values for testing purposes
-     */
+    public void setuServ(UserService uServ) {this.uServ=uServ;}
 
-    public void insertInitialValues(){
 
-//        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "WOW.jpeg");
-//        User dan2 = new User("Ben", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-//        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "face.jpeg");
-//
-//        userDao.createUser(dan);
-//        userDao.createUser(dan2);
-//        userDao.createUser(dan3);
-    }
 }
