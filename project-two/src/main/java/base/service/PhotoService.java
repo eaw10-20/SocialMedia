@@ -23,8 +23,10 @@ public class PhotoService {
 
     ////S3 static variables
     public static Map<String, String> env = System.getenv();
-    public static String ACCESS_KEY_ID = System.getenv("S3_ACCESS_KEY");
-    public static String ACCESS_SEC_KEY = System.getenv("S3_SEC_KEY");
+//    public static String ACCESS_KEY_ID = System.getenv("S3_ACCESS_KEY");
+//    public static String ACCESS_SEC_KEY = System.getenv("S3_SEC_KEY");
+    public static String ACCESS_KEY_ID = "AKIAQG2OO4PTDQ27M2Z6";
+    public static String ACCESS_SEC_KEY = "+SWSR917+tKkMZBAhqzP/DgHDJTkRc+tBC2Ira9K";
 
 
     ////Constructors
