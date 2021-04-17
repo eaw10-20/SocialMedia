@@ -68,12 +68,8 @@ public class User {
     //Create a new table name Likes and have two columns named user_id and post_id
     //In the User class able to call post that have User id and stored it in posts List
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="Likes",
-            joinColumns = {@JoinColumn (name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "post_id")}
-    )
+    @ManyToMany(mappedBy = "users", cascade =
+            {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Post> postLikes = new ArrayList<>();
 
 
@@ -152,10 +148,17 @@ public class User {
         this.postLikes = postLikes;
     }
 
-    
 
     //Getters and Setters
 
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
+
+    public void setPostLikes(List<Post> postLikes) {
+        this.postLikes = postLikes;
+    }
 
     public String getUserDescription() {
         return userDescription;
@@ -236,6 +239,10 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public void addPost(Post post){
+        this.postList.add(post);
     }
 
     //toString() method

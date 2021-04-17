@@ -2,12 +2,9 @@ package base.dao;
 
 import base.model.Post;
 import org.hibernate.Hibernate;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import util.HibernateUtil;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -24,7 +21,7 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public void createPost(Post post) {
-        sesFact.getCurrentSession().save(post);
+        sesFact.getCurrentSession().saveOrUpdate(post);
 
     }
 
@@ -46,6 +43,7 @@ public class PostDaoImpl implements PostDao {
         List<Post> userPosts = sesFact.getCurrentSession().createQuery("FROM Post ORDER BY post_submitted DESC", Post.class).list();
         for(Post p : userPosts){
             Hibernate.initialize(p.getUsers());
+
         }
         return userPosts;
     }

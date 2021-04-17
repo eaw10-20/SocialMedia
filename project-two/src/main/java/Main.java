@@ -1,5 +1,5 @@
 import base.dao.*;
-import base.model.Likes;
+//import base.model.Likes;
 import base.model.Post;
 import base.model.User;
 

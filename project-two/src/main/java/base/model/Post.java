@@ -1,11 +1,6 @@
 package base.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import net.bytebuddy.build.ToStringPlugin;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -24,7 +19,7 @@ public class Post {
 
     //Auto generated serial number and primary key of User_Post
     @Id
-    @Column(name="post_id")
+    @Column(name="post_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postId;
 
@@ -53,7 +48,12 @@ public class Post {
     //posts is found in the User class and is the ArrayList that contains all posts that a user could have
     //Connecting two Arrays??? Not to sure how this works
 //    @JsonIgnore
-    @ManyToMany(mappedBy = "postLikes")
+    @ManyToMany
+    @JoinTable(
+            name="PostLikes",
+            joinColumns = {@JoinColumn (name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
     private List<User> users = new ArrayList<>();
 
 
