@@ -25,8 +25,8 @@ base/dao/PhotoDaoImpl.java
  base.dao.PhotoDaoImpl
 base/model/Post.java
  base.model.Post
-base/model/Photos.java
- base.model.Photos
+base/controller/PostController.java
+ base.controller.PostController
 base/dao/PostDao.java
  base.dao.PostDao
 base/dao/LikesDao.java
@@ -49,5 +49,5 @@ base/controller/UserController.java
  base.controller.UserController
 base/dao/UserDao.java
  base.dao.UserDao
-base/controller/PostController.java
- base.controller.PostController
+base/model/Photos.java
+ base.model.Photos

@@ -84,9 +84,9 @@ public class UserService {
         return userDao.login(email, password);
     }
 
-    public User getUserByFullName(String firstName, String lastName){
-        return userDao.getUserByFullName(firstName, lastName);
-    }
+//    public User getUserByFullName(String firstName, String lastName){
+//        return userDao.getUserByFullName(firstName, lastName);
+//    }
 
     /**
      * Takes in a password and encrypts it so that the password can be safely stored  in the database
