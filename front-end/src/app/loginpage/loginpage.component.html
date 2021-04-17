@@ -32,6 +32,7 @@
         <a routerLink="/forgotPassword" routerLinkActive="active">Forgot password?</a>
       </div>
     </div>
+    <p *ngIf="display" id="display">Login failed, please try again.</p>
 
       
         <button (click)="loginButton()" class="form-control mb-4 btn-primary" type="button">
