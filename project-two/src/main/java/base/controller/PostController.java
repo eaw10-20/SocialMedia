@@ -6,6 +6,7 @@ import base.dao.PostDaoImpl;
 import base.dao.UserDaoImpl;
 import base.model.Post;
 import base.model.User;
+import base.service.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
-public class PostController {
+public class    PostController {
 
     private PostDaoImpl postDao;
     private UserDaoImpl userDao;
@@ -45,10 +46,14 @@ public class PostController {
      * @param newPost
      */
     @PostMapping(value="/post/create")
-    public void createNewPost(@RequestBody Post newPost){
+    @CrossOrigin(allowCredentials = "true")
+    public @ResponseBody
+    Post createNewPost(@RequestBody Post newPost){
         System.out.println("In the create new post method");
         System.out.println(newPost);
-        postDao.createPost(newPost);
+        newPost = postDao.createPost(newPost);
+        System.out.println("The post id is "+newPost.getPostId());
+        return newPost;
     }
 
     @ExceptionHandler
@@ -91,23 +96,22 @@ public class PostController {
 
     public void insertInitialValues(){
 
+        UserService uServ = new UserService();
 
+//        String pass1 = uServ.encryptPass("12356");
 
-//        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://merriam-webster.com/assets/mw/images/article/art-global-footer-recirc/character-dragon-with-sunglasses-image-6332-f5704f661135d682466ec9f8b327e014@1x.jpg");
-        User dan = new User("Frank", "LeHioya", "frank@email.com", "12356", "Mikey", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_1.jpg", "Life is like an apple. You never know when one might drop on you");
-//        User dan2 = new User("Lia", "Summer", "summer@email.com", "12356", "Ms.Summer", "http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg");
-        User dan2 = new User("Lia", "Summer", "summer@email.com", "12356", "Ms.Summer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_2", "You can’t blame gravity for falling in love");
-//        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "https://rudyvrodriguez.files.wordpress.com/2010/10/cute-destroyer.jpg?w=327");
-        User dan3 = new User("John", "Big", "Big@email.com", "12356", "Destroyer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_3", "My owner's shoes looked so lovely together. It was a pity I destroyed one of them.");
-
-
-        Post post1 = new Post(1, "post", dan);
-        Post post2 = new Post(1, "post here too", dan2);
-        Post post3 = new Post(1,"post here too", dan3);
-
-        postDao.createPost(post1);
-        postDao.createPost(post2);
-        postDao.createPost(post3);
+//        User dan = new User("Frank", "LeHioya", "revaturefrank@gmail.com", pass1, "Mikey", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_1.jpg", "Life is like an apple. You never know when one might drop on you");
+//        User dan2 = new User("Lia", "Summer", "summer@email.com", pass1, "Ms.Summer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_2", "You can’t blame gravity for falling in love");
+//        User dan3 = new User("John", "Big", "Big@email.com", pass1, "Destroyer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_3", "My owner's shoes looked so lovely together. It was a pity I destroyed one of them.");
+//
+//
+//        Post post1 = new Post(1, "post", dan);
+//        Post post2 = new Post(1, "post here too", dan2);
+//        Post post3 = new Post(1,"post here too", dan3);
+//
+//        postDao.createPost(post1);
+//        postDao.createPost(post2);
+//        postDao.createPost(post3);
 
 
     }

@@ -51,9 +51,20 @@
     <div  class="card-body">
         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{post.submitted | date :  "MM.dd.y" }}</div>
             
-        <p class="card-text">
-            {{post.description}}
-        </p>
+        <div class="container">
+            <div class = "row">
+                <div class = "col-sm" *ngIf="post.media">
+                    <img *ngIf="post.media == 'photo'" width=100% height="auto" [id]="'image_'+post.postId" 
+                    class="postImage" (click)="openModal(post.postId)"
+                    [src]="'https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/post_'+post.postId" alt="post image">
+                </div>
+                <div class = "col-sm">
+                    <p class="card-text">
+                        {{post.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="card-footer">
         <button (click) = "likePost(post)" type="button" class="btn btn-primary">
@@ -102,4 +113,11 @@
         </div>
 
     </div>
+</div>
+<!-- modal content -->
+<div id="postModal" class="modal">
+    <!-- The Close Button -->
+    <span class="close" (click) = "closeModal()">&times;</span>
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="floatingImg">
 </div>

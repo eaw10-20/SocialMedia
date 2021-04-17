@@ -1,35 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 body {
-    background-image: url('https://images.unsplash.com/photo-1549241520-425e3dfc01cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+  background-image: url("https://images.pexels.com/photos/1054222/pexels-photo-1054222.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+main {
+  position: relative;
 }
 
+.center {
+    margin: auto;
+    margin-top: 15%;
+    margin-bottom: 10%;
+    width: 30%;
+    border-style: groove;
+    border-color: white;
+    border-radius: 10px;
+    border-width: 2px;
+    padding-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    overflow-y: auto;
+  }
+  
+  .black {
+    color: black;
+  }
+  
+  /* .bgwhite {
+    background-color:white;
+  } */
 
-/* .h7 {
-    font-size: 0.8rem;
-}
-
-.gedf-wrapper {
-    margin-top: 0.97rem;
-}
-
-@media (min-width: 992px) {
-    .gedf-main {
-        padding-left: 4rem;
-        padding-right: 4rem;
-    }
-    .gedf-card {
-        margin-bottom: 2.77rem;
-    }
-}
-
-/**Reset Bootstrap*/
-/* .dropdown-toggle::after {
-    content: none;
-    display: none;
-} */ 
+  .custompadding {
+      padding-bottom: 1rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+      padding-top: 2rem;
+  }
+  
+  .customborder {
+      border: black solid;
+      border-width: .005rem;
+    
+  }

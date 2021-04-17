@@ -1,49 +1,67 @@
-<div>
 
-  <div>
-  <h2>Lets update your account information.</h2>
-</div>
 
-  <label>
-    New email:
-    <input type="email" placeholder="Email" [(ngModel)]="emailField">
-  </label>
-  <br>
-  <label>
-    New username:
-    <input type="text" placeholder="Username" [(ngModel)]="usernameField">
-  </label>
-  <br>
-  <label>
-    New password:
-    <input type="password" placeholder="Password" [(ngModel)]="passwordField">
-  </label>
-  <br>
-  <label>
-    New first name:
-    <input type="text" placeholder="First name" [(ngModel)]="fnameField">
-  </label>
-  <br>
-  <label>
-    New last name:
-    <input type="text" placeholder="Last name" [(ngModel)]="lnameField">
-  </label>
-  <br>
-  <label>Description:</label>
-  <textarea type="text" placeholder="Tell us about yourself..." rows="4" cols="50" [(ngModel)]="descriptionField"></textarea>
-    
-  <!-- Photo input -->
-  <div>
-    <input type="file" class="form-control" id="inputFile" (change)="onFileSelected($event.target.files)" multiple>
-    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-  </div>	
-  <br>
-  <div>
-    <button class="rightContainer" type="submit" (click)="onSubmit()">Submit</button>
-  </div>
-  <div>
-    <button class="leftContainer" type="submit" (click)="onBackButton()">Back</button>
-  </div>
+   <div class="center text-center customborder custompadding bgwhite">
+
+    <p class="h4 mb-4">Lets update your account information.</p>
+
+      New email:
+      <input
+        type="email"
+        id="email"
+        class="form-control mb-2"
+        [(ngModel)]="emailField"
+      />
+
+      New username:
+      <input
+        type="text"
+        id="username"
+        class="form-control mb-2"
+        [(ngModel)]="usernameField"
+      />
+      
+      New password:
+      <input
+        type="password"
+        id="password"
+        class="form-control mb-2"
+        [(ngModel)]="passwordField"
+      />
+
+      New first name:
+      <input
+        type="text"
+        id="fname"
+        class="form-control mb-2"
+        [(ngModel)]="fnameField"
+      />
+
+      New Last name:
+      <input
+        type="text"
+        id="lname"
+        class="form-control mb-2"
+        [(ngModel)]="lnameField"
+      />
+
+      New description:
+      <textarea
+        type="text"
+        id="description"
+        rows = "3"
+        cols="50"
+        class="form-control mb-2"
+        [(ngModel)]="descriptionField"
+      > </textarea>
+
+      Change profile picture:
+      <input type="file" class="form-control mb-4" id="inputFile" (change)="onFileSelected($event.target.files)" accept="image/*">
+
+
+        <button class="form-control mb-1 btn-success" type="submit" (click)="onSubmit()">Submit</button>
+        <button class="form-control mb-2 btn btn-primary" type="submit" (click)="onBackButton()">Back</button>
+
+      
 </div>
 
   

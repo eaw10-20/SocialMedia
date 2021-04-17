@@ -2,17 +2,33 @@ package base.service;
 
 import base.dao.UserDaoImpl;
 import base.model.User;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.Cipher;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PublicKey;
-import java.security.Signature;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
+import java.security.spec.KeySpec;
+import java.util.Base64;
 import java.util.List;
+import java.util.Properties;
 
+
+@Service("uServ")
+@Transactional
 public class UserService {
 
     private UserDaoImpl userDao;
+    private static final String SECRET_KEY = "my_super_secret_key_ho_ho_ho";
+    private static final String SALT = "saltykeypattern";
+
 
 
     ////Constructors
@@ -78,40 +94,114 @@ public class UserService {
      * @param pass
      * @return
      */
-    private String encryptPass(String pass){
+    public String encryptPass(String pass){
         try {
-            //Creating a Signature object
-            Signature sign = Signature.getInstance("SHA256withRSA");
+            System.out.println("in the encrypt pass method");
+            byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            IvParameterSpec ivspec = new IvParameterSpec(iv);
 
-            //Creating KeyPair generator object
-            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+            KeySpec spec = new PBEKeySpec(SECRET_KEY.toCharArray(), SALT.getBytes(), 65536, 256);
+            SecretKey tmp = factory.generateSecret(spec);
+            SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
 
-            //Initializing the KeyPairGenerator
-            keyPairGen.initialize(2048);
-
-            //Generate the pair of keys
-            KeyPair pair = keyPairGen.generateKeyPair();
-
-            //Getting the public key from the key pair
-            PublicKey publicKey = pair.getPublic();
-
-            //Creating a Cipher object
-
-            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-            System.out.println("step");
-            //Initializing a Cipher object
-            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-
-            //Adding data to the cipher
-            byte[] input = pass.getBytes();
-            cipher.update(input);
-
-            //encrypting the data
-            byte[] cipherText = cipher.doFinal();
-            return new String(cipherText, "UTF8");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
+            return Base64.getEncoder()
+                    .encodeToString(cipher.doFinal(pass.getBytes(StandardCharsets.UTF_8)));
         }catch (Exception e){
             System.out.println("FAILED TO ENCRYPT");
             return null;
         }
     }
+
+    public String decryptPass(String pass) {
+        String decryptedText=null;
+        try {
+            byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            IvParameterSpec ivspec = new IvParameterSpec(iv);
+
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+            KeySpec spec = new PBEKeySpec(SECRET_KEY.toCharArray(), SALT.getBytes(), 65536, 256);
+            SecretKey tmp = factory.generateSecret(spec);
+            SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
+
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(pass)));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static void passwordReset (User user) {
+        // email ID of Recipient.
+
+        // email ID/password of  Sender.
+        String myAccountEmail = "revaturepractice2@gmail.com";
+        String password = "p@ssw0rd$";
+
+
+
+        // Getting system properties
+        Properties properties = new Properties();
+
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        // Setting up mail server
+        properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+
+        properties.setProperty("mail.smtp.port", "587");
+
+
+
+
+        // creating session object to get properties
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myAccountEmail, password);
+
+            }
+        });
+
+        prepareMessage(session, myAccountEmail, user);
+
+
+
+
+    }
+
+    public static void prepareMessage (Session session, String myAccountEmail, User user) {
+        try
+        {
+            // MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From Field: adding senders email to from field.
+            message.setFrom(new InternetAddress(myAccountEmail));
+
+            // Set To Field: adding recipient's email to from field.
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+
+            // Set Subject: subject of the email
+            message.setSubject("Forgot something?");
+
+            // set body of the email.
+            message.setText("Your last recorded password:\n" +
+                    user.getPassword());
+
+            Transport.send(message);
+            System.out.println("Mail successfully sent");
+        }
+        catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
+
 }

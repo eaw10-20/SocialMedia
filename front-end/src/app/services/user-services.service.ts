@@ -19,25 +19,32 @@ export class UserServicesService {
     userDescription: '',
     posts: []
   }
+  
   private userFriends : User[];
   private currentUser : User;
   public currentUserProfileView: BehaviorSubject<User> = new BehaviorSubject<User>(this.user);
 
   constructor(private HttpCli: HttpClient, private router: Router) { }
 
-  checkLogin(user: User) {
-    const promise = this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
+  async checkLogin(user: User) {
+    try {    
+    const promise = await this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
     {withCredentials: true}).toPromise()
-    console.log("in the check login method")
-    promise.then((data) => {
-      if(data != null) {
-        this.router.navigate (['/main'])
-      } else {
-        this.router.navigate(['/fail'])
-      }
+    if(promise != null) {
+      this.router.navigate (['/main'])
+      console.log("hey")
+      return true
+  } else {
+    this.router.navigate(['/fail'])   
+  }
+  console.log("hey")
+    }
+    catch(err) {
+      console.log("bad")
+      return false
 
-      
-    })
+    }
+//return false
   } 
 
 
@@ -126,6 +133,9 @@ export class UserServicesService {
     {withCredentials: true})
   }
 
-    
+  sendPasswordEmail(email:string) {
+    console.log(email)
+    this.HttpCli.get(`http://localhost:9005/social/api/emailPassword/?email=${email}`)
+  }
   
 }

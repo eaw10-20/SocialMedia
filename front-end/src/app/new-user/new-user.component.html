@@ -1,34 +1,58 @@
-<h1>Welcome new user!</h1>
 
-<h2>Lets create a new account</h2>
-<div class="center bgblack white">
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <label>
-        Email:
-        <input type="email" formControlName="email" required>
-      </label>
-<br>
-      <label>
-        Username:
-        <input type="text" formControlName="username" required>
-      </label>
-      <br>
-      <label>
-        Password:
-        <input type="password" formControlName="password" required>
-      </label>
-      <br>
-    <label>
-      First Name:
-      <input type="text" formControlName="firstName" required>
-    </label>
-    <br>
-    <label>
-      Last Name:
-      <input type="text" formControlName="lastName" required>
-    </label>
-    <br>
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+<div id="mainContainer" class="center text-center customborder custompadding bgwhite">
+
+  <p class="h4 mb-1">Welcome new User!</p>
+  <p class="h4 mb-4">Lets create a new account</p>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <input
+      type="email"
+      id="email"
+      class="form-control mb-4"
+      placeholder="name@example.com"
+      formControlName="email" required
+    />
+
+
+    <input
+      type="text"
+      id="username"
+      class="form-control mb-4"
+      placeholder="Username"
+      formControlName="username" required
+    />
+
+    <input
+      type="password"
+      id="password"
+      class="form-control mb-4"
+      placeholder="Password"
+      formControlName="password" required
+    />
+
+    <input
+      type="text"
+      id="fname"
+      class="form-control mb-4"
+      placeholder="First Name"
+      formControlName="firstName" required
+    />
+
+    <input
+      type="text"
+      id="lname"
+      class="form-control mb-4"
+      placeholder="Last Name"
+      formControlName="lastName" required
+    />
+
   </form>
+    
+      <button class="form-control mb-1 btn-success" type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+      <button routerLink="/" routerLinkActive="active" class="form-control mb-2 btn btn-primary" type="button">
+        Back
+      </button>
+
 </div>
-  <nav>

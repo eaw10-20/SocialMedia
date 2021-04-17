@@ -17,6 +17,9 @@ import { PostsComponent } from './posts/posts.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ChatComponent } from './chat/chat.component';
+import { EmailPasswordComponent } from './loginpage/email-password/email-password.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,14 +34,16 @@ import { ChatComponent } from './chat/chat.component';
     PostsComponent,
     FriendListComponent,
     UpdateUserComponent,
-    ChatComponent
+    ChatComponent,
+    EmailPasswordComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,6 +15,7 @@ export class PostService {
     postId: 0,
     description: '',
     photos: [],
+    media: '',
     userId: null,
     users: []
   };
@@ -46,10 +47,16 @@ export class PostService {
     return post;
   }
 
-  createNewPost(post: Post){
+/*   createNewPost(post: Post){
     console.log("in the create new post method service")
     this.HttpCli.post(`http://localhost:9005/social/api/post/create`, post
     , {withCredentials: true}).toPromise()
     
+  } */
+
+  createNewPost(post: Post): Observable <Post>{
+    console.log("in the create new post method service")
+    return this.HttpCli.post<Post>(`http://localhost:9005/social/api/post/create`,
+    post, {withCredentials: true})
   }
 }

@@ -16,6 +16,7 @@ export class PostsComponent implements OnInit {
     postId: 0,
     description: '',
     photos: [],
+    media: '',
     userId: null,
     users: []
   }
@@ -99,6 +100,22 @@ export class PostsComponent implements OnInit {
     )
   }
 
+  //open image modal
 
+  openModal(id){
+    console.log("Clicked photo for post "+ id);
+    let modal = document.getElementById("postModal");
+    let img = document.getElementById("image_"+id) as HTMLImageElement;
+    let modalImg = document.getElementById("floatingImg") as HTMLImageElement;
+    modal.style.display = "block";
+    modalImg.src = img.src;
+  }
+
+  //close image modal
+  
+  closeModal(){
+    let modal = document.getElementById("postModal");
+    modal.style.display = "none";
+  }
 
 }

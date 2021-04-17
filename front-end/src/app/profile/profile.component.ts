@@ -107,4 +107,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
     
   }
 
+  //open image modal
+
+  openModal(id){
+    console.log("Clicked photo for post "+ id);
+    let modal = document.getElementById("postModal");
+    let img = document.getElementById("image_"+id) as HTMLImageElement;
+    let modalImg = document.getElementById("floatingImg") as HTMLImageElement;
+    modal.style.display = "block";
+    modalImg.src = img.src;
+  }
+
+  //close image modal
+  
+  closeModal(){
+    let modal = document.getElementById("postModal");
+    modal.style.display = "none";
+  }
+  
+
 }
