@@ -25,9 +25,9 @@ public class PostDaoImpl implements PostDao {
      * @return
      */
     @Override
+
     public Post createPost(Post post) {
-        int id = (int) sesFact.getCurrentSession().save(post);
-        post.setPostId(id);
+        sesFact.getCurrentSession().saveOrUpdate(post);
         return post;
     }
 
@@ -41,6 +41,7 @@ public class PostDaoImpl implements PostDao {
         List<Post> userPosts = sesFact.getCurrentSession().createQuery("FROM Post ORDER BY post_submitted DESC", Post.class).list();
         for(Post p : userPosts){
             Hibernate.initialize(p.getUsers());
+
         }
         return userPosts;
     }

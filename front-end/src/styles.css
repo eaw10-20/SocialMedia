@@ -47,3 +47,7 @@ main {
       border-width: .005rem;
     
   }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.411);
+  }

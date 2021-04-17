@@ -15,7 +15,7 @@ public class Post {
 
     //Auto generated serial number and primary key of User_Post
     @Id
-    @Column(name="post_id")
+    @Column(name="post_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postId;
 
@@ -41,8 +41,12 @@ public class Post {
     @JoinColumn(name="user_id")
     private User userId;
 
-
-    @ManyToMany(mappedBy = "postLikes")
+    @ManyToMany
+    @JoinTable(
+            name="PostLikes",
+            joinColumns = {@JoinColumn (name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
     private List<User> users = new ArrayList<>();
 
 

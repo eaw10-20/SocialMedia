@@ -2,10 +2,10 @@ base/controller/LikesController.java
  base.controller.LikesController
 base/model/User.java
  base.model.User
-base/model/Photos.java
- base.model.Photos
-base/dao/UserDao.java
- base.dao.UserDao
+base/controller/PhotoController.java
+ base.controller.PhotoController
+base/service/PhotoService.java
+ base.service.PhotoService
 base/dao/LikesDaoImpl.java
  base.dao.LikesDaoImpl
 base/websockets/WebSocketConfig.java
@@ -25,8 +25,8 @@ base/dao/PhotoDaoImpl.java
  base.dao.PhotoDaoImpl
 base/model/Post.java
  base.model.Post
-base/controller/PostController.java
- base.controller.PostController
+base/model/Photos.java
+ base.model.Photos
 base/dao/PostDao.java
  base.dao.PostDao
 base/dao/LikesDao.java
@@ -47,14 +47,7 @@ base/websockets/SocketHandler.java
  base.websockets.SocketHandler
 base/controller/UserController.java
  base.controller.UserController
-<<<<<<< HEAD
 base/dao/UserDao.java
  base.dao.UserDao
-base/model/Photos.java
- base.model.Photos
-=======
-base/controller/PhotoController.java
- base.controller.PhotoController
-base/service/PhotoService.java
- base.service.PhotoService
->>>>>>> fd1209969247e5fd36c5f2d8693dd2c6b9f7c4ae
+base/controller/PostController.java
+ base.controller.PostController

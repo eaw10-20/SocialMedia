@@ -89,20 +89,20 @@ public class    PostController {
     public void insertInitialValues(){
         UserService uServ = new UserService();
 
-        String pass1 = uServ.encryptPass("12356");
+//        String pass1 = uServ.encryptPass("12356");
 
-        User dan = new User("Frank", "LeHioya", "revaturefrank@gmail.com", pass1, "Mikey", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_1.jpg", "Life is like an apple. You never know when one might drop on you");
-        User dan2 = new User("Lia", "Summer", "summer@email.com", pass1, "Ms.Summer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_2", "You can’t blame gravity for falling in love");
-        User dan3 = new User("John", "Big", "Big@email.com", pass1, "Destroyer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_3", "My owner's shoes looked so lovely together. It was a pity I destroyed one of them.");
-
-
-        Post post1 = new Post(1, "post", dan);
-        Post post2 = new Post(1, "post here too", dan2);
-        Post post3 = new Post(1,"post here too", dan3);
-
-        postDao.createPost(post1);
-        postDao.createPost(post2);
-        postDao.createPost(post3);
+//        User dan = new User("Frank", "LeHioya", "revaturefrank@gmail.com", pass1, "Mikey", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_1.jpg", "Life is like an apple. You never know when one might drop on you");
+//        User dan2 = new User("Lia", "Summer", "summer@email.com", pass1, "Ms.Summer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_2", "You can’t blame gravity for falling in love");
+//        User dan3 = new User("John", "Big", "Big@email.com", pass1, "Destroyer", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_3", "My owner's shoes looked so lovely together. It was a pity I destroyed one of them.");
+//
+//
+//        Post post1 = new Post(1, "post", dan);
+//        Post post2 = new Post(1, "post here too", dan2);
+//        Post post3 = new Post(1,"post here too", dan3);
+//
+//        postDao.createPost(post1);
+//        postDao.createPost(post2);
+//        postDao.createPost(post3);
 
 
     }
