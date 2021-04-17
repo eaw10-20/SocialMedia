@@ -3,6 +3,7 @@ package base.controller;
 import base.model.User;
 import base.dao.UserDaoImpl;
 import base.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class SessionController {
 
+    final static Logger socialLog = Logger.getLogger(SessionController.class);
     private UserDaoImpl userDao;
     private UserService uServ;
 
@@ -29,6 +31,7 @@ public class SessionController {
     @GetMapping(value="/api/getUser")
     @CrossOrigin(allowCredentials = "true")
     public User getCurrentUser(HttpSession session) {
+        socialLog.info("In getCurrentUser method");
         User user = (User) session.getAttribute("currentUser");
         return user;
     }
@@ -47,15 +50,18 @@ public class SessionController {
     @CrossOrigin(allowCredentials = "true")
     public @ResponseBody
     User login(@RequestBody User user, HttpSession session){
+        socialLog.info("In login method");
         String email = user.getEmail();
         String password = uServ.encryptPass(user.getPassword());
         User loggedInUser = userDao.login(email, password);
         if(loggedInUser != null){
+            socialLog.info("Found matching user for "+email);
             loggedInUser.setLoginStatus(true);
             session.setAttribute("currentUser", loggedInUser);
             userDao.updateUser(loggedInUser);
             return loggedInUser;
         }
+        socialLog.info("No matching credentials for "+email);
         return null;
     }
 
@@ -70,33 +76,44 @@ public class SessionController {
 
     @GetMapping(value="/logout")
     public void logout(@RequestBody User user, HttpServletRequest req){
+        socialLog.info("Logging out user ID"+user.getUserId());
         user.setLoginStatus(false);
         userDao.updateUser(user);
         HttpSession session = req.getSession();
         session.invalidate();
+        socialLog.info("Logout complete");
     }
 
     public SessionController(){
-
+        socialLog.info("In no arg constructor for SessionController");
     }
 
     @Autowired
     public SessionController(UserDaoImpl userDao, UserService uServ) {
+        socialLog.info("In constructor for SessionController with reqs userDao and uServ");
         this.userDao = userDao;
         this.uServ = uServ;
     }
 
     public UserDaoImpl getUserDao() {
+        socialLog.info("Request for userDao via getter");
         return userDao;
     }
 
-    public UserService getuServ() {return uServ;}
+    public UserService getuServ() {
+        socialLog.info("Request for uServ via getter");
+        return uServ;
+    }
 
     @Autowired
     public void setUserDao(UserDaoImpl userDao) {
+        socialLog.info("Setting userDao via setter");
         this.userDao = userDao;
     }
 
-    public void setuServ(UserService uServ) {this.uServ=uServ;}
+    public void setuServ(UserService uServ) {
+        socialLog.info("Setting uServ via setter");
+        this.uServ=uServ;
+    }
 
 }

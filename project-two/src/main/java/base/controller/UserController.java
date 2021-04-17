@@ -6,6 +6,7 @@ import base.dao.UserDaoImpl;
 
 import base.model.User;
 import base.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class    UserController {
 
+    final static Logger socialLog = Logger.getLogger(UserController.class);
     private UserDaoImpl userDao;
     private UserService uServ;
 
@@ -31,6 +33,7 @@ public class    UserController {
     @GetMapping(value = "/getAllFriends")
     @CrossOrigin(allowCredentials = "true")
     public @ResponseBody List<User> getAllFriends (HttpSession session) {
+        socialLog.info("In getAllFriends call");
         List<User> friendList = userDao.getAllUsers();
         return friendList;
     }
@@ -44,6 +47,7 @@ public class    UserController {
     @PostMapping(value="/createUser" , produces="application/json")
     @CrossOrigin(allowCredentials = "true")
     public void createNewUser(@RequestBody User user){
+        socialLog.info("In createNewUser call");
         String encryptPass = uServ.encryptPass(user.getPassword());
         user.setPassword(encryptPass);
         userDao.createUser(user);
@@ -59,6 +63,7 @@ public class    UserController {
     @PostMapping(value="/updateUser")
     @CrossOrigin(allowCredentials = "true")
     public void updateUser(@RequestBody User newUser){
+        socialLog.info("In updateUser call");
         String encrpytPass = uServ.encryptPass(newUser.getPassword());
         newUser.setPassword(encrpytPass);
         System.out.println(newUser.toString());
@@ -73,6 +78,7 @@ public class    UserController {
      */
     @GetMapping(value="/emailPassword", params = {"email"})
     public void emailPassword (String email) {
+        socialLog.info("In emailPassword call");
         User user = userDao.getUserByEmail(email);
         String decrpytPass = uServ.decryptPass(user.getPassword());
         user.setPassword(decrpytPass);
@@ -83,13 +89,14 @@ public class    UserController {
     ////Constructors
 
     public UserController(){
+        socialLog.info("In no arg constructor for UserController");
     }
 
     ///Autowired constructor to inject the repo directly
 
     @Autowired
     public UserController(UserDaoImpl userDao, UserService uServ){
-
+        socialLog.info("In Usercontroller constructor with UserDao/UserService reqs");
         this.userDao = userDao;
         this.uServ = uServ;
     }
@@ -97,18 +104,26 @@ public class    UserController {
     ////Getters and Setters
 
     public UserDao getUserDao() {
+        socialLog.info("In getter for userDao");
         return userDao;
     }
 
-    public UserService getuServ() {return uServ;}
+    public UserService getuServ() {
+        socialLog.info("In getter for uServ");
+        return uServ;
+    }
 
 
     @Autowired
     public void setUserDao(UserDaoImpl userDao) {
+        socialLog.info("In setter for userDao");
         this.userDao = userDao;
     }
 
-    public void setuServ(UserService uServ) {this.uServ=uServ;}
+    public void setuServ(UserService uServ) {
+        socialLog.info("In setter for uServ");
+        this.uServ=uServ;
+    }
 
 
 }

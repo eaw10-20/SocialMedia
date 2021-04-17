@@ -2,6 +2,7 @@ package base.controller;
 
 import base.dao.LikesDaoImpl;
 import base.model.Likes;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class LikesController {
 
     private LikesDaoImpl likesDao;
-
+    final static Logger socialLog = Logger.getLogger(LikesController.class);
 
     /**
      * http://localhost:9005/social/api/likePost
@@ -20,6 +21,7 @@ public class LikesController {
      */
     @PostMapping(value="/likePost")
     public void likePost(@RequestBody Likes like){
+        socialLog.info("Calling likePost functionality");
         likesDao.addLike(like);
     }
 
@@ -31,6 +33,7 @@ public class LikesController {
      */
     @PutMapping(value="/unlikePost")
     public void unlikePost(@RequestBody Likes like){
+        socialLog.info("Calling unlikePost functionality");
         likesDao.unLike(like);
     }
 
@@ -39,15 +42,14 @@ public class LikesController {
     ////Constructors
 
     public LikesController(){
-
+        socialLog.info("likes controller no args constructor has been referenced");
     }
 
     @Autowired
     public LikesController(LikesDaoImpl likesDao) {
 
         this.likesDao = likesDao;
-
-
+        socialLog.info("likes controller likesDao constructor has been referenced");
     }
 
 
@@ -55,11 +57,13 @@ public class LikesController {
     ////Getters and Setters
 
     public LikesDaoImpl getLikesDao() {
+        socialLog.info("Getting likesDao from getter");
         return likesDao;
     }
 
     @Autowired
     public void setLikesDao(LikesDaoImpl likesDao) {
+        socialLog.info("Setting likesDao in setter");
         this.likesDao = likesDao;
     }
 

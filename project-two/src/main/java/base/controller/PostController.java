@@ -5,6 +5,7 @@ import base.dao.UserDaoImpl;
 import base.model.Post;
 import base.model.User;
 import base.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class    PostController {
 
+    final static Logger socialLog = Logger.getLogger(PostController.class);
     private PostDaoImpl postDao;
     private UserDaoImpl userDao;
 
@@ -29,6 +31,7 @@ public class    PostController {
     @GetMapping(value="/getAllPosts")
     public @ResponseBody
     List<Post> getAllPosts(){
+        socialLog.info("In getAllPosts method");
         List<Post> postList = postDao.getAllPosts();
         return postList;
     }
@@ -44,6 +47,7 @@ public class    PostController {
     @CrossOrigin(allowCredentials = "true")
     public @ResponseBody
     Post createNewPost(@RequestBody Post newPost){
+        socialLog.info("In createNewPost method");
         newPost = postDao.createPost(newPost);
         return newPost;
     }
@@ -56,18 +60,19 @@ public class    PostController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handle(Exception e) {
-        System.out.println("Returning HTTP 400 bad requst: " + e);
+        socialLog.error("Returning HTTP 400 bad request: ", e);
     }
 
 
     ////Constructors
 
     public PostController(){
-
+        socialLog.info("In no args constructor for PostController");
     }
 
     @Autowired
     public PostController(PostDaoImpl postDao) {
+        socialLog.info("In postDao constructor for PostController");
         this.postDao = postDao;
         insertInitialValues();
     }
@@ -76,10 +81,12 @@ public class    PostController {
     ////Getters and Setters
 
     public PostDaoImpl getPostDao() {
+        socialLog.info("In getter for PostControllerDao");
         return postDao;
     }
 
     public void setPostDao(PostDaoImpl postDao) {
+        socialLog.info("In setter for PostControllerDao");
         this.postDao = postDao;
     }
 
@@ -89,6 +96,7 @@ public class    PostController {
     public void insertInitialValues(){
         UserService uServ = new UserService();
 
+//        socialLog.info("Setting initial values for application");
 //        String pass1 = uServ.encryptPass("12356");
 
 //        User dan = new User("Frank", "LeHioya", "revaturefrank@gmail.com", pass1, "Mikey", "https://rev-p2-socialmedia-2102.s3.us-east-2.amazonaws.com/avatar_1.jpg", "Life is like an apple. You never know when one might drop on you");

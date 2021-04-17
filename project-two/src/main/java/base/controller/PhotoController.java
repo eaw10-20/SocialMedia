@@ -4,6 +4,7 @@ import base.dao.PhotoDao;
 import base.dao.PhotoDaoImpl;
 import base.model.Photos;
 import base.service.PhotoService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,10 @@ import java.io.File;
 @RestController
 @RequestMapping("/api")
 public class PhotoController {
+
+    final static Logger socialLog = Logger.getLogger(PhotoController.class);
     private PhotoDaoImpl photoDao;
     private PhotoService photoService;
-
 
 
     /**
@@ -32,14 +34,14 @@ public class PhotoController {
     @CrossOrigin(allowCredentials = "true")
     public Photos uploadPhoto(@RequestParam("imageData") MultipartFile file,
                               @RequestParam("photoString") String name, ModelMap modelMap){
-        System.out.println("In upload photo method");
+        socialLog.info("In uploadPhoto method");
 
         modelMap.addAttribute("imageData", file);
 
         //get extension
-        System.out.println("The original file name is "+file.getOriginalFilename());
-        int dotIndex = file.getOriginalFilename().lastIndexOf('.');
-        String imgExt = file.getOriginalFilename().substring(dotIndex);
+        String orgFileName = file.getOriginalFilename();
+        int dotIndex = orgFileName.lastIndexOf('.');
+        String imgExt = orgFileName.substring(dotIndex);
         //check for file type here?
         //name += imgExt;
 
@@ -49,8 +51,9 @@ public class PhotoController {
 
         try {
             file.transferTo(store);
+            socialLog.info("tempfile for "+orgFileName+" stored with new name: "+ name);
         }catch (Exception e){
-            System.out.println("Failed to transfer file");
+            socialLog.error("Failed to transfer file "+orgFileName, e);
         }
         photo.setImageData(store);
 
@@ -61,7 +64,7 @@ public class PhotoController {
 
         //clear out photo data and delete store prior to return
         photo.clearData();
-        store.delete();
+        if(store.delete()) socialLog.info("tempfile for "+name+" deleted");
 
         //return so front end can handle
         return photo;
@@ -71,16 +74,15 @@ public class PhotoController {
     ////Constructors
 
     public PhotoController(){
-
+        socialLog.info("In no arg constructor for PhotoController");
     }
 
     ///Autowired constructor to inject the repo directly
 
     @Autowired
     public PhotoController(PhotoDaoImpl photoDao, PhotoService photoService){
-
+        socialLog.info("In constructor for PhotoController with reqs photoDao and photoService");
         this.photoDao = photoDao;
-
         this.photoService = photoService;
     }
 
@@ -88,20 +90,24 @@ public class PhotoController {
     ////Getters and Setters
 
     public PhotoDao getUserDao() {
+        socialLog.info("In getter for photoDao");
         return photoDao;
     }
 
     @Autowired
     public void setPhotoDao(PhotoDaoImpl photoDao) {
+        socialLog.info("In setter for photoDao");
         this.photoDao = photoDao;
     }
 
     public PhotoService getPhotoService() {
+        socialLog.info("In getter for photoService");
         return photoService;
     }
 
     @Autowired
     public void setPhotoService(PhotoService photoService) {
+        socialLog.info("In setter for photoService");
         this.photoService = photoService;
     }
 }
