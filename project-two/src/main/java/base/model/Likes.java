@@ -2,6 +2,7 @@ package base.model;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "Likes")
 public class Likes {

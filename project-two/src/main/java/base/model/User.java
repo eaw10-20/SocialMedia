@@ -8,12 +8,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//User model
 @Entity
 @Table(name="Users")
-//@JsonIdentityInfo(
-//        generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "email")
+
 public class User {
 
     //Auto generated serial number and primary key of Hibernate_Users

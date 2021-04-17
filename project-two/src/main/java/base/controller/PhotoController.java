@@ -2,10 +2,7 @@ package base.controller;
 
 import base.dao.PhotoDao;
 import base.dao.PhotoDaoImpl;
-import base.dao.UserDao;
-import base.dao.UserDaoImpl;
 import base.model.Photos;
-import base.model.Post;
 import base.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -22,7 +19,15 @@ public class PhotoController {
     private PhotoService photoService;
 
 
-    //http://localhost:9005/social/api/uploadPhoto
+
+    /**
+     * http://localhost:9005/social/api/uploadPhoto
+     * HTTP request to upload a photo to s3 storage and then database
+     * @param file
+     * @param name
+     * @param modelMap
+     * @return
+     */
     @PostMapping(value="/uploadPhoto")
     @CrossOrigin(allowCredentials = "true")
     public Photos uploadPhoto(@RequestParam("imageData") MultipartFile file,
@@ -39,6 +44,7 @@ public class PhotoController {
         //name += imgExt;
 
         Photos photo = new Photos();
+        //Temporary store image into resource folder
         File store = new File("src/main/resources/"+name+".tmp");
 
         try {
@@ -61,17 +67,6 @@ public class PhotoController {
         return photo;
     }
 
-    //http://localhost:9005/social/api/downloadPhoto
-//    @PostMapping(value="/downloadPhoto", params={"id"}, produces="application/json)
-//    public void getPhotoById(){
-//
-//    }
-
-
-    @GetMapping(value= "/test")
-    public void addAvatarPhoto() {
-        System.out.println("in the get test method");
-        photoDao.uploadAvatarPhoto(1,"IMG_2603.jpg");}
 
     ////Constructors
 

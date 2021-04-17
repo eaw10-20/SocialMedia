@@ -1,20 +1,14 @@
 package base.controller;
 
-import base.dao.PhotoDao;
-import base.dao.PhotoDaoImpl;
 import base.dao.PostDaoImpl;
 import base.dao.UserDaoImpl;
 import base.model.Post;
 import base.model.User;
 import base.service.UserService;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -27,49 +21,44 @@ public class    PostController {
     private UserDaoImpl userDao;
 
 
-    //http://localhost:9005/social/api/getAllPosts
-
+    /**
+     * http://localhost:9005/social/api/getAllPosts
+     * HTTP request for a list of all posts
+     * @return
+     */
     @GetMapping(value="/getAllPosts")
     public @ResponseBody
     List<Post> getAllPosts(){
         List<Post> postList = postDao.getAllPosts();
-
-
-
         return postList;
     }
 
-    //http://localhost:9005/social/api/post/create
 
     /**
-     * Create a new post
+     * http://localhost:9005/social/api/post/create
+     * Create a new post and persist in database
+     * then return the new post with post_id for s3 storage to save a image file
      * @param newPost
      */
     @PostMapping(value="/post/create")
     @CrossOrigin(allowCredentials = "true")
     public @ResponseBody
     Post createNewPost(@RequestBody Post newPost){
-        System.out.println("In the create new post method");
-        System.out.println(newPost);
         newPost = postDao.createPost(newPost);
-        System.out.println("The post id is "+newPost.getPostId());
         return newPost;
     }
 
+    /**
+     * Exception handler for HTTP 400
+     * sout exception that occurs
+     * @param e
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handle(Exception e) {
         System.out.println("Returning HTTP 400 bad requst: " + e);
     }
 
-
-
-    //    http://localhost:9005/social/api/updatePost
-    @PutMapping(value="/updatePost")
-    public void updatePost(@RequestBody Post updatedPost){
-        System.out.println("in the update post");
-//        postDao.updatePost(updatedPost);
-    }
 
     ////Constructors
 
@@ -94,8 +83,10 @@ public class    PostController {
         this.postDao = postDao;
     }
 
+    /**
+     * Our initializer to intialize our database
+     */
     public void insertInitialValues(){
-
         UserService uServ = new UserService();
 
         String pass1 = uServ.encryptPass("12356");

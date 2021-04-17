@@ -6,19 +6,17 @@ import java.util.List;
 
 public interface UserDao {
 
-        public void createUser(User user);
+         void createUser(User user);
 
-        public User login(String email, String password);
+         User login(String email, String password);
 
-        public User getUserByEmail(String email);
+         User getUserByEmail(String email);
 
-        public boolean updateUser(User user);
+         boolean updateUser(User user);
 
-        public List<User> getAllUsersLoggedIn();
+         List<User> getAllUsersLoggedIn();
 
-        public List<User> getAllUsers();
+         List<User> getAllUsers();
 
-        public User getUserByFullName(String firstName, String lastName);
 
-        User getUserById(int id);
 }

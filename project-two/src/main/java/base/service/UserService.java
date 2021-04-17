@@ -96,7 +96,6 @@ public class UserService {
      */
     public String encryptPass(String pass){
         try {
-            System.out.println("in the encrypt pass method");
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
 
@@ -115,6 +114,11 @@ public class UserService {
         }
     }
 
+    /**
+     * Takes in a encrypted string and decryptes into a string password
+     * @param pass
+     * @return
+     */
     public String decryptPass(String pass) {
         String decryptedText=null;
         try {
@@ -137,6 +141,11 @@ public class UserService {
     }
 
 
+    /**
+     * Create an session with google messaging servers to send an email message
+     * if user exists in database
+     * @param user
+     */
     public static void passwordReset (User user) {
         // email ID of Recipient.
 
@@ -176,6 +185,13 @@ public class UserService {
 
     }
 
+    /**
+     * Prepares message
+     * Sends a email with head forgot something? and a decrypted password if user exists in system
+     * @param session
+     * @param myAccountEmail
+     * @param user
+     */
     public static void prepareMessage (Session session, String myAccountEmail, User user) {
         try
         {

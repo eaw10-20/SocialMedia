@@ -21,10 +21,7 @@ public class PhotoService {
 
     PhotoDaoImpl photoDao;
 
-    ////S3 static variables
     public static Map<String, String> env = System.getenv();
-//    public static String ACCESS_KEY_ID = System.getenv("S3_ACCESS_KEY");
-//    public static String ACCESS_SEC_KEY = System.getenv("S3_SEC_KEY");
     public static String ACCESS_KEY_ID = "AKIAQG2OO4PTDQ27M2Z6";
     public static String ACCESS_SEC_KEY = "+SWSR917+tKkMZBAhqzP/DgHDJTkRc+tBC2Ira9K";
 
@@ -53,6 +50,11 @@ public class PhotoService {
 
     ////Business Logic
     //dao calls
+
+    /**
+     * Upload photos
+     * @param photo
+     */
     public void uploadPhoto(Photos photo){
         //for some reason this isn't injected.. have to look into it later
         photoDao = new PhotoDaoImpl();
@@ -69,6 +71,11 @@ public class PhotoService {
 
 
     //misc logic
+
+    /**
+     * Using key_id and sec_key grabs s3client session
+     * @return
+     */
     public AmazonS3 getS3Client(){
         //create a credentials object to identify server for authentification
         AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY_ID, ACCESS_SEC_KEY);

@@ -2,12 +2,9 @@ package base.dao;
 
 import base.model.Post;
 import org.hibernate.Hibernate;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import util.HibernateUtil;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -22,6 +19,11 @@ public class PostDaoImpl implements PostDao {
 
     ////Business Logic
 
+    /**
+     * add a new post and then return that post for image saving
+     * @param post
+     * @return
+     */
     @Override
     public Post createPost(Post post) {
         int id = (int) sesFact.getCurrentSession().save(post);
@@ -29,20 +31,12 @@ public class PostDaoImpl implements PostDao {
         return post;
     }
 
-    @Override
-    public List<Post> getPostsByUserID(int userId) {
 
-        String hql = "FROM Post WHERE user_id =" + userId;
-        List<Post> userPosts = sesFact.getCurrentSession().createQuery(hql).list();
 
-        return userPosts;
-    }
-
-    @Override
-    public void updatePost(Post post) {
-        sesFact.getCurrentSession().update(post);
-    }
-
+    /**
+     * return an array of all posts in the database in descending order based on time submitted
+     * @return
+     */
     public List<Post> getAllPosts(){
         List<Post> userPosts = sesFact.getCurrentSession().createQuery("FROM Post ORDER BY post_submitted DESC", Post.class).list();
         for(Post p : userPosts){
