@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserServicesService } from '../../services/user-services.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class EmailPasswordComponent implements OnInit {
 
   private email: string;
 
-  constructor(private userService: UserServicesService) { }
+  constructor(private userService: UserServicesService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +27,11 @@ export class EmailPasswordComponent implements OnInit {
   sendEmail() {
     console.log("sending email")
     this.userService.sendPasswordEmail(this.email);
+    this.router.navigate (['/'])
+  }
+
+  goBack() {
+    this.router.navigate(['/'])
   }
 
 }

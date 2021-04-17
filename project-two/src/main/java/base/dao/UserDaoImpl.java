@@ -1,6 +1,5 @@
 package base.dao;
 
-import base.model.Post;
 import base.model.User;
 
 import org.hibernate.SessionFactory;
@@ -18,25 +17,21 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sesFact;
 
     /**
-     * Inserts one user into the "user" table
+     * Inserts new user into the "user" table
      * @param user
      */
     @Override
     public void createUser(User user) {
-        System.out.println("in the create user method in user dao impl");
-
         sesFact.getCurrentSession().save(user);
     }
 
     /**
-     *
+     * Update existing user information
      * @param user
      * @return
      */
-
     @Override
     public boolean updateUser(User user) {
-        System.out.println("in the update user method in user dao impl");
         String id = String.valueOf(user.getUserId());
         sesFact.getCurrentSession().update(id, user);
 
@@ -44,6 +39,10 @@ public class UserDaoImpl implements UserDao {
     }
 
 
+    /**
+     * Returns a list of all users loggedin
+     * @return
+     */
     @Override
     public List<User> getAllUsersLoggedIn() {
         System.out.println("af");
@@ -53,6 +52,10 @@ public class UserDaoImpl implements UserDao {
         return loggedIn;
     }
 
+    /**
+     * Returns a list of all users in the database
+     * @return
+     */
     public List<User> getAllUsers() {
         List friendList = sesFact.getCurrentSession().createQuery("from User", User.class).list();
         return friendList;
@@ -65,36 +68,23 @@ public class UserDaoImpl implements UserDao {
      * @param password
      * @return
      */
-
     @Override
     public User login(String email, String password) {
-
         User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + email + "' AND password = '" + password +"'", User.class).getSingleResult();
-
         return user;
     }
 
+    /**
+     * Returns a user based on their unique email
+     * @param user_email
+     * @return
+     */
     @Override
     public User getUserByEmail(String user_email) {
-        System.out.println(user_email);
         User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + user_email + "'", User.class).getSingleResult();
-
         return user;
     }
 
-    @Override
-    public User getUserByFullName(String firstName, String lastName) {
-
-        User user = sesFact.getCurrentSession().createQuery("from User WHERE user_fname = '" + firstName + "' AND user_lname = '" + lastName +"'", User.class).uniqueResult();
-
-        return user;
-
-    }
-
-    public User getUserById(int id){
-        User user = sesFact.getCurrentSession().get(User.class, id);
-        return user;
-    }
 
     ////Constructors
 

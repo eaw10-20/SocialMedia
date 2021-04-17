@@ -1,30 +1,21 @@
 package base.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import net.bytebuddy.build.ToStringPlugin;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-//import java.sql.Date;     <---- Commenting this out to fix temporal error. Delete if no problems
 import java.util.Date;
 
-//Post model
 @Entity
 @Table(name="User_Post")
-//@JsonIdentityInfo(
-//        generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "postId")
+
 public class Post {
 
     //Auto generated serial number and primary key of User_Post
     @Id
-    @Column(name="post_id")
+    @Column(name="post_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postId;
 
@@ -46,18 +37,16 @@ public class Post {
     @OneToMany(mappedBy = "myPost", fetch = FetchType.EAGER)
     private List<Photos> photoList = new ArrayList<>();
 
-    //Many posts have a single creator (aka user)
-    //Connected to User in the @JoinColumn portion with a new column named user_id
-//    @JsonBackReference
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User userId;
 
-    //Many to many connection that is mapped by posts
-    //posts is found in the User class and is the ArrayList that contains all posts that a user could have
-    //Connecting two Arrays??? Not to sure how this works
-//    @JsonIgnore
-    @ManyToMany(mappedBy = "postLikes")
+    @ManyToMany
+    @JoinTable(
+            name="PostLikes",
+            joinColumns = {@JoinColumn (name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
     private List<User> users = new ArrayList<>();
 
 

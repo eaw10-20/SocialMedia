@@ -6,12 +6,8 @@ import java.util.List;
 
 public interface PostDao {
 
-    public Post createPost(Post post);
+    Post createPost(Post post);
 
-    public List<Post> getPostsByUserID(int userId);
+    List<Post> getAllPosts();
 
-    public void updatePost(Post post);
-
-    //saving this for now.. maybe by id would be better?
-    //public void deletePost(Post post);
 }

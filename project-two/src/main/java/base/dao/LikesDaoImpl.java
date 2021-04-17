@@ -1,12 +1,9 @@
 package base.dao;
 
 import base.model.Likes;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import util.HibernateUtil;
 import org.hibernate.query.Query;
 
 import javax.transaction.Transactional;
@@ -18,25 +15,23 @@ public class LikesDaoImpl implements LikesDao {
 
     SessionFactory sesFact;
 
-    @Override
-    public Long getAllLikesOnPost(int postId) {
-
-        Long totalLikes = (Long)sesFact.getCurrentSession().createQuery("SELECT count(user_id) from Likes WHERE post_id ='" + postId + "'").getSingleResult();
-        return totalLikes;
-    }
-
+    /**
+     * Takes a user_id and post_id and adds to a postLikes junction table
+     * @param like
+     */
     public void addLike(Likes like){
-        System.out.println("adding like");
         sesFact.getCurrentSession().persist(like);
     }
 
+    /**
+     * Takes a user_id and post_id and removes entity from postLikes junction table
+     * @param like
+     */
     @Override
     public void unLike(Likes like) {
 
         int postId = like.getPostId();
-        System.out.println("postid " + postId);
         int userId = like.getUserId();
-        System.out.println(("userId " + userId));
         Query query = sesFact.getCurrentSession().createQuery("DELETE from Likes WHERE post_id ='" + postId + "' AND user_id = '" + userId +"'");
 
         query.executeUpdate();
