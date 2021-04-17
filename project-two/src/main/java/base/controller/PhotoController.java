@@ -39,7 +39,7 @@ public class PhotoController {
         //name += imgExt;
 
         Photos photo = new Photos();
-        File store = new File("src/main/resources/"+name+".tmp");
+        File store = new File("src/main/resources/tmpfiles/"+name+".tmp");
 
         try {
             file.transferTo(store);
