@@ -14,13 +14,13 @@ const routes: Routes = [
   {path: 'forgotPassword', component: EmailPasswordComponent, data: { animation: 'evenRighter' }},
   { path: 'chat', component: ChatComponent, data: { animation: 'evenRighter' } },
   { path: 'new-user', component: NewUserComponent, data: { animation: 'isRight' } },
-  { path: '', component: MainpageComponent, data: { animation: 'isRight' }},
+  { path: 'main', component: MainpageComponent, data: { animation: 'isRight' }},
   { path: 'profile/:username/:id', component: ProfileComponent, data: { animation: 'righter' }},
   { path: '**', component: LoginpageComponent, data: { animation: 'isLeft' } }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,  {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
