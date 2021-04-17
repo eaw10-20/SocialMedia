@@ -14,7 +14,12 @@ public class LikesController {
 
     private LikesDaoImpl likesDao;
 
-    //http://localhost:9005/social/api/likePost
+
+    /**
+     * http://localhost:9005/social/api/likePost
+     * Adds a like to
+     * @param like
+     */
     @PostMapping(value="/likePost")
     public void likePost(@RequestBody Likes like){
         likesDao.addLike(like);

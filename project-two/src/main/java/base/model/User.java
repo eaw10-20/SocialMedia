@@ -1,13 +1,8 @@
 package base.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import net.bytebuddy.build.ToStringPlugin;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.ColumnTransformer;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
