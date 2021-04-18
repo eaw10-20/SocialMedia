@@ -45,7 +45,6 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public List<User> getAllUsersLoggedIn() {
-        System.out.println("af");
 
         List loggedIn = sesFact.getCurrentSession().createQuery("from User WHERE loggedIn = '" + true + "' ").list();
 
@@ -84,6 +83,13 @@ public class UserDaoImpl implements UserDao {
         User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + user_email + "'", User.class).getSingleResult();
         return user;
     }
+
+    @Override
+    public User getUserByFullName(String firstName, String lastName) {
+        User user = sesFact.getCurrentSession().createQuery("from User WHERE user_fname = '" + firstName + "' AND user_lname = '" + lastName +"'", User.class).uniqueResult();
+        return user;
+    }
+
 
 
     ////Constructors

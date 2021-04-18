@@ -18,5 +18,5 @@ public interface UserDao {
 
          List<User> getAllUsers();
 
-
+         User getUserByFullName(String firstName, String lastName);
 }
