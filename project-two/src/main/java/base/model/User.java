@@ -8,12 +8,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//User model
 @Entity
 @Table(name="Users")
-//@JsonIdentityInfo(
-//        generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "email")
+
 public class User {
 
     //Auto generated serial number and primary key of Hibernate_Users
@@ -55,7 +52,6 @@ public class User {
     private String userDescription;
 
 //    Each User can have many post
-//    User posts are stored in List<Post>????
     @JsonIgnore
     @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Post> postList = new ArrayList<>();
@@ -64,12 +60,8 @@ public class User {
     //Create a new table name Likes and have two columns named user_id and post_id
     //In the User class able to call post that have User id and stored it in posts List
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="Likes",
-            joinColumns = {@JoinColumn (name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "post_id")}
-    )
+    @ManyToMany(mappedBy = "users", cascade =
+            {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Post> postLikes = new ArrayList<>();
 
 
@@ -149,9 +141,16 @@ public class User {
     }
 
 
-
     //Getters and Setters
 
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
+
+    public void setPostLikes(List<Post> postLikes) {
+        this.postLikes = postLikes;
+    }
 
     public String getUserDescription() {
         return userDescription;
@@ -232,6 +231,10 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public void addPost(Post post){
+        this.postList.add(post);
     }
 
     //toString() method

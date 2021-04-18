@@ -6,14 +6,10 @@ import base.dao.UserDaoImpl;
 
 import base.model.User;
 import base.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.naming.Context;
 import javax.servlet.http.HttpSession;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -22,80 +18,67 @@ import java.util.List;
 @RequestMapping("/api")
 public class    UserController {
 
+    final static Logger socialLog = Logger.getLogger(UserController.class);
     private UserDaoImpl userDao;
     private UserService uServ;
 
-    //http://localhost:9005/social/api/getUserById/
-    //changed to GET for testing purposes
-    @CrossOrigin(allowCredentials = "true")
-    @GetMapping(value="/getUserById", params={"id"}, produces="application/json")
-    public @ResponseBody
-    ResponseEntity<User> getUserById(int id, HttpSession session){
 
-        //For testing logging in user
-        User loggedInUser;
-        System.out.println("in the get user by id method");
-        System.out.println(id);
-
-        loggedInUser = userDao.getUserById(id);
-        if(loggedInUser != null){
-            loggedInUser.setLoginStatus(true);
-            session.setAttribute("currentUser", loggedInUser);
-            userDao.updateUser(loggedInUser);
-        }
-        return new ResponseEntity<User>(loggedInUser,
-                HttpStatus.OK);
-    }
-
-
+    /**
+     * http://localhost:9005/social/api/getAllFriends
+     * HTTP request for a list of All users in the database
+     * Returns a list of all users in the database
+     * @param session
+     * @return
+     */
     @GetMapping(value = "/getAllFriends")
     @CrossOrigin(allowCredentials = "true")
     public @ResponseBody List<User> getAllFriends (HttpSession session) {
-//        User user = (User) session.getAttribute("currentUser");
+        socialLog.info("In getAllFriends call");
         List<User> friendList = userDao.getAllUsers();
-
         return friendList;
     }
 
-
-    //http://localhost:9005/social/api/createUser
+    /**
+     * http://localhost:9005/social/api/createUser
+     * HTTP request to add a new user to the database
+     * Takes inputted password and encrypts it before adding user
+     * @param user
+     */
     @PostMapping(value="/createUser" , produces="application/json")
     @CrossOrigin(allowCredentials = "true")
     public void createNewUser(@RequestBody User user){
+        socialLog.info("In createNewUser call");
         String encryptPass = uServ.encryptPass(user.getPassword());
         user.setPassword(encryptPass);
         userDao.createUser(user);
     }
 
 
-    //http://localhost:9005/social/api/getUserByFullName
-    @PutMapping(value="/getUserByFullName", params={"firstName", "lastName"}, produces="application/json")
-    public @ResponseBody
-    ResponseEntity<User> getUserByFullName(String firstName, String lastName){
-        return new ResponseEntity<User>(userDao.getUserByFullName(firstName, lastName),
-                HttpStatus.MULTI_STATUS.I_AM_A_TEAPOT);
-    }
-
-    @GetMapping(value="/getAllUsersLoggedIn")
-    public @ResponseBody
-    List<User> getsAllUsersLoggedIn(){
-        return userDao.getAllUsersLoggedIn();
-    }
-
-    //http://localhost:9005/social/api/updateUser
+    /**
+     * http://localhost:9005/social/api/updateUser
+     * HTTP request to update existing user information
+     * Takes password and encrypts before inputting data
+     * @param newUser
+     */
     @PostMapping(value="/updateUser")
     @CrossOrigin(allowCredentials = "true")
     public void updateUser(@RequestBody User newUser){
+        socialLog.info("In updateUser call");
         String encrpytPass = uServ.encryptPass(newUser.getPassword());
         newUser.setPassword(encrpytPass);
         System.out.println(newUser.toString());
         userDao.updateUser(newUser);
     }
 
-    //http://localhost:9005/social/api/emailPassword
+    /**
+     * http://localhost:9005/social/api/emailPassword
+     * HTTP request that sends an email to is given in the email param
+     * If the user exists in the database send an email with decrypted password
+     * @param email
+     */
     @GetMapping(value="/emailPassword", params = {"email"})
     public void emailPassword (String email) {
-        System.out.println("in the email password method in user controller");
+        socialLog.info("In emailPassword call");
         User user = userDao.getUserByEmail(email);
         String decrpytPass = uServ.decryptPass(user.getPassword());
         user.setPassword(decrpytPass);
@@ -106,13 +89,14 @@ public class    UserController {
     ////Constructors
 
     public UserController(){
+        socialLog.info("In no arg constructor for UserController");
     }
 
     ///Autowired constructor to inject the repo directly
 
     @Autowired
     public UserController(UserDaoImpl userDao, UserService uServ){
-
+        socialLog.info("In Usercontroller constructor with UserDao/UserService reqs");
         this.userDao = userDao;
         this.uServ = uServ;
     }
@@ -120,18 +104,26 @@ public class    UserController {
     ////Getters and Setters
 
     public UserDao getUserDao() {
+        socialLog.info("In getter for userDao");
         return userDao;
     }
 
-    public UserService getuServ() {return uServ;}
+    public UserService getuServ() {
+        socialLog.info("In getter for uServ");
+        return uServ;
+    }
 
 
     @Autowired
     public void setUserDao(UserDaoImpl userDao) {
+        socialLog.info("In setter for userDao");
         this.userDao = userDao;
     }
 
-    public void setuServ(UserService uServ) {this.uServ=uServ;}
+    public void setuServ(UserService uServ) {
+        socialLog.info("In setter for uServ");
+        this.uServ=uServ;
+    }
 
 
 }

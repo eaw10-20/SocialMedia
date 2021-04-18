@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
 group 'org.example'
@@ -66,6 +67,10 @@ dependencies {
     // https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
     //accept incoming files
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+
+    // https://mvnrepository.com/artifact/log4j/log4j
+    //for logging
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'

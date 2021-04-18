@@ -49,7 +49,7 @@
 
   </form>
     
-      <button class="form-control mb-1 btn-success" type="submit" [disabled]="!profileForm.valid">Submit</button>
+      <button (click)="onSubmit()" class="form-control mb-1 btn-success" type="submit" [disabled]="!profileForm.valid">Submit</button>
 
       <button routerLink="/" routerLinkActive="active" class="form-control mb-2 btn btn-primary" type="button">
         Back

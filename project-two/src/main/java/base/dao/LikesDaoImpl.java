@@ -1,12 +1,11 @@
 package base.dao;
 
+import base.controller.UserController;
 import base.model.Likes;
-import org.hibernate.Session;
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import util.HibernateUtil;
 import org.hibernate.query.Query;
 
 import javax.transaction.Transactional;
@@ -15,41 +14,42 @@ import javax.transaction.Transactional;
 @Transactional
 public class LikesDaoImpl implements LikesDao {
 
-
+    final static Logger socialLog = Logger.getLogger(LikesDaoImpl.class);
     SessionFactory sesFact;
 
-    @Override
-    public Long getAllLikesOnPost(int postId) {
-
-        Long totalLikes = (Long)sesFact.getCurrentSession().createQuery("SELECT count(user_id) from Likes WHERE post_id ='" + postId + "'").getSingleResult();
-        return totalLikes;
-    }
-
+    /**
+     * Takes a user_id and post_id and adds to a postLikes junction table
+     * @param like
+     */
     public void addLike(Likes like){
-        System.out.println("adding like");
         sesFact.getCurrentSession().persist(like);
+        socialLog.info("Added like from "+like.getUserId()+" to db");
     }
 
+    /**
+     * Takes a user_id and post_id and removes entity from postLikes junction table
+     * @param like
+     */
     @Override
     public void unLike(Likes like) {
 
         int postId = like.getPostId();
-        System.out.println("postid " + postId);
         int userId = like.getUserId();
-        System.out.println(("userId " + userId));
         Query query = sesFact.getCurrentSession().createQuery("DELETE from Likes WHERE post_id ='" + postId + "' AND user_id = '" + userId +"'");
 
         query.executeUpdate();
+        socialLog.info("Removed like from "+userId+" from db");
     }
 
     ////Constructors
 
     public LikesDaoImpl(){
-
+        socialLog.info("LikesDaoImpl no arg constructor called");
     }
 
     @Autowired
     public LikesDaoImpl(SessionFactory sesFact) {
+        socialLog.info("LikesDaoImpl constructor with sesFact req called");
         this.sesFact = sesFact;
     }
 
@@ -57,11 +57,13 @@ public class LikesDaoImpl implements LikesDao {
 
 
     public SessionFactory getSesFact() {
+        socialLog.info("sesFact requested via getter");
         return sesFact;
     }
 
     @Autowired
     public void setSesFact(SessionFactory sesFact) {
+        socialLog.info("sesFact set called via setter");
         this.sesFact = sesFact;
     }
 }

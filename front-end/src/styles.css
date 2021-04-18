@@ -61,3 +61,12 @@ main {
     width: 70%;
   }
 }
+
+.customborder {
+  border: black solid;
+  border-width: 0.005rem;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.411);
+}

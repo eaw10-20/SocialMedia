@@ -3,7 +3,6 @@ package base.service;
 import base.dao.PostDaoImpl;
 import base.model.Post;
 
-import java.util.List;
 
 public class PostService {
 
@@ -38,12 +37,6 @@ public class PostService {
         postDao.createPost(post);
     }
 
-    public List<Post> getPostsByUserId(int userId){
-        return postDao.getPostsByUserID(userId);
-    }
 
-    public void updatePost(Post post){
-        postDao.updatePost(post);
-    }
 
 }
