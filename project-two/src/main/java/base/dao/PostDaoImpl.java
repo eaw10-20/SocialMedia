@@ -29,7 +29,7 @@ public class PostDaoImpl implements PostDao {
     @Override
 
     public Post createPost(Post post) {
-        sesFact.getCurrentSession().saveOrUpdate(post);
+        sesFact.getCurrentSession().save(post);
         socialLog.info("Saved post to db");
         return post;
     }

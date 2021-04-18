@@ -14,6 +14,7 @@ public class LikesController {
     private LikesDaoImpl likesDao;
     final static Logger socialLog = Logger.getLogger(LikesController.class);
 
+
     /**
      * http://localhost:9005/social/api/likePost
      * HTTP request to add a user_id and post_id to a postLikes junction table
