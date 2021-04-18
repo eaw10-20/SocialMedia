@@ -1,6 +1,8 @@
 package base.dao;
 
+import base.controller.UserController;
 import base.model.Likes;
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +14,7 @@ import javax.transaction.Transactional;
 @Transactional
 public class LikesDaoImpl implements LikesDao {
 
-
+    final static Logger socialLog = Logger.getLogger(LikesDaoImpl.class);
     SessionFactory sesFact;
 
     /**
@@ -21,6 +23,7 @@ public class LikesDaoImpl implements LikesDao {
      */
     public void addLike(Likes like){
         sesFact.getCurrentSession().persist(like);
+        socialLog.info("Added like from "+like.getUserId()+" to db");
     }
 
     /**
@@ -35,16 +38,18 @@ public class LikesDaoImpl implements LikesDao {
         Query query = sesFact.getCurrentSession().createQuery("DELETE from Likes WHERE post_id ='" + postId + "' AND user_id = '" + userId +"'");
 
         query.executeUpdate();
+        socialLog.info("Removed like from "+userId+" from db");
     }
 
     ////Constructors
 
     public LikesDaoImpl(){
-
+        socialLog.info("LikesDaoImpl no arg constructor called");
     }
 
     @Autowired
     public LikesDaoImpl(SessionFactory sesFact) {
+        socialLog.info("LikesDaoImpl constructor with sesFact req called");
         this.sesFact = sesFact;
     }
 
@@ -52,11 +57,13 @@ public class LikesDaoImpl implements LikesDao {
 
 
     public SessionFactory getSesFact() {
+        socialLog.info("sesFact requested via getter");
         return sesFact;
     }
 
     @Autowired
     public void setSesFact(SessionFactory sesFact) {
+        socialLog.info("sesFact set called via setter");
         this.sesFact = sesFact;
     }
 }

@@ -17,8 +17,10 @@ export class MainpageComponent implements OnInit {
     this.getAllUsers();
   }
 
+  //retrieves current user from user service
   currentUser() {
     console.log("Setting current user session from Main component")
+    //subscribes to value returned from current user service
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
@@ -30,7 +32,4 @@ export class MainpageComponent implements OnInit {
   getAllUsers() {
     this.userService.getFriendsList();
   }
-
-  
-
 }

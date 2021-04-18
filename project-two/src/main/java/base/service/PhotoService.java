@@ -8,6 +8,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import base.dao.PhotoDaoImpl;
 import base.model.Photos;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.Map;
 @Transactional
 public class PhotoService {
 
+    final static Logger socialLog = Logger.getLogger(PhotoService.class);
     PhotoDaoImpl photoDao;
 
     public static Map<String, String> env = System.getenv();
@@ -29,10 +31,11 @@ public class PhotoService {
     ////Constructors
 
     public PhotoService(){
-
+        socialLog.info("In no arg constructor for PhotoService");
     }
 
     public PhotoService(PhotoDaoImpl photoDao) {
+        socialLog.info("In constructor for PhotoService with photoDao req");
         this.photoDao = photoDao;
     }
 
@@ -56,6 +59,7 @@ public class PhotoService {
      * @param photo
      */
     public void uploadPhoto(Photos photo){
+        socialLog.info("Calling uploadPhoto service");
         //for some reason this isn't injected.. have to look into it later
         photoDao = new PhotoDaoImpl();
         photoDao.uploadPhoto(photo, getS3Client());
@@ -77,6 +81,8 @@ public class PhotoService {
      * @return
      */
     public AmazonS3 getS3Client(){
+        socialLog.info("Creating S3 client");
+
         //create a credentials object to identify server for authentification
         AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY_ID, ACCESS_SEC_KEY);
 

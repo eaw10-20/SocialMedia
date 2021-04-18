@@ -27,28 +27,25 @@ export class UserServicesService {
   constructor(private HttpCli: HttpClient, private router: Router) { }
 
   async checkLogin(user: User) {
+    //tries to make a request, if sucess we will navigate to main page
+    //and return as a success 
     try {    
     const promise = await this.HttpCli.post<User>(`http://localhost:9005/social/login/`, user,
     {withCredentials: true}).toPromise()
     if(promise != null) {
       this.router.navigate (['/main'])
-      console.log("hey")
       return true
-  } else {
-    this.router.navigate(['/fail'])   
   }
-  console.log("hey")
+  //if the request fails we fail and return false
     }
     catch(err) {
-      console.log("bad")
       return false
-
     }
-//return false
   } 
 
 
   createUser(user: User) {
+    //makes request to create a new user passing in gathered information
     const promise = this.HttpCli.post<User>(`http://localhost:9005/social/api/createUser/`, user,
     {withCredentials: true}).toPromise()
     promise.then((data) => {
@@ -66,9 +63,6 @@ export class UserServicesService {
           this.userFriends= data;
         }
       )
-        // let index = this.userFriends.indexOf(this.currentUser)
-        // this.userFriends.splice(index,1)
-
       return of(this.userFriends);
   }
 
@@ -91,11 +85,7 @@ export class UserServicesService {
       }
     }
     this.currentUserProfileView.subscribe(data => {console.log(data)})
-    // console.log(this.currentUserProfileView)
-    // return this.CurrentProfileView;
   }
-
-
 
   setCurrentUserSession(user: User) {
     this.currentUser = user;

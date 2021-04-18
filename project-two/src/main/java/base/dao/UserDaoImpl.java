@@ -2,6 +2,7 @@ package base.dao;
 
 import base.model.User;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
 
+    final static Logger socialLog = Logger.getLogger(UserDaoImpl.class);
     private SessionFactory sesFact;
 
     /**
@@ -23,6 +25,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void createUser(User user) {
         sesFact.getCurrentSession().save(user);
+        socialLog.info("Created a new user in the db");
     }
 
     /**
@@ -34,7 +37,7 @@ public class UserDaoImpl implements UserDao {
     public boolean updateUser(User user) {
         String id = String.valueOf(user.getUserId());
         sesFact.getCurrentSession().update(id, user);
-
+        socialLog.info("Updated user ID"+id+" in the db");
         return true;
     }
 
@@ -47,6 +50,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsersLoggedIn() {
 
         List loggedIn = sesFact.getCurrentSession().createQuery("from User WHERE loggedIn = '" + true + "' ").list();
+        socialLog.info("Got all logged in users from db");
 
         return loggedIn;
     }
@@ -57,6 +61,7 @@ public class UserDaoImpl implements UserDao {
      */
     public List<User> getAllUsers() {
         List friendList = sesFact.getCurrentSession().createQuery("from User", User.class).list();
+        socialLog.info("Got all users from db");
         return friendList;
     }
 
@@ -70,6 +75,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User login(String email, String password) {
         User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + email + "' AND password = '" + password +"'", User.class).getSingleResult();
+        socialLog.info("Got user from db");
         return user;
     }
 
@@ -81,6 +87,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByEmail(String user_email) {
         User user = sesFact.getCurrentSession().createQuery("from User WHERE email = '" + user_email + "'", User.class).getSingleResult();
+        socialLog.info("Got user from db via email");
         return user;
     }
 
@@ -95,19 +102,22 @@ public class UserDaoImpl implements UserDao {
     ////Constructors
 
     public UserDaoImpl(){
-
+        socialLog.info("In no arg constructor for UserDaoImpl");
     }
 
     public UserDaoImpl(SessionFactory sesFact) {
+        socialLog.info("In no arg constructor for UserDaoImpl");
         this.sesFact = sesFact;
     }
 
     public SessionFactory getSesFact() {
+        socialLog.info("Getter called for sesFact");
         return sesFact;
     }
 
     @Autowired
     public void setSesFact(SessionFactory sesFact) {
+        socialLog.info("Setter called for sesFact");
         this.sesFact = sesFact;
     }
 }

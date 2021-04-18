@@ -2,6 +2,7 @@ package base.service;
 
 import base.dao.UserDaoImpl;
 import base.model.User;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.Cipher;
@@ -26,6 +27,7 @@ import java.util.Properties;
 public class UserService {
 
     private UserDaoImpl userDao;
+    final static Logger socialLog = Logger.getLogger(UserService.class);
     private static final String SECRET_KEY = "my_super_secret_key_ho_ho_ho";
     private static final String SALT = "saltykeypattern";
 
@@ -84,9 +86,9 @@ public class UserService {
         return userDao.login(email, password);
     }
 
-    public User getUserByFullName(String firstName, String lastName){
-        return userDao.getUserByFullName(firstName, lastName);
-    }
+//    public User getUserByFullName(String firstName, String lastName){
+//        return userDao.getUserByFullName(firstName, lastName);
+//    }
 
     /**
      * Takes in a password and encrypts it so that the password can be safely stored  in the database
@@ -95,6 +97,7 @@ public class UserService {
      * @return
      */
     public String encryptPass(String pass){
+        socialLog.info("In encryptPass method");
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             IvParameterSpec ivspec = new IvParameterSpec(iv);
@@ -109,7 +112,7 @@ public class UserService {
             return Base64.getEncoder()
                     .encodeToString(cipher.doFinal(pass.getBytes(StandardCharsets.UTF_8)));
         }catch (Exception e){
-            System.out.println("FAILED TO ENCRYPT");
+            socialLog.error("FAILED TO ENCRYPT", e);
             return null;
         }
     }
@@ -120,6 +123,7 @@ public class UserService {
      * @return
      */
     public String decryptPass(String pass) {
+        socialLog.info("In decryptPass method");
         String decryptedText=null;
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -135,6 +139,7 @@ public class UserService {
             return new String(cipher.doFinal(Base64.getDecoder().decode(pass)));
 
         } catch (Exception e) {
+            socialLog.error("FAILED TO DECRYPT PASSWORD", e);
             e.printStackTrace();
         }
         return null;
@@ -147,6 +152,7 @@ public class UserService {
      * @param user
      */
     public static void passwordReset (User user) {
+        socialLog.info("In passwordReset method for user "+user.getEmail());
         // email ID of Recipient.
 
         // email ID/password of  Sender.
@@ -195,6 +201,8 @@ public class UserService {
     public static void prepareMessage (Session session, String myAccountEmail, User user) {
         try
         {
+            socialLog.info("Preparing message for email password recovery");
+
             // MimeMessage object.
             MimeMessage message = new MimeMessage(session);
 
@@ -212,9 +220,10 @@ public class UserService {
                     user.getPassword());
 
             Transport.send(message);
-            System.out.println("Mail successfully sent");
+            socialLog.info("Mail successfully sent!");
         }
         catch (MessagingException mex) {
+            socialLog.error("FAILED TO SEND MESSAGE", mex);
             mex.printStackTrace();
         }
     }
