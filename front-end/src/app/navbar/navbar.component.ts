@@ -25,12 +25,12 @@ export class NavbarComponent implements OnInit  {
   ngOnInit(): void {
     this.loadFriendList();
     this.currentUser();
-
-
   }
+
 
   currentUser() {
     console.log("Grabbing current user session form nav bar")
+    //subscribes to user returned from get user service and saves in component
     this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
@@ -41,6 +41,7 @@ export class NavbarComponent implements OnInit  {
 
 
   loadFriendList() {
+    //subscribes to list of friends returned and saves in an array
     this.userService.getFriendList().subscribe(
       data=> {
         this.userFriends = data;
@@ -49,19 +50,14 @@ export class NavbarComponent implements OnInit  {
     )
   }
 
-
+//takes input as value from html
  filterItem(value){
-   console.log(value)
+   //sets array empty if nothing is typed in
     if(value == ''){
         this.filteredItems = null;
-    }else{ // when nothing has typed
+    }//filters friend list based on value typed in
+    else{
     this.filteredItems = this.userFriends.filter(word => word.username.indexOf(value) > -1);
-
-    console.log(this.filteredItems)
     }
  }
- 
-
-
-
 }

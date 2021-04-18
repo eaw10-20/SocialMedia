@@ -13,6 +13,7 @@ export class PostServicesService {
 
 
   createNewPost(post: Post): Observable <Post>{
+    //makes a request passing in new post information in url
     return this.HttpCli.post<Post>(`http://localhost:9005/social/api/createPost`,
     post, {withCredentials: true})
   }

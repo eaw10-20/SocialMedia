@@ -15,12 +15,14 @@ chatMessages: ChatMessage[] = [];
 
 
   public openWebSocket(){
+    //creates new websocket ince
     this.webSocket = new WebSocket('ws://localhost:9005/social/chat');
 
     this.webSocket.onopen = (event) => {
       console.log('Open: ', event)
     }
 
+    //handles chat messages
     this.webSocket.onmessage = (event) => {
         const chatMessageDto = JSON.parse(event.data)
         this.chatMessages.push(chatMessageDto);

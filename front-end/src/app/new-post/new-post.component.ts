@@ -61,6 +61,7 @@ export class NewPostComponent implements OnInit {
   }
 
   currentUser() {
+    //subscribes to user returned from user service
    this.userSubscription = this.userService.getUserSession().subscribe(
       data=> {
         this.user = data;
@@ -83,11 +84,10 @@ export class NewPostComponent implements OnInit {
 
   sendPost() {
     this.post.userId = this.user;
-
+      //creates new post
     this.postService.createNewPost(this.post).subscribe(
       data=> {
         this.post = data;
-
           //for now uploading a single photo. Change if implementing batch upload later
           //create a name based on the post id
           if(this.photo.imageData){
@@ -97,19 +97,16 @@ export class NewPostComponent implements OnInit {
               data=>{
                 this.photo = data
                 this.refresh();
-              }
-              
+              } 
             );
           }else{
             this.refresh();
           } 
-
       }
     );
-  
-
   }
 
+  //refreshes page ro reload elements
   refresh(){
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['main']);
