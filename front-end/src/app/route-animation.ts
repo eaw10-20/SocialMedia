@@ -9,6 +9,7 @@ import {
     keyframes,
   } from '@angular/animations';
 
+  //determins what animation to do depending on what route we are on/going to
 export const slider =
   trigger('routeAnimations', [
     transition('isRight => isLeft', slideTo('left') ),
@@ -22,13 +23,14 @@ export const slider =
     transition('righter => isLeft', slideTo('left') )
   ]);
 
+  //route transition animations
 function slideTo(direction) {
   const optional = { optional: true };
   return [
     query(':enter, :leave', [
       style({
         position: 'absolute',
-        top: 0,
+        top: 62,
         [direction]: 0,
         width: '100%'
       })
@@ -44,12 +46,8 @@ function slideTo(direction) {
         animate('600ms ease', style({ [direction]: '0%'}))
       ])
     ]),
-    // Normalize the page style... Might not be necessary
-
-    // Required only if you have child animations on the page
-    // query(':leave', animateChild()),
-    // query(':enter', animateChild()),
   ];
 }
+
 
 

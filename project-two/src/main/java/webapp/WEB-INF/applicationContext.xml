@@ -35,8 +35,8 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url"
-                  value="#{'jdbc:postgresql://databaserevaturetraining.cqfkhicmdjui.us-east-2.rds.amazonaws.com/socialmedia'}"/>
-        <property name="username" value="frostfuzz"/>
+                  value="#{'jdbc:postgresql://firstdatabase.ctxycf2tpkhe.us-east-2.rds.amazonaws.com/mydatabase'}"/>
+        <property name="username" value="mike"/>
         <property name="password" value="p4ssw0rd"/>
     </bean>
 
@@ -77,7 +77,6 @@
         THEIR INFORMATION, not someone else's.
     -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

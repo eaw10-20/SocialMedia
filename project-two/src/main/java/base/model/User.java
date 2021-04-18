@@ -91,6 +91,29 @@ public class User {
         this.username = username;
     }
 
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, String userDescription) {
+        this.userId = userId;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.userDescription = userDescription;
+    }
+
+    public User(int userId, String fname, String lname, String email, String password, String username, String avatar, boolean loginStatus, String userDescription) {
+        this.userId = userId;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.avatar = avatar;
+        this.loginStatus = loginStatus;
+        this.userDescription = userDescription;
+    }
+
     public User(String fname, String lname, String email, String password, String username, String avatar, String userDescription) {
         this.fname = fname;
         this.lname = lname;

@@ -9,14 +9,13 @@ import base.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
-public class    UserController {
+public class UserController {
 
     final static Logger socialLog = Logger.getLogger(UserController.class);
     private UserDaoImpl userDao;
@@ -27,12 +26,12 @@ public class    UserController {
      * http://localhost:9005/social/api/getAllFriends
      * HTTP request for a list of All users in the database
      * Returns a list of all users in the database
-     * @param session
      * @return
      */
     @GetMapping(value = "/getAllFriends")
     @CrossOrigin(allowCredentials = "true")
-    public @ResponseBody List<User> getAllFriends (HttpSession session) {
+
+    public @ResponseBody List<User> getAllFriends () {
         socialLog.info("In getAllFriends call");
         List<User> friendList = userDao.getAllUsers();
         return friendList;

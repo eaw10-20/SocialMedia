@@ -42,8 +42,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   async getUsersPosts(){
     
     this.postService.getAllPosts().subscribe(posts =>{
-      
-      
       this.allPosts = posts
       // .filter(x => x.userId.userId == this.id);
     }

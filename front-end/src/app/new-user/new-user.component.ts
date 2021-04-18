@@ -40,8 +40,9 @@ export class NewUserComponent implements OnInit{
 
   }
 
+  //sets current user equal to whatever was typed in in html
+  //sends to create user service
    onSubmit() {
-    console.log(this.profileForm.value)
     event.preventDefault();
     this.currentUser.fname = this.profileForm.value.firstName;
     this.currentUser.lname = this.profileForm.value.lastName;
@@ -49,10 +50,8 @@ export class NewUserComponent implements OnInit{
     this.currentUser.password = this.profileForm.value.password;
     this.currentUser.email = this.profileForm.value.email;
 
-
     //this.router.navigate(['']);
     this.userService.createUser(this.currentUser)
-
   }
 
 }

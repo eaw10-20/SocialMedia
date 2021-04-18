@@ -14,6 +14,7 @@ import { UserServicesService } from '../services/user-services.service';
 })
 export class UpdateUserComponent implements OnInit {
 
+  //user information
   user: User = {userId: 0,
     fname: "",
     lname: '',
@@ -25,6 +26,7 @@ export class UpdateUserComponent implements OnInit {
     posts: []
   }
 
+  //photo information
   photo: Photo = {
     photoId: 0,
     photoString: '',
@@ -87,6 +89,7 @@ export class UpdateUserComponent implements OnInit {
   }
 
 
+  //finds current user
   currentUser() {
     this.userService.getUserSession().subscribe(
       data=> {
