@@ -83,4 +83,8 @@ The chat is a room with universal access where all users can communicate in real
 Finally, if you need to recover your password, the app is capable of sending a recovery password to the user's email address.
 
 
-
+## Contributors
+* Hakeem Clark      - https://github.com/hclark07
+* Michael DeGennaro - https://github.com/Mike-DeGennaro
+* Corey Schink      - https://github.com/CSchink
+* Eric Williams     - https://github.com/eaw10-20
